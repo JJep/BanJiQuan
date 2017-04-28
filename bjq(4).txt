@@ -1,0 +1,608 @@
+
+  <insert id="insertBatch" >
+    insert into bjq_title
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+suffixoverride：去掉最后一个逗号（也可以是其他的标记，就像是上面前缀中的and一样）
+      <if test="title.id != null" >
+        id,
+      </if>
+      <if test="title.userid != null" >
+        userId,
+      </if>
+      <if test="title.content != null" >
+        content,
+      </if>
+      <if test="title.pics != null" >
+        pics,
+      </if>
+      <if test="title.videos != null" >
+        videos,
+      </if>
+     	classId,
+      <if test="title.createtime != null" >
+        createTime,
+      </if>
+      <if test="title.deleted != null" >
+        deleted,
+      </if>
+      <if test="title.avThumbnails != null" >
+        av_thumbnails,
+      </if>
+      <if test="title.picThumbnails != null" >
+        pic_thumbnails,
+      </if>
+    </trim>
+		values 
+		
+<foreach collection="array" item="item" index="index" separator=",">
+	<trim prefix="(" suffix=")" suffixOverrides="," >	
+      <if test="title.id != null" >
+        #{title.id,jdbcType=INTEGER},
+      </if>
+      <if test="title.userid != null" >
+        #{title.userid,jdbcType=INTEGER},
+      </if>
+      <if test="title.content != null" >
+        #{title.content,jdbcType=VARCHAR},
+      </if>
+      <if test="title.pics != null" >
+        #{title.pics,jdbcType=VARCHAR},
+      </if>
+      <if test="title.videos != null" >
+        #{title.videos,jdbcType=VARCHAR},
+      </if>
+       	#{item},
+      <if test="title.createtime != null" >
+        #{title.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="title.deleted != null" >
+        #{title.deleted,jdbcType=BIT},
+      </if>
+      <if test="title.avThumbnails != null" >
+        #{title.avThumbnails,jdbcType=VARCHAR},
+      </if>
+      <if test="title.picThumbnails != null" >
+        #{title.picThumbnails,jdbcType=VARCHAR},
+      </if>
+    
+       </trim>
+    </foreach>  
+  
+>*后台管理*
+
+
+>登陆
+接口地址：
+http://localhost:8080/bjqmger/manager/login
+首屏请求需要返回的数据
+
+
+用户id
+用户名
+该用户所有的班级圈信息
+++++++++++++++++++
+班级圈ID+班级圈名字
+++++++++++++++++++
+该用户目前发表的所有公告信息（模拟十条）
+回传的公告信息包括：
+++++++++++++++++++
+标题
+上传文件题目（模拟，给个文件名就行）
+公告所属班级圈ID
+班级圈名字
+公告内容
+发布时间
+++++++++++++++++++
+
+
+
+
+
+
+发送公告包括
+++++++++++++++++++
+用户ID
+标题
+上传文件题目（模拟，给个文件名就行）
+公告所属班级圈ID
+班级圈名字
+公告内容
+++++++++++++++++++
+
+
+
+
+****
+
+
+
+
+USER 
+    修饰词  字段类型 字段名(参数按此传递)
+    private Integer id;	//主键
+
+    private String username;//用户名
+
+    private String password;//密码
+
+    private String phonenumber;//手机号
+
+    private String head; //头像路径
+
+    private String description; //个人描述
+
+    private Short sex; //性别  1表示男 0 表示女 2表示未知
+ 
+    private String qrcode; //二维码路径
+
+    private String code;  //验证码
+
+    private Short status; //1表示成功 0表示不成功 默认0
+
+    private Timestamp createtime; //注册时间
+
+    private Timestamp codetime;  //该验证码获取时间
+    
+    private Short identity; //身份标识
+    
+    
+    private String area;  //地区
+
+
+
+CLASS -
+    private Integer id; //主键标识
+
+    private String name; //班级名字
+
+    private Short tag; //班级标识
+
+    private Date createtime; //创建时间
+
+    private String qrcode; //二维码
+
+    private String head; //班级头像
+
+    private Integer root; //该班级创建用户Id
+
+    private String announcement; //群公告
+
+    private Integer schoolid; //学校id
+
+    private String invitation; //群邀请码
+
+TOKEN
+status:-1//token出错或过期 要求重新登陆
+
+>获取注册验证码
+接口地址:
+http://host:8080/bjquan/user/getRegisterCode
+请求方式 : POST
+参数:
+phoneNumber 
+
+响应结果:
+{"status":0} 获取成功
+{"status":1} 该手机号已经被注册
+{"status":2} 出错
+
+
+***
+>注册
+接口地址:
+http://host:8080/bjquan/user/userRegister
+请求方式 : POST
+参数:
+phoneNumber 
+passWord 
+code  验证码
+
+响应结果:
+{"status":0} 注册成功
+{"status":1} 验证码过期或出错
+{"status":2} 出错
+
+***
+
+>登陆
+接口地址:
+http://host:8080/bjquan/user/LoginByPassWord
+请求方式 : POST
+参数:
+phoneNumber 
+passWord 
+
+
+响应结果:
+{"status":0,"token":token} 注册成功
+{"status":1} 密码错误或账户不存在
+{"status":2} 出错
+
+
+
+
+>找回密码 -发送验证码
+接口地址:
+http://host:8080/bjquan/user/getCode
+请求方式 : POST
+参数:
+phoneNumber 
+响应结果:
+{"status":0} 发送成功
+{"status":1} 该手机号还未被注册
+{"status":2} 出错
+
+
+>修改密码
+
+接口地址:
+http://host:8080/bjquan/user/updatepd
+请求方式 : POST
+参数:
+phoneNumber 
+响应结果:
+{"status":0} 成功
+{"status":1} 验证码过期或错误
+{"status":2} 出错
+
+>查看个人资料(只请求一次 此后保存到客户端 修改后刷新)
+接口地址:
+http://host:8080/bjquan/user/queryif
+请求方式 : GET
+参数:
+userId
+响应结果:
+{"status":0,"user":#{USER}} 成功
+{"status":1} 用户不存在
+{"status":2} 出错
+
+
+>修改个人资料
+接口地址:
+http://host:8080/bjquan/user/updateif
+请求方式 : GET
+参数:
+#{USER}
+flag //flag 为0 则此次修改了头像 否则没有 
+响应结果:
+{"status":0} 成功
+{"status":2} 出错
+
+
+
+>#**班级模块**#
+
+>创建班级查看是否认证
+
+接口地址:http://host:8080/bjquan/class/qmatch
+请求方式Get
+参数:
+userId
+响应结果:
+{"school":{"id":23432,"province":null,"city":"上海","area":"杨浦区","school":"上海杨浦区海城路幼儿园","description":"上海市杨浦区杨浦区内江路４７６号９号","classify":0,"cjsort":null},"status":0}成功//如果school为Null则表示未认证用户
+{"status":1} 不存在该class
+{"status":2} 出错
+
+
+
+>创建班级:
+
+接口地址:
+http://host:8080/bjquan/class/create
+请求方式 : POST
+参数:
+schoolid
+root 
+name
+userId
+响应结果:
+{"status":0} 成功
+{"status":1} 不存在该class
+{"status":2} 出错
+
+
+>根据邀请码搜索班级
+
+接口地址:
+http://host:8080/bjquan/class/searchByCode
+请求方式 : POST
+参数:
+code       邀请码
+响应结果:
+{"status":0,"class":#{class}} 成功
+{"status":1} 不存在该class
+{"status":2} 出错
+
+
+>确认加入班级 
+接口地址:
+http://host:8080/bjquan/class/join
+请求方式 : POST
+参数:
+userId 
+classId
+响应结果:
+{"status":0} 成功
+{"status":2} 出错
+
+
+>发出加入班级的申请(推送 先不管)
+接口地址:
+http://host:8080/bjquan/class/apply
+请求方式 : POST
+参数:
+userId 
+classId
+响应结果:
+{"status":0} 成功
+{"status":2} 出错
+
+>退出群 
+接口地址:
+http://host:8080/bjquan/class/quit
+请求方式 : POST
+参数:
+userId 
+classId
+响应结果:
+{"status":0} 成功
+{"status":2} 出错
+
+>查询该用户所有已加入班级
+接口地址:
+http://host:8080/bjquan/class/qclass
+请求方式 : GET
+参数:
+userId 
+
+响应结果:
+{"status":0,"list":#{LIST}} 成功 
+{"status":2} 出错
+
+
+>查看所有市
+接口地址:
+http://host:8080/bjquan/school/qcity
+请求方式 : GET
+参数:
+userId 
+响应结果:
+{"status":0,"list":#{LIST}} 成功 
+{"status":2} 出错
+
+>查看该市该学校分类的所有分布区
+接口地址:
+http://host:8080/bjquan/school/qth
+请求方式 : GET
+参数:
+userId 
+classify
+city
+响应结果:
+{"status":0,"list":#{LIST}} 成功 
+{"status":2} 出错
+
+
+>查看该市该学校分类的对应区(或者培训机构种类)的学校
+接口地址:
+http://host:8080/bjquan/school/qschool
+请求方式 : GET
+参数:
+userId 
+classify
+city
+area (cjsort) //如果不是培训机构则是area 如果是则cjsort
+响应结果:
+{"status":0,"list":#{LIST}} 成功 
+{"status":2} 出错
+
+
+>查看某个用户的所有班级
+接口地址:http://localhost:8080/bjquan/class/quclass
+请求方式:GET
+参数:
+userId
+响应结果
+{"classes":[{"id":10,"name":"牛逼班","tag":null,"createtime":null,"qrcode":null,"head":null,"root":null,"announcement":null,"schoolid":null,"invitation":null},{"id":11,"name":"奔跑吧","tag":null,"createtime":null,"qrcode":null,"head":null,"root":null,"announcement":null,"schoolid":null,"invitation":null}],"status":0}
+成功 
+{"status":2} 出错
+
+
+
+>发送动态 
+接口地址:http://localhost:8080/bjquan/title/post
+请求方式:POST
+参数:
+userId   //发送人
+userid   //发送人
+content 文本信息
+arrays[]  //班级id
+pics  //图片
+响应结果
+{"status":0}
+成功 
+{"status":1} 上传文件格式错误
+{"status":2} 出错
+
+
+
+>查看某个班最新的10条动态
+接口地址:http://localhost:8080/bjquan/title/qf10
+请求方式:POST
+参数:
+userId   //发送人
+classId 所查看的班级id
+响应结果
+{"status":0,"titles":[{"id":1,"userid":null,"content":"121213","pics":null,"videos":null,"classid":2,"createtime":1493037943000,"deleted":null,"avThumbnails":null,"picThumbnails":null,"user":{"id":1,"username":null,"password":null,"phonenumber":null,"head":null,"description":null,"sex":null,"qrcode":null,"code":null,"status":null,"createtime":1493037943000,"codetime":null,"identity":null,"area":null}}]}
+成功 
+{"status":2} 出错
+
+
+>查看最新10条该用户所有班级的动态
+接口地址:http://localhost:8080/bjquan/title/qallf10
+请求方式:POST
+参数:
+userId   //发送人
+响应结果
+{"status":0,"classes":[{"id":10,"name":"牛逼班","tag":null,"createtime":null,"qrcode":null,"head":null,"root":null,"announcement":null,"schoolid":null,"invitation":null},{"id":11,"name":"奔跑吧","tag":null,"createtime":null,"qrcode":null,"head":null,"root":null,"announcement":null,"schoolid":null,"invitation":null}],"titles":[{"id":1,"userid":null,"content":"121213","pics":null,"videos":null,"classid":2,"createtime":1493037943000,"deleted":null,"avThumbnails":null,"picThumbnails":null,"user":{"id":1,"username":null,"password":null,"phonenumber":null,"head":null,"description":null,"sex":null,"qrcode":null,"code":null,"status":null,"createtime":1493037943000,"codetime":null,"identity":null,"area":null}}]}
+成功 
+{"status":2} 出错
+
+
+
+
+>上拉加载查看最新10条该用户所有班级的动态
+接口地址:http://localhost:8080/bjquan/title/qafter
+请求方式:POST
+参数:
+userId   //发送人
+classId 所查看的班级id
+id //最下面的一条动态id
+classId  //  班级Id 不要求   单个班级
+classIds  //1,2 不要求 所有班级
+响应结果
+{"status":0,"titles":[{"id":1,"userid":null,"content":"121213","pics":null,"videos":null,"classid":2,"createtime":1493037943000,"deleted":null,"avThumbnails":null,"picThumbnails":null,"user":{"id":1,"username":null,"password":null,"phonenumber":null,"head":null,"description":null,"sex":null,"qrcode":null,"code":null,"status":null,"createtime":1493037943000,"codetime":null,"identity":null,"area":null}}]}
+成功 
+{"status":2} 出错
+
+创建兴趣班
+	post:
+		省
+		市
+		区
+		班级名称
+		班级标签
+		创建者userid
+	get：
+		status
+
+搜索班级：
+	post:
+		关键字／邀请码
+	get：
+		班级
+		status
+
+申请加入班级:
+	post:
+		userid
+		班级id
+		申请原因
+
+	get：
+		status；
+
+
+
+申请处理:
+	post:
+		处理人
+		处理结果
+		
+
+	get：
+		status；
+
+
+	
+
+退出班级：
+	post:
+		userid
+		班级id
+	get:	
+		status
+
+发送图文音频班级圈：
+	post：
+		文字内容
+		图片
+		音频
+		userid
+		班级
+	get：
+		status
+		
+发送视频班级圈
+	post： 
+		文字
+		视频
+		userid
+		班级
+	get：
+		status
+
+首次查看班级圈动态：
+	post：
+		userid
+		班级
+	get：
+		十条最新的内容（
+			视频
+			文字
+			点赞人
+			所有评论
+		）
+		status
+
+上拉加载十条动态：
+	post：
+		最下面的动态id
+		userid
+	get：
+		十条次新的内容
+		statis
+
+查看我的所有班级圈：
+	post：
+		userid
+		班级
+	get：
+		十条最新的内容
+		status
+
+
+删除朋友圈：
+	post：
+		userid
+		id
+	get：
+		status
+		
+点赞／取消点赞：
+	post：
+		点赞／取消点赞
+		userid
+		momentid
+	get：
+		status
+		
+评论班级圈：
+	post：
+		文字
+		userid
+		momentid
+	get：
+		status
+
+评论评论人：
+	post：
+		文字
+		评论id
+		momentid
+		userid
+	get：
+		status
+
+删除评论：
+	post：
+		userid	
+		评论的userid
+		评论id
+	get：
+		status
+
+
+***聊天 ...
+
+***日程....

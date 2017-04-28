@@ -1,0 +1,230 @@
+//
+//  ClassViewController.m
+//  班级圈
+//
+//  Created by Jep Xia on 2017/4/27.
+//  Copyright © 2017年 Jep Xia. All rights reserved.
+//
+
+#import "ClassViewController.h"
+#import <Masonry.h>
+#import "GlobalVar.h"
+@interface ClassViewController ()
+@property (nonatomic,retain)UIImageView* backgroundImage;
+@property (nonatomic,retain)UIImageView* classPortrait;
+@property (nonatomic,retain)UILabel* className;
+@property (nonatomic,retain)UILabel* classDescription;
+
+@end
+
+@implementation ClassViewController
+
+-(void)initNavigation
+{
+    
+    self.navigationController.navigationBar.backgroundColor = [UIColor whiteColor];
+    if( ([[[UIDevice currentDevice] systemVersion] doubleValue]>=7.0)) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        self.extendedLayoutIncludesOpaqueBars = NO;
+        self.modalPresentationCapturesStatusBarAppearance = NO;
+    }
+}
+
+-(void)createUI
+{
+    self.view.backgroundColor = [GlobalVar grayColorGetter];
+    
+    //
+    self.backgroundImage = [UIImageView new];
+    self.classPortrait = [UIImageView new];
+    self.className = [UILabel new];
+    self.classDescription = [UILabel new];
+    
+    //设置控件颜色
+    self.backgroundImage.backgroundColor = [GlobalVar themeColorGetter];
+    self.className.textColor = [UIColor whiteColor];
+    self.classDescription.textColor = [UIColor whiteColor];
+    
+    self.className.text = @"班级名称";
+    self.classDescription.text = @"班级介绍";
+    self.classDescription.font = [UIFont systemFontOfSize:15];
+    self.classPortrait.image = [UIImage imageNamed:@"userPortrait.jpg"];
+    
+    [self.view addSubview:self.backgroundImage];
+    [self.backgroundImage addSubview:self.classPortrait];
+    [self.backgroundImage addSubview:self.className];
+    [self.backgroundImage addSubview:self.classDescription];
+    
+    [self.backgroundImage mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view);
+        make.height.mas_equalTo(152);
+        make.width.equalTo(self.view);
+        make.centerX.equalTo(self.view);
+    }];
+    
+    [self.classPortrait mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.backgroundImage.mas_left).offset(10);
+        make.bottom.equalTo(self.backgroundImage.mas_bottom).offset(-10);
+        make.height.width.mas_equalTo(50);
+    }];
+    
+    [self.className mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.classPortrait.mas_right).offset(10);
+        make.top.equalTo(self.classPortrait.mas_top).offset(3);
+        make.right.equalTo(self.backgroundImage.mas_right).offset(-10);
+    }];
+    
+    [self.classDescription mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.className);
+        make.bottom.equalTo(self.classPortrait.mas_bottom).offset(-3);
+        make.right.equalTo(self.backgroundImage.mas_right).offset(10);
+    }];
+    
+    
+    //
+    UIView* assistView1 = [UIView new];
+    assistView1.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:assistView1];
+    
+    UIButton* classAnnouncement = [UIButton new];
+    [assistView1 addSubview:classAnnouncement];
+    UIButton* classFiles = [UIButton new];
+    [assistView1 addSubview:classFiles];
+    UIButton* classTimeLabel = [UIButton new];
+    [assistView1 addSubview:classTimeLabel];
+    UIImage* classAnnoucementImage = [UIImage imageNamed:@"class_班级公告"];
+    UIImage* classFilesImage = [UIImage imageNamed:@"class_班级文件"];
+    UIImage* classTimeLabelImage = [UIImage imageNamed:@"class_班级课表"];
+    [classAnnouncement setImage:classAnnoucementImage forState:UIControlStateNormal];
+    [classFiles setImage:classFilesImage forState:UIControlStateNormal];
+    [classTimeLabel setImage:classTimeLabelImage forState:UIControlStateNormal];
+    
+    [assistView1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.backgroundImage.mas_bottom);
+        make.height.mas_equalTo(72);
+        make.centerX.width.equalTo(self.view);
+    }];
+    
+    
+    [classAnnouncement mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.width.mas_equalTo(72);
+
+        make.left.equalTo(assistView1.mas_left).offset(10);
+        make.centerY.equalTo(assistView1);
+    }];
+    
+    [classFiles mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.width.mas_equalTo(72);
+        make.left.equalTo(classAnnouncement.mas_right).offset(19);
+        make.centerY.equalTo(assistView1);
+    }];
+    
+    [classTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.width.mas_equalTo(72);
+
+        make.left.equalTo(classFiles.mas_right).offset(19);
+        make.centerY.equalTo(assistView1);
+    }];
+    
+    //
+    UIButton* classCardBtn = [UIButton new];
+    [self.view addSubview:classCardBtn];
+    [classCardBtn setBackgroundColor:[UIColor whiteColor]];
+    [classCardBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(assistView1.mas_bottom).offset(10);
+        make.width.centerX.left.equalTo(self.view);
+        make.height.mas_equalTo(40);
+    }];
+    
+    UILabel* classCardLabel = [UILabel new];
+    [classCardBtn addSubview:classCardLabel];
+    classCardLabel.text = @"我的班级名片";
+    [classCardLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(classCardBtn.mas_left).offset(20);
+        make.centerY.equalTo(classCardBtn);
+    }];
+    
+    UIImageView* arrowImage = [UIImageView new];
+    [arrowImage setImage:[UIImage imageNamed:@"ARROW_RIGHT拷贝"]];
+    [classCardBtn addSubview:arrowImage];
+    [arrowImage mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(classCardBtn).offset(-15);
+        make.width.mas_equalTo(10);
+        make.height.mas_equalTo(20);
+        make.centerY.equalTo(classCardBtn);
+    }];
+    
+    UILabel* classCardName = [UILabel new];
+    [classCardBtn addSubview:classCardName];
+    classCardName.textColor = [GlobalVar grayColorGetter];
+    classCardName.text = @"未设置";
+    [classCardName mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(arrowImage.mas_left).offset(-10);
+        make.centerY.equalTo(classCardBtn);
+    }];
+    
+    UIButton* assistViewLeft = [UIButton new];
+    UIButton* assistViewRight = [UIButton new];
+    [assistViewLeft setBackgroundColor:[UIColor whiteColor]];
+    [assistViewRight setBackgroundColor:[UIColor whiteColor]];
+    [assistViewLeft setTitle:@"家长群" forState:UIControlStateNormal];
+    [assistViewRight setTitle:@"家长群" forState:UIControlStateNormal];
+    [assistViewLeft setTitleColor:[GlobalVar themeColorGetter] forState:UIControlStateSelected];
+    [assistViewLeft setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [assistViewRight setTitleColor:[GlobalVar themeColorGetter] forState:UIControlStateSelected];
+    [assistViewRight setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.view addSubview:assistViewRight];
+    [self.view addSubview:assistViewLeft];
+    
+    [assistViewLeft mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(classCardBtn.mas_bottom).offset(10);
+        make.left.equalTo(self.view);
+        make.width.equalTo(assistViewRight);
+        make.right.equalTo(assistViewRight.mas_left);
+        make.height.mas_equalTo(44);
+    }];
+    
+    [assistViewRight mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(classCardBtn.mas_bottom).offset(10);
+        make.right.equalTo(self.view);
+        make.left.equalTo(assistViewLeft.mas_right);
+        make.width.equalTo(assistViewLeft);
+        make.height.mas_equalTo(44);
+    }];
+    
+    
+    //classMember
+    UIButton* classMembersBtn = [UIButton new];
+    [classMembersBtn setBackgroundColor:[UIColor whiteColor]];
+    [self.view addSubview:classMembersBtn];
+    UIImageView* classMemberImage = [UIImageView new];
+    classMemberImage.image = [UIImage imageNamed:@""];
+    
+    classMemberImage mas_makeConstraints:^(MASConstraintMaker *make) {
+        <#code#>
+    }
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    [self createUI];
+    [self initNavigation];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+@end
