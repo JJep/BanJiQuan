@@ -19,6 +19,8 @@
 #import "GlobalVar.h"
 #import "UIImagePickerViewController.h"
 #import "School.h"
+#import "ViewController.h"
+
 @interface AppDelegate ()
 @property (strong, nonatomic) NSDictionary* parameters;
 @property (strong, nonatomic) NSDictionary* qmatchParameters;
@@ -31,6 +33,31 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    
+    NSDictionary *remoteNotificationUserInfo = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
+
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+    /**
+     * 推送处理1
+     */
+    if ([application
+         respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+        //注册推送, 用于iOS8以及iOS8之后的系统
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings
+                                                settingsForTypes:(UIUserNotificationTypeBadge |
+                                                                  UIUserNotificationTypeSound |
+                                                                  UIUserNotificationTypeAlert)
+                                                categories:nil];
+        [application registerUserNotificationSettings:settings];
+    } else {
+        //注册推送，用于iOS8之前的系统
+        UIRemoteNotificationType myTypes = UIRemoteNotificationTypeBadge |
+        UIRemoteNotificationTypeAlert |
+        UIRemoteNotificationTypeSound;
+        [application registerForRemoteNotificationTypes:myTypes];
+    }
     [[RCIM sharedRCIM] initWithAppKey:@"pvxdm17jpgirr"];
     [self autoLogin];
     [self qmatch];
@@ -57,7 +84,7 @@
     [nav2.navigationBar setTintColor:[UIColor whiteColor]];
 
     
-    Login* schedule = [[Login alloc] init];
+    ViewController* schedule = [[ViewController alloc] init];
     schedule.view.backgroundColor = [UIColor orangeColor];
     schedule.title = @"Schedule";
     UINavigationController* nav3 = [[UINavigationController alloc] initWithRootViewController:schedule];
@@ -91,6 +118,39 @@
     //rongyun
     
     return YES;
+}
+
+/**
+ * 推送处理2
+ */
+//注册用户通知设置
+- (void)application:(UIApplication *)application
+didRegisterUserNotificationSettings:
+(UIUserNotificationSettings *)notificationSettings {
+    // register to receive notifications
+    [application registerForRemoteNotifications];
+}
+
+/**
+ * 推送处理3
+ */
+- (void)application:(UIApplication *)application
+didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    NSString *token =
+    [[[[deviceToken description] stringByReplacingOccurrencesOfString:@"<"
+                                                           withString:@""]
+      stringByReplacingOccurrencesOfString:@">"
+      withString:@""]
+     stringByReplacingOccurrencesOfString:@" "
+     withString:@""];
+    
+    [[RCIMClient sharedRCIMClient] setDeviceToken:token];
+}
+
+
+- (void)application:(UIApplication *)application
+didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    // userInfo为远程推送的内容
 }
 
 -(void)qmatch

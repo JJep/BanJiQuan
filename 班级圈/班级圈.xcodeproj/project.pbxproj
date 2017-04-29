@@ -8,24 +8,62 @@
 
 /* Begin PBXBuildFile section */
 		298A3F8CA897376B1E090E80 /* libPods-班级圈.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A722B5CD4DE2845D83B54D39 /* libPods-班级圈.a */; };
-		BE1B18221EA8CA1D00D3FE60 /* SchoolCreateClass.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1B18211EA8CA1D00D3FE60 /* SchoolCreateClass.m */; };
-		BE1B18251EA8CACA00D3FE60 /* SchoolList.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1B18241EA8CACA00D3FE60 /* SchoolList.m */; };
-		BE1B18281EA8F75600D3FE60 /* JoinClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1B18271EA8F75600D3FE60 /* JoinClassViewController.m */; };
-		BE1B182B1EA9A0B500D3FE60 /* JoinExactClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1B182A1EA9A0B500D3FE60 /* JoinExactClassViewController.m */; };
-		BE1B182E1EACC6BA00D3FE60 /* NewMomentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1B182D1EACC6BA00D3FE60 /* NewMomentViewController.m */; };
 		BE1B18311EACCA6D00D3FE60 /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = BE1B18301EACCA6D00D3FE60 /* plus.png */; };
-		BE1B18361EACD86500D3FE60 /* Classe.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1B18331EACD86500D3FE60 /* Classe.m */; };
-		BE1B18371EACD86500D3FE60 /* NewMomentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1B18351EACD86500D3FE60 /* NewMomentModel.m */; };
-		BE1B183A1EACE0C900D3FE60 /* SelectClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1B18391EACE0C900D3FE60 /* SelectClassViewController.m */; };
-		BE1D53C31EB1FAE100BCD54F /* School.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1D53C01EB1FAE100BCD54F /* School.m */; };
-		BE1D53C41EB1FAE100BCD54F /* schoolmodel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1D53C21EB1FAE100BCD54F /* schoolmodel.m */; };
-		BE1D53C71EB2293C00BCD54F /* ClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1D53C61EB2293C00BCD54F /* ClassViewController.m */; };
 		BE1D53C91EB300D600BCD54F /* CLASS_PLUS.png in Resources */ = {isa = PBXBuildFile; fileRef = BE1D53C81EB300D600BCD54F /* CLASS_PLUS.png */; };
 		BE1D53CD1EB3016900BCD54F /* class_班级公告.png in Resources */ = {isa = PBXBuildFile; fileRef = BE1D53CA1EB3016900BCD54F /* class_班级公告.png */; };
 		BE1D53CE1EB3016900BCD54F /* class_班级课表.png in Resources */ = {isa = PBXBuildFile; fileRef = BE1D53CB1EB3016900BCD54F /* class_班级课表.png */; };
 		BE1D53CF1EB3016900BCD54F /* class_班级文件.png in Resources */ = {isa = PBXBuildFile; fileRef = BE1D53CC1EB3016900BCD54F /* class_班级文件.png */; };
-		BE231E3F1E8D34BD001A92A9 /* Register.m in Sources */ = {isa = PBXBuildFile; fileRef = BE231E3E1E8D34BD001A92A9 /* Register.m */; };
-		BE24AB161E9E5C69004ADBAF /* MeHeadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE24AB151E9E5C69004ADBAF /* MeHeadTableViewCell.m */; };
+		BE1D53D11EB37DF700BCD54F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE1D53D01EB37DF700BCD54F /* Assets.xcassets */; };
+		BE1D548A1EB4B76400BCD54F /* GlobalVar.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6E48171E9B9CC3006BC25A /* GlobalVar.m */; };
+		BE1D548B1EB4B76400BCD54F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF836C31E89562200F1CD2D /* AppDelegate.m */; };
+		BE1D548C1EB4B76400BCD54F /* Login.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF836D71E89564500F1CD2D /* Login.m */; };
+		BE1D548D1EB4B76400BCD54F /* Register.m in Sources */ = {isa = PBXBuildFile; fileRef = BE231E3E1E8D34BD001A92A9 /* Register.m */; };
+		BE1D548E1EB4B76400BCD54F /* MeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7322301E8A9AE10099E365 /* MeViewController.m */; };
+		BE1D548F1EB4B76400BCD54F /* MomentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7322271E8A966F0099E365 /* MomentsViewController.m */; };
+		BE1D54901EB4B76400BCD54F /* NewMomentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1B182D1EACC6BA00D3FE60 /* NewMomentViewController.m */; };
+		BE1D54911EB4B76400BCD54F /* UIImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEBEC8D51EAE01ED00324E26 /* UIImagePickerViewController.m */; };
+		BE1D54921EB4B76400BCD54F /* CreateClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE4523701EA4ADFD00D9CE58 /* CreateClassViewController.m */; };
+		BE1D54931EB4B76400BCD54F /* ClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1D53C61EB2293C00BCD54F /* ClassViewController.m */; };
+		BE1D54941EB4B76400BCD54F /* SelectClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1B18391EACE0C900D3FE60 /* SelectClassViewController.m */; };
+		BE1D54951EB4B76400BCD54F /* JoinClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1B18271EA8F75600D3FE60 /* JoinClassViewController.m */; };
+		BE1D54961EB4B76400BCD54F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1D53D31EB3A42A00BCD54F /* ViewController.m */; };
+		BE1D54971EB4B76400BCD54F /* JoinExactClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1B182A1EA9A0B500D3FE60 /* JoinExactClassViewController.m */; };
+		BE1D54981EB4B76400BCD54F /* MyProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB9AEF51EA62AB500BF20EB /* MyProfileViewController.m */; };
+		BE1D54991EB4B76400BCD54F /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CD1F01EAF6E280023D986 /* EditProfileViewController.m */; };
+		BE1D549A1EB4B76400BCD54F /* TeacherConfirmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CD1F61EB063640023D986 /* TeacherConfirmViewController.m */; };
+		BE1D549B1EB4B76400BCD54F /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE73222A1E8A967E0099E365 /* ChatViewController.m */; };
+		BE1D549C1EB4B76400BCD54F /* TestConversationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6E481A1E9BA222006BC25A /* TestConversationViewController.m */; };
+		BE1D549D1EB4B76400BCD54F /* ScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE73222D1E8A96E50099E365 /* ScheduleViewController.m */; };
+		BE1D549E1EB4B76400BCD54F /* ClassView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CD1E71EAE3A910023D986 /* ClassView.m */; };
+		BE1D549F1EB4B76400BCD54F /* CreateClassSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE4523731EA4CB4500D9CE58 /* CreateClassSubView.m */; };
+		BE1D54A01EB4B76400BCD54F /* School.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1D53C01EB1FAE100BCD54F /* School.m */; };
+		BE1D54A11EB4B76400BCD54F /* schoolmodel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1D53C21EB1FAE100BCD54F /* schoolmodel.m */; };
+		BE1D54A21EB4B76400BCD54F /* MomentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CD1EA1EAF5BB60023D986 /* MomentModel.m */; };
+		BE1D54A31EB4B76400BCD54F /* Title.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CD1EC1EAF5BB60023D986 /* Title.m */; };
+		BE1D54A41EB4B76400BCD54F /* Classe.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1B18331EACD86500D3FE60 /* Classe.m */; };
+		BE1D54A51EB4B76400BCD54F /* NewMomentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1B18351EACD86500D3FE60 /* NewMomentModel.m */; };
+		BE1D54A61EB4B76400BCD54F /* SchoolList.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1B18241EA8CACA00D3FE60 /* SchoolList.m */; };
+		BE1D54A71EB4B76400BCD54F /* SchoolCreateClass.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1B18211EA8CA1D00D3FE60 /* SchoolCreateClass.m */; };
+		BE1D54A81EB4B76400BCD54F /* Region.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6AE1C71EA757D300B0FF75 /* Region.m */; };
+		BE1D54A91EB4B76400BCD54F /* MyProfileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB9AEEF1EA62A3E00BF20EB /* MyProfileModel.m */; };
+		BE1D54AA1EB4B76400BCD54F /* Codetime.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB9AEED1EA62A3E00BF20EB /* Codetime.m */; };
+		BE1D54AB1EB4B76400BCD54F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB9AEF11EA62A3E00BF20EB /* User.m */; };
+		BE1D54AC1EB4B76400BCD54F /* EditProfileTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CD1F31EAF72D00023D986 /* EditProfileTableViewCell.m */; };
+		BE1D54AE1EB4B76400BCD54F /* DefaultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CD2071EB0ADDA0023D986 /* DefaultTableViewCell.m */; };
+		BE1D54AF1EB4B76400BCD54F /* MomentsHeadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6E48061E967C34006BC25A /* MomentsHeadTableViewCell.m */; };
+		BE1D54B01EB4B76400BCD54F /* MeHeadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE24AB151E9E5C69004ADBAF /* MeHeadTableViewCell.m */; };
+		BE1D54B21EB4B76400BCD54F /* ELCAlbumPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CD1C31EAE282A0023D986 /* ELCAlbumPickerController.m */; };
+		BE1D54B31EB4B76400BCD54F /* ELCAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CD1C51EAE282A0023D986 /* ELCAsset.m */; };
+		BE1D54B41EB4B76400BCD54F /* ELCAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CD1C71EAE282A0023D986 /* ELCAssetCell.m */; };
+		BE1D54B51EB4B76400BCD54F /* ELCAssetTablePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CD1CB1EAE282A0023D986 /* ELCAssetTablePicker.m */; };
+		BE1D54B61EB4B76400BCD54F /* ELCConsole.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CD1CD1EAE282A0023D986 /* ELCConsole.m */; };
+		BE1D54B71EB4B76400BCD54F /* ELCImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CD1CF1EAE282A0023D986 /* ELCImagePickerController.m */; };
+		BE1D54B81EB4B76400BCD54F /* ELCOverlayImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CD1D21EAE282A0023D986 /* ELCOverlayImageView.m */; };
+		BE1D54B91EB4B7A700BCD54F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF836C01E89562200F1CD2D /* main.m */; };
+		BE1D54BA1EB4B7B700BCD54F /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6E47D91E963699006BC25A /* CustomTableViewCell.m */; };
+		BE1D54C01EB4B95100BCD54F /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE1D54BF1EB4B95100BCD54F /* CoreMedia.framework */; };
+		BE1D54C11EB4B95B00BCD54F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE1D54BB1EB4B80E00BCD54F /* AVFoundation.framework */; };
+		BE1D54C21EB4B96D00BCD54F /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE1D54BD1EB4B86600BCD54F /* AVKit.framework */; };
 		BE24AB1B1E9E6126004ADBAF /* 头像大.png in Resources */ = {isa = PBXBuildFile; fileRef = BE24AB181E9E6126004ADBAF /* 头像大.png */; };
 		BE24AB1C1E9E6126004ADBAF /* ARROW_RIGHT.png in Resources */ = {isa = PBXBuildFile; fileRef = BE24AB191E9E6126004ADBAF /* ARROW_RIGHT.png */; };
 		BE24AB1D1E9E6126004ADBAF /* COG.png in Resources */ = {isa = PBXBuildFile; fileRef = BE24AB1A1E9E6126004ADBAF /* COG.png */; };
@@ -38,11 +76,7 @@
 		BE24AB5F1EA3A6A2004ADBAF /* 发消息.png in Resources */ = {isa = PBXBuildFile; fileRef = BE24AB561EA3A6A2004ADBAF /* 发消息.png */; };
 		BE24AB601EA3A6A2004ADBAF /* MyProfile_头像大.png in Resources */ = {isa = PBXBuildFile; fileRef = BE24AB571EA3A6A2004ADBAF /* MyProfile_头像大.png */; };
 		BE24AB611EA3A6A2004ADBAF /* 矩形7.png in Resources */ = {isa = PBXBuildFile; fileRef = BE24AB581EA3A6A2004ADBAF /* 矩形7.png */; };
-		BE4523711EA4ADFD00D9CE58 /* CreateClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE4523701EA4ADFD00D9CE58 /* CreateClassViewController.m */; };
-		BE4523741EA4CB4500D9CE58 /* CreateClassSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE4523731EA4CB4500D9CE58 /* CreateClassSubView.m */; };
 		BE6AE1BD1EA748E100B0FF75 /* mJson.json in Resources */ = {isa = PBXBuildFile; fileRef = BE6AE1BC1EA748E100B0FF75 /* mJson.json */; };
-		BE6AE1C91EA757D400B0FF75 /* Region.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6AE1C71EA757D300B0FF75 /* Region.m */; };
-		BE6E47DA1E963699006BC25A /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6E47D91E963699006BC25A /* CustomTableViewCell.m */; };
 		BE6E47F01E9646C3006BC25A /* 大分割线@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BE6E47DB1E9646C3006BC25A /* 大分割线@2x.png */; };
 		BE6E47F11E9646C3006BC25A /* 点赞@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BE6E47DC1E9646C3006BC25A /* 点赞@2x.png */; };
 		BE6E47F21E9646C3006BC25A /* 点赞红@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BE6E47DD1E9646C3006BC25A /* 点赞红@2x.png */; };
@@ -64,35 +98,15 @@
 		BE6E48021E9646C3006BC25A /* 新建消息@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BE6E47ED1E9646C3006BC25A /* 新建消息@2x.png */; };
 		BE6E48031E9646C3006BC25A /* 圆角矩形1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BE6E47EE1E9646C3006BC25A /* 圆角矩形1@2x.png */; };
 		BE6E48041E9646C3006BC25A /* ARROW_RIGHT@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BE6E47EF1E9646C3006BC25A /* ARROW_RIGHT@2x.png */; };
-		BE6E48071E967C34006BC25A /* MomentsHeadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6E48061E967C34006BC25A /* MomentsHeadTableViewCell.m */; };
 		BE6E48091E967D08006BC25A /* 动态 图文板式.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BE6E48081E967D08006BC25A /* 动态 图文板式.jpg */; };
 		BE6E480B1E967D56006BC25A /* 动态_ios.png in Resources */ = {isa = PBXBuildFile; fileRef = BE6E480A1E967D56006BC25A /* 动态_ios.png */; };
 		BE6E480D1E977040006BC25A /* flower.JPG in Resources */ = {isa = PBXBuildFile; fileRef = BE6E480C1E977040006BC25A /* flower.JPG */; };
-		BE6E48181E9B9CC3006BC25A /* GlobalVar.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6E48171E9B9CC3006BC25A /* GlobalVar.m */; };
-		BE6E481B1E9BA222006BC25A /* TestConversationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6E481A1E9BA222006BC25A /* TestConversationViewController.m */; };
 		BE7322251E8A76CB0099E365 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = BE7322241E8A76CB0099E365 /* Podfile */; };
-		BE7322281E8A966F0099E365 /* MomentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7322271E8A966F0099E365 /* MomentsViewController.m */; };
-		BE73222B1E8A967E0099E365 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE73222A1E8A967E0099E365 /* ChatViewController.m */; };
-		BE73222E1E8A96E50099E365 /* ScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE73222D1E8A96E50099E365 /* ScheduleViewController.m */; };
-		BE7322311E8A9AE10099E365 /* MeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7322301E8A9AE10099E365 /* MeViewController.m */; };
-		BE7CD1D91EAE282A0023D986 /* ELCAlbumPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CD1C31EAE282A0023D986 /* ELCAlbumPickerController.m */; };
-		BE7CD1DA1EAE282A0023D986 /* ELCAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CD1C51EAE282A0023D986 /* ELCAsset.m */; };
-		BE7CD1DB1EAE282A0023D986 /* ELCAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CD1C71EAE282A0023D986 /* ELCAssetCell.m */; };
-		BE7CD1DC1EAE282A0023D986 /* ELCAssetTablePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CD1CB1EAE282A0023D986 /* ELCAssetTablePicker.m */; };
-		BE7CD1DD1EAE282A0023D986 /* ELCConsole.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CD1CD1EAE282A0023D986 /* ELCConsole.m */; };
-		BE7CD1DE1EAE282A0023D986 /* ELCImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CD1CF1EAE282A0023D986 /* ELCImagePickerController.m */; };
-		BE7CD1DF1EAE282A0023D986 /* ELCOverlayImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CD1D21EAE282A0023D986 /* ELCOverlayImageView.m */; };
 		BE7CD1E01EAE282A0023D986 /* ELCAlbumPickerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE7CD1D41EAE282A0023D986 /* ELCAlbumPickerController.xib */; };
 		BE7CD1E11EAE282A0023D986 /* ELCAssetPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE7CD1D51EAE282A0023D986 /* ELCAssetPicker.xib */; };
 		BE7CD1E21EAE282A0023D986 /* ELCAssetTablePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE7CD1D61EAE282A0023D986 /* ELCAssetTablePicker.xib */; };
 		BE7CD1E31EAE282A0023D986 /* Overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = BE7CD1D71EAE282A0023D986 /* Overlay.png */; };
 		BE7CD1E41EAE282A0023D986 /* Overlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BE7CD1D81EAE282A0023D986 /* Overlay@2x.png */; };
-		BE7CD1E81EAE3A910023D986 /* ClassView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CD1E71EAE3A910023D986 /* ClassView.m */; };
-		BE7CD1ED1EAF5BB60023D986 /* MomentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CD1EA1EAF5BB60023D986 /* MomentModel.m */; };
-		BE7CD1EE1EAF5BB60023D986 /* Title.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CD1EC1EAF5BB60023D986 /* Title.m */; };
-		BE7CD1F11EAF6E280023D986 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CD1F01EAF6E280023D986 /* EditProfileViewController.m */; };
-		BE7CD1F41EAF72D00023D986 /* EditProfileTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CD1F31EAF72D00023D986 /* EditProfileTableViewCell.m */; };
-		BE7CD1F71EB063640023D986 /* TeacherConfirmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CD1F61EB063640023D986 /* TeacherConfirmViewController.m */; };
 		BE7CD1FA1EB08EEC0023D986 /* identityImageBack.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = BE7CD1F81EB08EEC0023D986 /* identityImageBack.jpeg */; };
 		BE7CD1FB1EB08EEC0023D986 /* identityImageFront.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = BE7CD1F91EB08EEC0023D986 /* identityImageFront.jpeg */; };
 		BE7CD1FD1EB09B370023D986 /* userPortrait.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BE7CD1FC1EB09B370023D986 /* userPortrait.jpg */; };
@@ -100,21 +114,11 @@
 		BE7CD2031EB0AD580023D986 /* NOTEPAD_OK.png in Resources */ = {isa = PBXBuildFile; fileRef = BE7CD1FF1EB0AD580023D986 /* NOTEPAD_OK.png */; };
 		BE7CD2041EB0AD580023D986 /* NOTEPAD.png in Resources */ = {isa = PBXBuildFile; fileRef = BE7CD2001EB0AD580023D986 /* NOTEPAD.png */; };
 		BE7CD2051EB0AD580023D986 /* USER_ADD.png in Resources */ = {isa = PBXBuildFile; fileRef = BE7CD2011EB0AD580023D986 /* USER_ADD.png */; };
-		BE7CD2081EB0ADDA0023D986 /* DefaultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CD2071EB0ADDA0023D986 /* DefaultTableViewCell.m */; };
 		BE7CD20A1EB0BE980023D986 /* 新建消息.png in Resources */ = {isa = PBXBuildFile; fileRef = BE7CD2091EB0BE980023D986 /* 新建消息.png */; };
-		BEB9AEF21EA62A3E00BF20EB /* Codetime.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB9AEED1EA62A3E00BF20EB /* Codetime.m */; };
-		BEB9AEF31EA62A3E00BF20EB /* MyProfileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB9AEEF1EA62A3E00BF20EB /* MyProfileModel.m */; };
-		BEB9AEF41EA62A3E00BF20EB /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB9AEF11EA62A3E00BF20EB /* User.m */; };
-		BEB9AEF61EA62AB500BF20EB /* MyProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB9AEF51EA62AB500BF20EB /* MyProfileViewController.m */; };
 		BEBEC8D31EADE49A00324E26 /* nike.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = BEBEC8D21EADE49A00324E26 /* nike.jpeg */; };
-		BEBEC8D61EAE01ED00324E26 /* UIImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEBEC8D51EAE01ED00324E26 /* UIImagePickerViewController.m */; };
 		BEBEC8D81EAE1F0C00324E26 /* GLOBE.png in Resources */ = {isa = PBXBuildFile; fileRef = BEBEC8D71EAE1F0C00324E26 /* GLOBE.png */; };
-		BEF836C11E89562200F1CD2D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF836C01E89562200F1CD2D /* main.m */; };
-		BEF836C41E89562200F1CD2D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF836C31E89562200F1CD2D /* AppDelegate.m */; };
 		BEF836CA1E89562200F1CD2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEF836C81E89562200F1CD2D /* Main.storyboard */; };
-		BEF836CC1E89562200F1CD2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEF836CB1E89562200F1CD2D /* Assets.xcassets */; };
 		BEF836CF1E89562200F1CD2D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEF836CD1E89562200F1CD2D /* LaunchScreen.storyboard */; };
-		BEF836D81E89564500F1CD2D /* Login.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF836D71E89564500F1CD2D /* Login.m */; };
 		BEF836E21E8960C100F1CD2D /* logo图.png in Resources */ = {isa = PBXBuildFile; fileRef = BEF836DA1E8960C100F1CD2D /* logo图.png */; };
 		BEF836E31E8960C100F1CD2D /* 分割线_短.png in Resources */ = {isa = PBXBuildFile; fileRef = BEF836DB1E8960C100F1CD2D /* 分割线_短.png */; };
 		BEF836E41E8960C100F1CD2D /* 分割线_长.png in Resources */ = {isa = PBXBuildFile; fileRef = BEF836DC1E8960C100F1CD2D /* 分割线_长.png */; };
@@ -155,6 +159,12 @@
 		BE1D53CA1EB3016900BCD54F /* class_班级公告.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "class_班级公告.png"; sourceTree = "<group>"; };
 		BE1D53CB1EB3016900BCD54F /* class_班级课表.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "class_班级课表.png"; sourceTree = "<group>"; };
 		BE1D53CC1EB3016900BCD54F /* class_班级文件.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "class_班级文件.png"; sourceTree = "<group>"; };
+		BE1D53D01EB37DF700BCD54F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BE1D53D21EB3A42A00BCD54F /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		BE1D53D31EB3A42A00BCD54F /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		BE1D54BB1EB4B80E00BCD54F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		BE1D54BD1EB4B86600BCD54F /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
+		BE1D54BF1EB4B95100BCD54F /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		BE231E3D1E8D34BD001A92A9 /* Register.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Register.h; sourceTree = "<group>"; };
 		BE231E3E1E8D34BD001A92A9 /* Register.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Register.m; sourceTree = "<group>"; };
 		BE24AB141E9E5C69004ADBAF /* MeHeadTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeHeadTableViewCell.h; sourceTree = "<group>"; };
@@ -280,7 +290,6 @@
 		BEF836C21E89562200F1CD2D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BEF836C31E89562200F1CD2D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		BEF836C91E89562200F1CD2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		BEF836CB1E89562200F1CD2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BEF836CE1E89562200F1CD2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BEF836D01E89562200F1CD2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BEF836D61E89564500F1CD2D /* Login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Login.h; sourceTree = "<group>"; };
@@ -301,6 +310,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE1D54C21EB4B96D00BCD54F /* AVKit.framework in Frameworks */,
+				BE1D54C11EB4B95B00BCD54F /* AVFoundation.framework in Frameworks */,
+				BE1D54C01EB4B95100BCD54F /* CoreMedia.framework in Frameworks */,
 				298A3F8CA897376B1E090E80 /* libPods-班级圈.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -311,6 +323,9 @@
 		9E38FB1450BC556420558260 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BE1D54BF1EB4B95100BCD54F /* CoreMedia.framework */,
+				BE1D54BD1EB4B86600BCD54F /* AVKit.framework */,
+				BE1D54BB1EB4B80E00BCD54F /* AVFoundation.framework */,
 				A722B5CD4DE2845D83B54D39 /* libPods-班级圈.a */,
 			);
 			name = Frameworks;
@@ -466,6 +481,8 @@
 				BE231E3E1E8D34BD001A92A9 /* Register.m */,
 				BE73222F1E8A9AE10099E365 /* MeViewController.h */,
 				BE7322301E8A9AE10099E365 /* MeViewController.m */,
+				BE7322261E8A966F0099E365 /* MomentsViewController.h */,
+				BE7322271E8A966F0099E365 /* MomentsViewController.m */,
 				BE1B182C1EACC6BA00D3FE60 /* NewMomentViewController.h */,
 				BE1B182D1EACC6BA00D3FE60 /* NewMomentViewController.m */,
 				BEBEC8D41EAE01ED00324E26 /* UIImagePickerViewController.h */,
@@ -478,14 +495,14 @@
 				BE1B18391EACE0C900D3FE60 /* SelectClassViewController.m */,
 				BE1B18261EA8F75600D3FE60 /* JoinClassViewController.h */,
 				BE1B18271EA8F75600D3FE60 /* JoinClassViewController.m */,
+				BE1D53D21EB3A42A00BCD54F /* ViewController.h */,
+				BE1D53D31EB3A42A00BCD54F /* ViewController.m */,
 				BE1B18291EA9A0B500D3FE60 /* JoinExactClassViewController.h */,
 				BE1B182A1EA9A0B500D3FE60 /* JoinExactClassViewController.m */,
 				BE24AB4C1EA3717F004ADBAF /* MyProfileViewController.h */,
 				BEB9AEF51EA62AB500BF20EB /* MyProfileViewController.m */,
 				BE7CD1EF1EAF6E280023D986 /* EditProfileViewController.h */,
 				BE7CD1F01EAF6E280023D986 /* EditProfileViewController.m */,
-				BE7322261E8A966F0099E365 /* MomentsViewController.h */,
-				BE7322271E8A966F0099E365 /* MomentsViewController.m */,
 				BE7CD1F51EB063640023D986 /* TeacherConfirmViewController.h */,
 				BE7CD1F61EB063640023D986 /* TeacherConfirmViewController.m */,
 				BE7322291E8A967E0099E365 /* ChatViewController.h */,
@@ -578,7 +595,7 @@
 				BE24AB131E9E5C36004ADBAF /* Cell */,
 				BEF836BF1E89562200F1CD2D /* Supporting Files */,
 				BEF836C81E89562200F1CD2D /* Main.storyboard */,
-				BEF836CB1E89562200F1CD2D /* Assets.xcassets */,
+				BE1D53D01EB37DF700BCD54F /* Assets.xcassets */,
 				BEF836CD1E89562200F1CD2D /* LaunchScreen.storyboard */,
 				BEF836D01E89562200F1CD2D /* Info.plist */,
 			);
@@ -626,11 +643,11 @@
 			buildConfigurationList = BEF836D31E89562200F1CD2D /* Build configuration list for PBXNativeTarget "班级圈" */;
 			buildPhases = (
 				99262F9AD2AB38CEE289A61F /* [CP] Check Pods Manifest.lock */,
-				BEF836B81E89562200F1CD2D /* Sources */,
 				BEF836B91E89562200F1CD2D /* Frameworks */,
 				BEF836BA1E89562200F1CD2D /* Resources */,
 				9918A2A528270FB1F972AECB /* [CP] Embed Pods Frameworks */,
 				00E3FBB880E130A17DDC7E18 /* [CP] Copy Pods Resources */,
+				BE1D54891EB4B74E00BCD54F /* Sources */,
 			);
 			buildRules = (
 			);
@@ -684,6 +701,7 @@
 				BEF836E91E8960C100F1CD2D /* 背景.png in Resources */,
 				BE6E47FC1E9646C3006BC25A /* 头像中@2x.png in Resources */,
 				BE6E47F71E9646C3006BC25A /* 全部动态@2x.png in Resources */,
+				BE1D53D11EB37DF700BCD54F /* Assets.xcassets in Resources */,
 				BEF836E51E8960C100F1CD2D /* 注册界面.jpg in Resources */,
 				BE6E47FE1E9646C3006BC25A /* 我的点击@2x.png in Resources */,
 				BE1D53C91EB300D600BCD54F /* CLASS_PLUS.png in Resources */,
@@ -732,7 +750,6 @@
 				BE24AB1B1E9E6126004ADBAF /* 头像大.png in Resources */,
 				BE6E47F41E9646C3006BC25A /* 动态点击@2x.png in Resources */,
 				BE7CD2021EB0AD580023D986 /* NOTEPAD_ADD.png in Resources */,
-				BEF836CC1E89562200F1CD2D /* Assets.xcassets in Resources */,
 				BEF836E31E8960C100F1CD2D /* 分割线_短.png in Resources */,
 				BE6E48091E967D08006BC25A /* 动态 图文板式.jpg in Resources */,
 				BEF836CA1E89562200F1CD2D /* Main.storyboard in Resources */,
@@ -803,56 +820,57 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		BEF836B81E89562200F1CD2D /* Sources */ = {
+		BE1D54891EB4B74E00BCD54F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BEBEC8D61EAE01ED00324E26 /* UIImagePickerViewController.m in Sources */,
-				BE6AE1C91EA757D400B0FF75 /* Region.m in Sources */,
-				BE7322281E8A966F0099E365 /* MomentsViewController.m in Sources */,
-				BE7CD1ED1EAF5BB60023D986 /* MomentModel.m in Sources */,
-				BE1B18361EACD86500D3FE60 /* Classe.m in Sources */,
-				BE7CD2081EB0ADDA0023D986 /* DefaultTableViewCell.m in Sources */,
-				BE73222E1E8A96E50099E365 /* ScheduleViewController.m in Sources */,
-				BEB9AEF61EA62AB500BF20EB /* MyProfileViewController.m in Sources */,
-				BE1B18221EA8CA1D00D3FE60 /* SchoolCreateClass.m in Sources */,
-				BE6E481B1E9BA222006BC25A /* TestConversationViewController.m in Sources */,
-				BE231E3F1E8D34BD001A92A9 /* Register.m in Sources */,
-				BEB9AEF21EA62A3E00BF20EB /* Codetime.m in Sources */,
-				BE7CD1DC1EAE282A0023D986 /* ELCAssetTablePicker.m in Sources */,
-				BE7CD1F11EAF6E280023D986 /* EditProfileViewController.m in Sources */,
-				BE1B182E1EACC6BA00D3FE60 /* NewMomentViewController.m in Sources */,
-				BE1D53C31EB1FAE100BCD54F /* School.m in Sources */,
-				BE7CD1F71EB063640023D986 /* TeacherConfirmViewController.m in Sources */,
-				BE7CD1F41EAF72D00023D986 /* EditProfileTableViewCell.m in Sources */,
-				BE7CD1DE1EAE282A0023D986 /* ELCImagePickerController.m in Sources */,
-				BE7CD1DD1EAE282A0023D986 /* ELCConsole.m in Sources */,
-				BE7322311E8A9AE10099E365 /* MeViewController.m in Sources */,
-				BEF836C41E89562200F1CD2D /* AppDelegate.m in Sources */,
-				BE7CD1DF1EAE282A0023D986 /* ELCOverlayImageView.m in Sources */,
-				BE24AB161E9E5C69004ADBAF /* MeHeadTableViewCell.m in Sources */,
-				BE6E47DA1E963699006BC25A /* CustomTableViewCell.m in Sources */,
-				BE1D53C71EB2293C00BCD54F /* ClassViewController.m in Sources */,
-				BE7CD1E81EAE3A910023D986 /* ClassView.m in Sources */,
-				BE6E48181E9B9CC3006BC25A /* GlobalVar.m in Sources */,
-				BE1B183A1EACE0C900D3FE60 /* SelectClassViewController.m in Sources */,
-				BE73222B1E8A967E0099E365 /* ChatViewController.m in Sources */,
-				BE7CD1EE1EAF5BB60023D986 /* Title.m in Sources */,
-				BEF836C11E89562200F1CD2D /* main.m in Sources */,
-				BE1B18251EA8CACA00D3FE60 /* SchoolList.m in Sources */,
-				BE7CD1D91EAE282A0023D986 /* ELCAlbumPickerController.m in Sources */,
-				BEB9AEF31EA62A3E00BF20EB /* MyProfileModel.m in Sources */,
-				BE4523711EA4ADFD00D9CE58 /* CreateClassViewController.m in Sources */,
-				BE1B18281EA8F75600D3FE60 /* JoinClassViewController.m in Sources */,
-				BE1D53C41EB1FAE100BCD54F /* schoolmodel.m in Sources */,
-				BE7CD1DA1EAE282A0023D986 /* ELCAsset.m in Sources */,
-				BE1B182B1EA9A0B500D3FE60 /* JoinExactClassViewController.m in Sources */,
-				BEB9AEF41EA62A3E00BF20EB /* User.m in Sources */,
-				BEF836D81E89564500F1CD2D /* Login.m in Sources */,
-				BE4523741EA4CB4500D9CE58 /* CreateClassSubView.m in Sources */,
-				BE7CD1DB1EAE282A0023D986 /* ELCAssetCell.m in Sources */,
-				BE1B18371EACD86500D3FE60 /* NewMomentModel.m in Sources */,
-				BE6E48071E967C34006BC25A /* MomentsHeadTableViewCell.m in Sources */,
+				BE1D54BA1EB4B7B700BCD54F /* CustomTableViewCell.m in Sources */,
+				BE1D54B91EB4B7A700BCD54F /* main.m in Sources */,
+				BE1D548A1EB4B76400BCD54F /* GlobalVar.m in Sources */,
+				BE1D548B1EB4B76400BCD54F /* AppDelegate.m in Sources */,
+				BE1D548C1EB4B76400BCD54F /* Login.m in Sources */,
+				BE1D548D1EB4B76400BCD54F /* Register.m in Sources */,
+				BE1D548E1EB4B76400BCD54F /* MeViewController.m in Sources */,
+				BE1D548F1EB4B76400BCD54F /* MomentsViewController.m in Sources */,
+				BE1D54901EB4B76400BCD54F /* NewMomentViewController.m in Sources */,
+				BE1D54911EB4B76400BCD54F /* UIImagePickerViewController.m in Sources */,
+				BE1D54921EB4B76400BCD54F /* CreateClassViewController.m in Sources */,
+				BE1D54931EB4B76400BCD54F /* ClassViewController.m in Sources */,
+				BE1D54941EB4B76400BCD54F /* SelectClassViewController.m in Sources */,
+				BE1D54951EB4B76400BCD54F /* JoinClassViewController.m in Sources */,
+				BE1D54961EB4B76400BCD54F /* ViewController.m in Sources */,
+				BE1D54971EB4B76400BCD54F /* JoinExactClassViewController.m in Sources */,
+				BE1D54981EB4B76400BCD54F /* MyProfileViewController.m in Sources */,
+				BE1D54991EB4B76400BCD54F /* EditProfileViewController.m in Sources */,
+				BE1D549A1EB4B76400BCD54F /* TeacherConfirmViewController.m in Sources */,
+				BE1D549B1EB4B76400BCD54F /* ChatViewController.m in Sources */,
+				BE1D549C1EB4B76400BCD54F /* TestConversationViewController.m in Sources */,
+				BE1D549D1EB4B76400BCD54F /* ScheduleViewController.m in Sources */,
+				BE1D549E1EB4B76400BCD54F /* ClassView.m in Sources */,
+				BE1D549F1EB4B76400BCD54F /* CreateClassSubView.m in Sources */,
+				BE1D54A01EB4B76400BCD54F /* School.m in Sources */,
+				BE1D54A11EB4B76400BCD54F /* schoolmodel.m in Sources */,
+				BE1D54A21EB4B76400BCD54F /* MomentModel.m in Sources */,
+				BE1D54A31EB4B76400BCD54F /* Title.m in Sources */,
+				BE1D54A41EB4B76400BCD54F /* Classe.m in Sources */,
+				BE1D54A51EB4B76400BCD54F /* NewMomentModel.m in Sources */,
+				BE1D54A61EB4B76400BCD54F /* SchoolList.m in Sources */,
+				BE1D54A71EB4B76400BCD54F /* SchoolCreateClass.m in Sources */,
+				BE1D54A81EB4B76400BCD54F /* Region.m in Sources */,
+				BE1D54A91EB4B76400BCD54F /* MyProfileModel.m in Sources */,
+				BE1D54AA1EB4B76400BCD54F /* Codetime.m in Sources */,
+				BE1D54AB1EB4B76400BCD54F /* User.m in Sources */,
+				BE1D54AC1EB4B76400BCD54F /* EditProfileTableViewCell.m in Sources */,
+				BE1D54AE1EB4B76400BCD54F /* DefaultTableViewCell.m in Sources */,
+				BE1D54AF1EB4B76400BCD54F /* MomentsHeadTableViewCell.m in Sources */,
+				BE1D54B01EB4B76400BCD54F /* MeHeadTableViewCell.m in Sources */,
+				BE1D54B21EB4B76400BCD54F /* ELCAlbumPickerController.m in Sources */,
+				BE1D54B31EB4B76400BCD54F /* ELCAsset.m in Sources */,
+				BE1D54B41EB4B76400BCD54F /* ELCAssetCell.m in Sources */,
+				BE1D54B51EB4B76400BCD54F /* ELCAssetTablePicker.m in Sources */,
+				BE1D54B61EB4B76400BCD54F /* ELCConsole.m in Sources */,
+				BE1D54B71EB4B76400BCD54F /* ELCImagePickerController.m in Sources */,
+				BE1D54B81EB4B76400BCD54F /* ELCOverlayImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -970,12 +988,24 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2C3FBB638666979B1B507961 /* Pods-班级圈.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 8TAEZXHB8K;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "班级圈/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/班级圈/lame",
+					"$(PROJECT_DIR)/班级圈/CSRecord/lame",
+				);
+				"OTHER_CODE_SIGN_FLAGS[sdk=*]" = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Jep.BanJiQuan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -983,12 +1013,23 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ED05EA3B8BCCFD8A1E40E986 /* Pods-班级圈.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 8TAEZXHB8K;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "班级圈/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/班级圈/lame",
+					"$(PROJECT_DIR)/班级圈/CSRecord/lame",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Jep.BanJiQuan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};

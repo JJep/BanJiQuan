@@ -24,6 +24,69 @@
 
 @implementation MomentsViewController
 
+-(void)setupRefresh
+{
+    //1.添加刷新控件
+    UIRefreshControl *control=[[UIRefreshControl alloc]init];
+    [control addTarget:self action:@selector(refreshStateChange:) forControlEvents:UIControlEventValueChanged];
+    [_tableView addSubview:control];
+    
+    //2.马上进入刷新状态，并不会触发UIControlEventValueChanged事件
+    [control beginRefreshing];
+    
+    // 3.加载数据
+    [self refreshStateChange:control];
+}
+
+/**
+ *  UIRefreshControl进入刷新状态：加载最新的数据
+ */
+-(void)refreshStateChange:(UIRefreshControl *)control
+{
+    // 3.发送请求
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSNumber* userid = [defaults objectForKey:@"uid"];
+    NSString* token = [defaults objectForKey:@"token"];
+    
+    if (userid) {
+        self.sessionUrl = [NSString stringWithFormat:@"%@%@%@",@"http://",[GlobalVar urlGetter], @":8080/bjquan/title/qallf10" ];
+        //创建多个字典
+        self.parameters = [NSDictionary dictionaryWithObject:userid forKey:@"userId"];
+        
+        NSLog(@"parameters :%@", self.parameters);
+        
+        AFHTTPSessionManager* session = [AFHTTPSessionManager manager];
+        session.responseSerializer = [AFJSONResponseSerializer serializer];
+        
+        [session.requestSerializer setValue:token forHTTPHeaderField:@"token"];
+        [session GET:self.sessionUrl
+          parameters:self.parameters
+            progress:nil
+             success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                 NSLog(@"%@",responseObject);
+                 //根据key获取value
+                 NSNumber* status = [responseObject objectForKey:@"status"];
+                 if ([status isEqualToNumber:[NSNumber numberWithInteger:0]]) {
+                     self.classes = [responseObject objectForKey:@"classes"];
+                     NSLog(@"%@", self.classes);
+                     self.MomentArray = [responseObject objectForKey:@"titles"];
+                     [_tableView reloadData];
+                 }
+                 // 3. 结束刷新
+                 [control endRefreshing];
+                 
+             }
+             failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                 NSLog(@"failure");
+                 NSLog(@"%@", error);
+                 [control endRefreshing];
+
+             }
+         ];
+    }
+}
+
 -(void)downloadMoments
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -49,18 +112,11 @@
                  //根据key获取value
                  NSNumber* status = [responseObject objectForKey:@"status"];
                  if ([status isEqualToNumber:[NSNumber numberWithInteger:0]]) {
-                     
                      self.classes = [responseObject objectForKey:@"classes"];
                      NSLog(@"%@", self.classes);
-                     
-                     
                      self.MomentArray = [responseObject objectForKey:@"titles"];
-                     
-                     
                      [_tableView reloadData];
-        
                  }
-                 
              }
              failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                  NSLog(@"failure");
@@ -86,16 +142,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.view.backgroundColor = [UIColor whiteColor];
+    //tableview不被tabbar遮盖
+    if (([[[UIDevice currentDevice] systemVersion] doubleValue] >= 7.0)) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
+    //    self.view.backgroundColor = [GlobalVar grayColorGetter];
     [self setupNavigationBar];
     [self downloadMoments];
+    [self setupRefresh];
     _tableView = [[UITableView alloc] initWithFrame:self.view.bounds];
     
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.separatorStyle = UIAccessibilityTraitNone;
-
+    _tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+//    _tableView.tableFooterView.hidden = false;
     [self.view addSubview:_tableView];
     
     
@@ -134,8 +196,27 @@
 
 -(void)didTouchNavigationItem:(UINavigationItem*) sender
 {
-    NewMomentViewController* newMomentVC = [[NewMomentViewController alloc] init];
-    [self.navigationController pushViewController:newMomentVC animated:true];
+    UIAlertController* alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction* defaultMomentAction = [UIAlertAction actionWithTitle:@"发送图文动态" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NewMomentViewController* newMomentVC = [[NewMomentViewController alloc] init];
+        [self.navigationController pushViewController:newMomentVC animated:true];
+    }];
+    [alertController addAction:defaultMomentAction];
+    UIAlertAction* voiceMomentAction = [UIAlertAction actionWithTitle:@"发送音频动态" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//        MakeVoiceNoticeController* voiceMomentVC = [[MakeVoiceNoticeController alloc] init];
+//        [self.navigationController pushViewController:voiceMomentVC animated:true];
+    }];
+    [alertController addAction:voiceMomentAction];
+    UIAlertAction* videoMomentAction = [UIAlertAction actionWithTitle:@"发送视频动态" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    [alertController addAction:videoMomentAction];
+    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    [alertController addAction:cancelAction];
+    
+    [self presentViewController:alertController animated:true completion:nil];
+    
+
 }
 #pragma mark - Table view data source
 
@@ -162,9 +243,13 @@
         //这里用CustomCell替换原来的UITableViewCell
         Title* moment = [[Title alloc] initWithDictionary:[self.MomentArray objectAtIndex:indexPath.row-1]];
         User* user = [[User alloc] initWithDictionary:[moment.user toDictionary]];
-        
+
         CustomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CELL" forIndexPath:indexPath];
-        [cell.images setImage:[UIImage imageNamed:@"flower.JPG"]];
+        if (moment.pics) {
+            
+            NSArray *pics = [(NSString *)moment.pics componentsSeparatedByString:@";"];
+            cell.imageArray = [NSMutableArray arrayWithArray:pics];
+        }
         
         if (user.username) {
             cell.nameLabel.text = (NSString *)user.username;
@@ -175,24 +260,43 @@
             cell.timeLabel.text = [self timeWithTimeIntervalString:[NSString stringWithFormat: @"%ld", (long)moment.createtime]];;
         }
         cell.contentLabel.text = moment.content;
+        [cell loadPhoto];
+        [cell updateUI];
         cell.contentLabel.numberOfLines = 0;
-        cell.userInteractionEnabled = NO;
+//        cell.userInteractionEnabled = YES;
         return cell;
     }
     
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+
     if (indexPath.row == 0) {
         return 180;
     } else {
     //根据内容计算高度
-     CGRect rect = [_contentArray[indexPath.row] boundingRectWithSize:CGSizeMake(CGRectGetWidth(self.view.frame)-100, MAXFLOAT)
+        CGFloat iconHeight = 120;
+     CGRect rect = [_contentArray[indexPath.row] boundingRectWithSize:CGSizeMake(CGRectGetWidth(self.view.frame)-30, MAXFLOAT)
                                                               options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
                                                            attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]} context:nil];  
 //     再加上其他控件的高度得到cell的高度
-    
-     return rect.size.height+250;
+        Title* moment = [[Title alloc] initWithDictionary:[self.MomentArray objectAtIndex:indexPath.row-1]];
+        if (moment.pics) {
+            
+            NSArray *pics = [(NSString *)moment.pics componentsSeparatedByString:@";"];
+            CGFloat width = (self.view.bounds.size.width -60 )/3;
+            if ([pics count] == 0) {
+                return 30 + iconHeight;
+            }
+            else if ([pics count] <= 3) {
+                return rect.size.height + width+30 + iconHeight;
+            } else if ([pics count] <= 6) {
+                return (15 + 2*(15+width) + rect.size.height + iconHeight);
+            } else {
+                return (15 + 3*(15+width) + rect.size.height + iconHeight);
+            }
+        } else {
+            return rect.size.height+ iconHeight;
+        }
     }
     
 }

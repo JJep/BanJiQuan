@@ -13,8 +13,10 @@
 #import "SelectClassViewController.h"
 #import <Photos/Photos.h>
 #import "ELCImagePickerController.h"
+#import <AssetsLibrary/AssetsLibrary.h>
+#import <MobileCoreServices/UTCoreTypes.h>
 
-@interface NewMomentViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, ELCImagePickerControllerDelegate>
+@interface NewMomentViewController () <UIImagePickerControllerDelegate, ELCImagePickerControllerDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (nonatomic,retain)NSString* sessionUrl;
 @property (nonatomic,retain)NSDictionary* parameters;
 @property (nonatomic,retain)NSMutableArray* classes;
@@ -22,37 +24,6 @@
 @end
 
 @implementation NewMomentViewController
-
-- (void)showImagePicker{
-    ELCImagePickerController *imagePicker = [[ELCImagePickerController alloc] initImagePicker];
-    imagePicker.maximumImagesCount = 9;
-    imagePicker.returnsOriginalImage = YES;
-    imagePicker.returnsImage = YES;
-    imagePicker.onOrder = YES;
-    imagePicker.mediaTypes = @[(NSString *)kUTTypeImage];
-    imagePicker.imagePickerDelegate = self;
-    
-    [self presentViewController:imagePicker animated:YES completion:nil];
-}
-
-#pragma mark - imagePickerController 代理
-- (void)elcImagePickerControllerDidCancel:(ELCImagePickerController *)picker {
-    [picker dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)elcImagePickerController:(ELCImagePickerController *)picker didFinishPickingMediaWithInfo:(NSArray *)info {
-    [picker dismissViewControllerAnimated:YES completion:nil];
-    
-    for (NSDictionary *dict in info) {
-        if ([dict objectForKey:UIImagePickerControllerOriginalImage]) {
-            UIImage *image = [dict objectForKey:UIImagePickerControllerOriginalImage];
-            // 压缩图片
-//            UIImage *resizedImage = [image compressImage:300];
-            [self.imageArray addObject:image];
-        }
-    }
-//    [self.imageCollectionView reloadData];
-}
 
 -(void)uploadMoment
 {
@@ -86,16 +57,18 @@
         session.responseSerializer = [AFJSONResponseSerializer serializer];
         
         [session.requestSerializer setValue:token forHTTPHeaderField:@"token"];
-    [session                    POST:self.sessionUrl
+        [session                POST:self.sessionUrl
                           parameters:self.parameters
            constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-               UIImage *image = self.chooseImageBtn.imageView.image;
-               NSData *data = UIImagePNGRepresentation(image);
-               //上传的参数(上传图片，以文件流的格式)
-               [formData appendPartWithFileData:data
-                                           name:@"files"
-                                       fileName:@"test.png"
-                                       mimeType:@"image/png"];
+               for (int i = 0; i< [self.imageArray count]; i++ ) {
+                   NSData *data = UIImagePNGRepresentation([self.imageArray objectAtIndex:i]);
+                   //上传的参数(上传图片，以文件流的格式)
+                   [formData appendPartWithFileData:data
+                                               name:@"files"
+                                           fileName:@"test.png"
+                                           mimeType:@"image/png"];
+               }
+               
            } progress:^(NSProgress * _Nonnull uploadProgress) {
                
            } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -173,86 +146,243 @@
         selectClassVC.classes = self.classes;
         [self.navigationController pushViewController:selectClassVC animated:true];
     }
-    if (sender.tag == self.chooseImageBtn.tag) {
-        [self getImageFromIpc];
-    }
-}
-- (void)getImageFromIpc
-{
-    // 1.判断相册是否可以打开
-    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) return;
-    // 2. 创建图片选择控制器
-    UIImagePickerController *ipc = [[UIImagePickerController alloc] init];
-    /**
-     typedef NS_ENUM(NSInteger, UIImagePickerControllerSourceType) {
-     UIImagePickerControllerSourceTypePhotoLibrary, // 相册
-     UIImagePickerControllerSourceTypeCamera, // 用相机拍摄获取
-     UIImagePickerControllerSourceTypeSavedPhotosAlbum // 相簿
-     }
-     */
-    // 3. 设置打开照片相册类型(显示所有相簿)
-    ipc.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    // ipc.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
-    // 照相机
-    // ipc.sourceType = UIImagePickerControllerSourceTypeCamera;
-    // 4.设置代理
-    ipc.delegate = self;
-    // 5.modal出这个控制器
-    [self presentViewController:ipc animated:YES completion:nil];
-}
-#pragma mark -- <UIImagePickerControllerDelegate>--
-// 获取图片后的操作
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
-{
-    // 销毁控制器
-    [picker dismissViewControllerAnimated:YES completion:nil];
-    
-    // 设置图片
-    [self.chooseImageBtn setImage:info[UIImagePickerControllerOriginalImage] forState:UIControlStateNormal];
-}
-- (void)getOriginalImages
-{
-    // 获得所有的自定义相簿
-    PHFetchResult<PHAssetCollection *> *assetCollections = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
-    // 遍历所有的自定义相簿
-    for (PHAssetCollection *assetCollection in assetCollections) {
-        [self enumerateAssetsInAssetCollection:assetCollection original:YES];
-    }
-    
-    // 获得相机胶卷
-    PHAssetCollection *cameraRoll = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeSmartAlbumUserLibrary options:nil].lastObject;
-    // 遍历相机胶卷,获取大图
-    [self enumerateAssetsInAssetCollection:cameraRoll original:YES];
 }
 
-/**
- *  遍历相簿中的所有图片
- *  @param assetCollection 相簿
- *  @param original        是否要原图
- */
-- (void)enumerateAssetsInAssetCollection:(PHAssetCollection *)assetCollection original:(BOOL)original
+- (IBAction)selectPhoto:(id)sender
 {
-    NSLog(@"相簿名:%@", assetCollection.localizedTitle);
+    UIActionSheet *_sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"打开照相机", @"从相册中获取", nil];
     
-    PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
-    // 同步获得图片, 只会返回1张图片
-    options.synchronous = YES;
+    [_sheet showInView:self.view];
     
-    // 获得某个相簿中的所有PHAsset对象
-    PHFetchResult<PHAsset *> *assets = [PHAsset fetchAssetsInAssetCollection:assetCollection options:nil];
-    for (PHAsset *asset in assets) {
-        // 是否要原图
-        CGSize size = original ? CGSizeMake(asset.pixelWidth, asset.pixelHeight) : CGSizeZero;
-        
-        // 从asset中获得图片
-        [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:size contentMode:PHImageContentModeDefault options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-            NSLog(@"%@", result);
-        }];
+}
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    switch (buttonIndex) {
+        case 0:
+            //选择照相机
+            [self takePhoto];
+            break;
+        case 1:
+            //选择相册
+            [self LocalPhoto];
+            break;
+        default:
+            break;
     }
 }
+
+- (void)takePhoto
+{
+    UIImagePickerControllerSourceType sourcType = UIImagePickerControllerSourceTypeCamera;
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        UIImagePickerController *picker = [[UIImagePickerController alloc]init];
+        picker.delegate = self;
+        picker.sourceType = sourcType;
+        [self presentViewController:picker animated:YES completion:^{
+            
+        }];
+        
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"无法调取相机，请检查" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+        [alert show];
+        return;
+    }
+    
+}
+
+- (void)LocalPhoto
+{
+    ELCImagePickerController *elcPicker = [[ELCImagePickerController alloc] initImagePicker];
+    
+    elcPicker.maximumImagesCount = 9; //选择图像的最大数量设置为9
+    elcPicker.returnsOriginalImage = YES; //只返回fullScreenImage,不是fullResolutionImage
+    elcPicker.returnsImage = YES; //如果是的 返回UIimage。如果没有,只返回资产位置信息
+    elcPicker.onOrder = YES; //对多个图像选择、显示和返回的顺序选择图像
+    elcPicker.mediaTypes = @[(NSString *)kUTTypeImage]; //支持图片和电影类型
+    
+    elcPicker.imagePickerDelegate = self;
+    
+    [self presentViewController:elcPicker animated:YES completion:nil];
+    
+    
+}
+
+-(void)elcImagePickerControllerDidCancel:(ELCImagePickerController *)picker
+{
+    
+}
+
+//相册
+- (void)elcImagePickerController:(ELCImagePickerController *)picker didFinishPickingMediaWithInfo:(NSArray *)info
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    NSLog(@"%@", info);
+    for (NSDictionary *dict in info) {
+        if ([dict objectForKey:UIImagePickerControllerMediaType] == ALAssetTypePhoto){
+            if ([dict objectForKey:UIImagePickerControllerOriginalImage]){
+                //把图片取出来放到数组里面
+                UIImage* image=[dict objectForKey:UIImagePickerControllerOriginalImage];
+                [self.imageArray addObject:image];
+            }
+            
+        }else {
+            // NSLog(@"UIImagePickerControllerReferenceURL = %@", dict);
+        }
+    }
+//    self.imageView.image = array[0];
+//    self.imageView1.image = array[1];
+    [self updateUI:self.imageArray];
+    
+}
+
+-(void)updateUI:(NSArray *)imageArray
+{
+    CGFloat width = (self.view.bounds.size.width - 60) / 3;
+    if ([imageArray count]<=3) {
+        for (int i = 0; i < [imageArray count]; i++) {
+            UIButton* imageBtn = [UIButton new];
+            [self.view addSubview:imageBtn];
+            [imageBtn setImage:imageArray[i] forState:UIControlStateNormal];
+            [imageBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.txText.mas_bottom).offset(10);
+                make.left.equalTo(self.view.mas_left).offset(15+i*(15+width));
+                make.width.height.mas_equalTo(width);
+            }];
+        }
+        if ([imageArray count] == 3) {
+            [self.chooseImageBtn mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.view.mas_left).offset(15);
+                make.top.equalTo(self.txText.mas_bottom).offset(10+10+width);
+            }];
+        } else {
+            [self.chooseImageBtn mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.view.mas_left).offset(15+[imageArray count]*(15+width));
+            }];
+        }
+    } else if ([imageArray count] <= 6) {
+        for (int i = 0; i < 3 ; i ++) {
+            UIButton* imageBtn = [UIButton new];
+            [self.view addSubview:imageBtn];
+            [imageBtn setImage:imageArray[i] forState:UIControlStateNormal];
+            [imageBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.txText.mas_bottom).offset(10);
+                make.left.equalTo(self.view.mas_left).offset(15+i*(15+width));
+                make.width.height.mas_equalTo(width);
+            }];
+        }
+        for (int i =3; i < [imageArray count]; i++) {
+            UIButton* imageBtn = [UIButton new];
+            [self.view addSubview:imageBtn];
+            [imageBtn setImage:imageArray[i] forState:UIControlStateNormal];
+            [imageBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.txText.mas_bottom).offset(10+10+width);
+                make.left.equalTo(self.view.mas_left).offset(15+(i-3)*(15+width));
+                make.width.height.mas_equalTo(width);
+            }];
+        }
+        if ([imageArray count] == 6) {
+            [self.chooseImageBtn mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.view.mas_left).offset(15);
+                make.top.equalTo(self.txText.mas_bottom).offset(10+2*(10+width));
+            }];
+        } else {
+            [self.chooseImageBtn mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.txText.mas_bottom).offset(10+10+width);
+                make.left.equalTo(self.view.mas_left).offset(15+([imageArray count]-3)*(15+width));
+            }];
+        }
+    } else if ([imageArray count] <= 9) {
+        for (int i = 0; i < 3 ; i ++) {
+            UIButton* imageBtn = [UIButton new];
+            [self.view addSubview:imageBtn];
+            [imageBtn setImage:imageArray[i] forState:UIControlStateNormal];
+            [imageBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.txText.mas_bottom).offset(10);
+                make.left.equalTo(self.view.mas_left).offset(15+i*(15+width));
+                make.width.height.mas_equalTo(width);
+            }];
+        }
+        for (int i =3; i < 6; i++) {
+            UIButton* imageBtn = [UIButton new];
+            [self.view addSubview:imageBtn];
+            [imageBtn setImage:imageArray[i] forState:UIControlStateNormal];
+            [imageBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.txText.mas_bottom).offset(10+10+width);
+                make.left.equalTo(self.view.mas_left).offset(15+(i-3)*(15+width));
+                make.width.height.mas_equalTo(width);
+            }];
+        }
+        for (int i = 6; i < [imageArray count]; i ++) {
+            UIButton* imageBtn = [UIButton new];
+            [self.view addSubview:imageBtn];
+            [imageBtn setImage:imageArray[i] forState:UIControlStateNormal];
+            [imageBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.txText.mas_bottom).offset(10+2*(10+width));
+                make.left.equalTo(self.view.mas_left).offset(15+(i-6)*(15+width));
+                make.width.height.mas_equalTo(width);
+            }];
+        }
+        if ([imageArray count] == 9) {
+            [self.chooseImageBtn setHidden:true];
+        } else {
+            [self.chooseImageBtn mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.txText.mas_bottom).offset(10+2*(10+width));
+                make.left.equalTo(self.view.mas_left).offset(15+([imageArray count]-6)*(15+width));
+            }];
+        }
+    }
+}
+
+#pragma mark - 照片选择代理方法
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    // 1. 获取编辑后的照片
+    UIImage *image;
+    switch (picker.sourceType) {
+        case UIImagePickerControllerSourceTypeCamera:
+            image = info[@"UIImagePickerControllerOriginalImage"];
+            //将图片保存到相册
+            [self saveImageToPhotos:image];
+            break;
+        case UIImagePickerControllerSourceTypePhotoLibrary:
+            image = info[@"UIImagePickerControllerEditedImage"];
+            break;
+        default:
+            break;
+    }
+//    // 2. 设置按钮的图像
+//    self.imageView.image = image;
+    
+    // 3. 关闭照片选择控制器
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+//将图片保存到相册
+- (void)saveImageToPhotos:(UIImage*)savedImage
+
+{
+    UIImageWriteToSavedPhotosAlbum(savedImage, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
+}
+
+// 指定回调方法
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
+{
+    NSString *msg = nil ;
+    if(error != NULL){
+        msg = @"保存图片失败" ;
+    }else{
+        msg = @"保存图片成功" ;
+    }
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"保存图片结果提示" message:msg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    [alert show];
+}
+
 
 -(void)createUI
 {
+    
+    CGFloat width = (self.view.bounds.size.width - 60) / 3;
+
     self.txText = [UITextView new];
     self.txText.text = @"来分享点什么吧....";
     self.txText.font = [UIFont systemFontOfSize:17];
@@ -260,7 +390,7 @@
     [self.view addSubview:self.txText];
     [self.txText mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view.mas_top).offset(15);
-        make.height.mas_equalTo(134.5);
+        make.height.mas_equalTo(120);
         make.left.equalTo(self.view.mas_left).offset(15);
         make.right.equalTo(self.view.mas_right).offset(-15);
         
@@ -269,12 +399,12 @@
     self.chooseImageBtn = [UIButton new];
     [self.chooseImageBtn setImage:[UIImage imageNamed:@"plus"] forState:UIControlStateNormal];
     [self.chooseImageBtn setTag:50];
-    [self.chooseImageBtn addTarget:self action:@selector(didTouchBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [self.chooseImageBtn addTarget:self action:@selector(selectPhoto:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.chooseImageBtn];
     [self.chooseImageBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.txText.mas_bottom).offset(10);
         make.left.equalTo(self.view.mas_left).offset(15);
-        make.height.width.mas_equalTo(100);
+        make.height.width.mas_equalTo(width);
     }];
     
     self.chooseClass = [UIButton new];
@@ -375,6 +505,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.imageArray = [NSMutableArray array];
     [self downloadClass];
     self.selectedClasses = [[NSMutableArray alloc] init];
     self.title = @"动态";

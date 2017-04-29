@@ -34,7 +34,6 @@ static NSString *const context = @"这个人懒得要死，啥都没写";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
     [self initNavigation];
     [self loadTableView];
     [self downloadData];
@@ -110,7 +109,7 @@ static NSString *const context = @"这个人懒得要死，啥都没写";
                 cell.cellImage.image = [UIImage imageNamed:@"NOTEPAD_ADD"];
                 break;
             case 1:
-                cell.cellLabel.text = @"加入班级";
+                cell.cellLabel.text = @"查找班级";
                 cell.cellImage.image = [UIImage imageNamed:@"NOTEPAD_OK"];
                 break;
             case 2:

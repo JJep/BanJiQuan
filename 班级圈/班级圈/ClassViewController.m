@@ -14,7 +14,8 @@
 @property (nonatomic,retain)UIImageView* classPortrait;
 @property (nonatomic,retain)UILabel* className;
 @property (nonatomic,retain)UILabel* classDescription;
-
+@property (nonatomic,retain)UILabel* classCardName;
+@property (nonatomic,retain)UILabel* codeSubview;
 @end
 
 @implementation ClassViewController
@@ -148,17 +149,18 @@
     [arrowImage setImage:[UIImage imageNamed:@"ARROW_RIGHT拷贝"]];
     [classCardBtn addSubview:arrowImage];
     [arrowImage mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(classCardBtn).offset(-15);
+        make.right.equalTo(classCardBtn.mas_right).offset(-15);
         make.width.mas_equalTo(10);
         make.height.mas_equalTo(20);
         make.centerY.equalTo(classCardBtn);
     }];
     
-    UILabel* classCardName = [UILabel new];
-    [classCardBtn addSubview:classCardName];
-    classCardName.textColor = [GlobalVar grayColorGetter];
-    classCardName.text = @"未设置";
-    [classCardName mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.classCardName = [UILabel new];
+    [classCardBtn addSubview:self.classCardName];
+    self.classCardName.textColor = [UIColor grayColor];
+    self.classCardName.text = @"未设置";
+    self.classCardName.textAlignment = NSTextAlignmentRight;
+    [self.classCardName mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(arrowImage.mas_left).offset(-10);
         make.centerY.equalTo(classCardBtn);
     }];
@@ -168,7 +170,7 @@
     [assistViewLeft setBackgroundColor:[UIColor whiteColor]];
     [assistViewRight setBackgroundColor:[UIColor whiteColor]];
     [assistViewLeft setTitle:@"家长群" forState:UIControlStateNormal];
-    [assistViewRight setTitle:@"家长群" forState:UIControlStateNormal];
+    [assistViewRight setTitle:@"学生群" forState:UIControlStateNormal];
     [assistViewLeft setTitleColor:[GlobalVar themeColorGetter] forState:UIControlStateSelected];
     [assistViewLeft setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [assistViewRight setTitleColor:[GlobalVar themeColorGetter] forState:UIControlStateSelected];
@@ -200,9 +202,98 @@
     UIImageView* classMemberImage = [UIImageView new];
     classMemberImage.image = [UIImage imageNamed:@""];
     
-    classMemberImage mas_makeConstraints:^(MASConstraintMaker *make) {
-        <#code#>
-    }
+    [classMembersBtn addSubview:classMemberImage];
+
+    [classMembersBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(assistViewLeft.mas_bottom).offset(1);
+        make.height.mas_equalTo(74);
+        make.centerX.width.equalTo(self.view);
+    }];
+    
+    [classMemberImage mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(classMembersBtn).offset(15);
+        make.height.mas_equalTo(35);
+        make.width.mas_equalTo(30);
+        make.centerY.equalTo(classMembersBtn);
+    }];
+    
+    UIImageView* arrow2 = [UIImageView new];
+    [arrow2 setImage:[UIImage imageNamed:@"ARROW_RIGHT拷贝"]];
+    [classMembersBtn addSubview:arrow2];
+    [arrow2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(classMembersBtn.mas_right).offset(-15);
+        make.centerY.equalTo(classMembersBtn);
+        make.width.mas_equalTo(10);
+        make.height.mas_equalTo(20);
+    }];
+    
+    UILabel* memberNum = [UILabel new];
+    memberNum.text = @"100名成员";
+    memberNum.textColor = [UIColor grayColor];
+    memberNum.textAlignment = NSTextAlignmentRight;
+    [classMembersBtn addSubview:memberNum];
+    [memberNum mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(arrow2.mas_left);
+        make.centerY.equalTo(classMembersBtn);
+    }];
+    
+    UIButton* codeBtn = [UIButton new];
+    [self.view addSubview:codeBtn];
+    [codeBtn setBackgroundColor:[UIColor whiteColor]];
+    [codeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(classMembersBtn.mas_bottom).offset(1);
+        make.height.mas_equalTo(44);
+        make.width.centerX.equalTo(self.view);
+    }];
+    
+    UILabel* codeLabel = [UILabel new];
+    [codeBtn addSubview:codeLabel];
+    codeLabel.text = @"家长邀请码";
+    self.codeSubview = [UILabel new];
+    [codeBtn addSubview:self.codeSubview];
+    self.codeSubview.text = @"未设置";
+    self.codeSubview.textColor = [UIColor grayColor];
+    self.codeSubview.textAlignment = NSTextAlignmentRight;
+    UIImageView* arrow3 = [UIImageView new];
+    [arrow3 setImage:[UIImage imageNamed:@"ARROW_RIGHT拷贝"]];
+    [codeBtn addSubview:arrow3];
+    [arrow3 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(codeBtn).offset(-15);
+        make.width.mas_equalTo(10);
+        make.height.mas_equalTo(20);
+        make.centerY.equalTo(codeBtn);
+    }];
+    
+    
+    [codeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(classMembersBtn).offset(1);
+        make.left.equalTo(codeBtn).offset(10);
+        make.centerY.equalTo(codeBtn);
+    }];
+
+    [self.codeSubview mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(arrow3.mas_right).offset(-10);
+        make.width.mas_equalTo(100);
+        make.centerY.equalTo(codeBtn);
+    }];
+    
+    UIButton* enterChat = [UIButton new];
+    [enterChat setBackgroundColor:[GlobalVar themeColorGetter]];
+    [self.view addSubview:enterChat];
+    [enterChat setTitle:@"进入家长聊" forState:UIControlStateNormal];
+    [enterChat addTarget:self action:@selector(didTouchBtn:) forControlEvents:UIControlEventTouchUpOutside];
+    [enterChat mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(codeBtn.mas_bottom).offset(32);
+        make.width.mas_equalTo(345);
+        make.height.mas_equalTo(44);
+        make.centerX.equalTo(self.view);
+    }];
+    enterChat.layer.cornerRadius = 5;
+}
+
+-(void)didTouchBtn:(UIButton *)sender
+{
+    
 }
 
 - (void)viewDidLoad {

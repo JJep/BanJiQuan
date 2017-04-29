@@ -62,42 +62,39 @@
     NSNumber* userid = [defaults objectForKey:@"uid"];
     NSString* token = [defaults objectForKey:@"token"];
     
-    self.sessionUrl = [NSString stringWithFormat:@"%@%@%@",@"http://",[GlobalVar urlGetter], @":8080/bjquan/class/createpx" ];
-
-   self.parameters = [NSDictionary dictionaryWithObjectsAndKeys:
-                      [NSNumber numberWithInteger:self.selectedSchool.idField], @"schoolid",
-                      self.txClassName.text, @"name",
-                      userid,@"userId",
-                      userid,@"root",
-                      nil];
-
     
-    NSLog(@"%@", self.parameters);
-    NSLog(@"%@", self.txClassName.text);
+    self.sessionUrl = [NSString stringWithFormat:@"%@%@%@",@"http://",[GlobalVar urlGetter], @":8080/bjquan/class/createpx" ];
+    //创建多个字典
+
+    self.parameters = [NSDictionary dictionaryWithObjectsAndKeys:
+                       self.selectedSchoolId, @"schoolid",
+                       self.txClassName.text, @"name",
+                       userid,@"userId",
+                       userid,@"root",
+                       nil];
+
+    NSLog(@"parameters :%@", self.parameters);
+    
     AFHTTPSessionManager* session = [AFHTTPSessionManager manager];
-    session.responseSerializer = [AFJSONResponseSerializer serializer];
+    
     [session.requestSerializer setValue:token forHTTPHeaderField:@"token"];
-    [session POST:self.sessionUrl parameters:self.parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"%@", responseObject);
-        NSNumber* status = [responseObject objectForKey:@"status"];
-        if ([status isEqualToNumber:[NSNumber numberWithInteger:0]] ) {
-            //UIAlertController风格：UIAlertControllerStyleAlert
-            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"创建成功啦！"
-                                                                                     message:nil
-                                                                              preferredStyle:UIAlertControllerStyleAlert ];
-            //添加确定到UIAlertController中
-            UIAlertAction *OKAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
-            [alertController addAction:OKAction];
-            
-            [self presentViewController:alertController animated:YES completion:nil];
-        
-        }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"%@", error);
-    }];
-
+    [session POST:self.sessionUrl parameters:self.parameters progress:nil
+          success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+              NSLog(@"%@", responseObject);
+              if ([[responseObject objectForKey:@"status"] isEqualToNumber:[NSNumber numberWithInteger:0]]) {
+                  UIAlertController* alertController = [UIAlertController alertControllerWithTitle:@"创建成功" message:nil preferredStyle:UIAlertControllerStyleAlert];
+                  UIAlertAction *OKAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+                  [alertController addAction:OKAction];
+                  
+                  [self presentViewController:alertController animated:YES completion:nil];
+              }
+          }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+     }];
+    
 }
-
+     
+     
 -(void)uploadCreateClass
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

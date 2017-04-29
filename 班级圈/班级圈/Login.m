@@ -11,14 +11,19 @@
 #import <AFNetworking.h>
 #import "GlobalVar.h"
 
-@interface Login ()
+@interface Login () <UITextFieldDelegate>
 @property (strong,nonatomic) NSString* sessionUrl;
 @property (strong,nonatomic) NSDictionary* parameters;
 @end
 
 @implementation Login
 
-
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self.txPassword resignFirstResponder];
+    [self.txUsername resignFirstResponder];
+    return NO;
+}
 
 -(void) pushToRegister
 {
@@ -110,6 +115,9 @@
     [super viewDidLoad];
     [self createUI];
     [self initNavigation];
+    
+    self.txUsername.delegate = self;
+    self.txPassword.delegate = self;
     // Do any additional setup after loading the view.
 }
 

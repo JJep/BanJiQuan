@@ -33,14 +33,18 @@
 
 -(void)joinClass
 {
-    NSLog(@"join the class");
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSNumber* userid = [defaults objectForKey:@"uid"];
     NSString* token = [defaults objectForKey:@"token"];
     
     
     self.sessionUrl = [NSString stringWithFormat:@"%@%@%@",@"http://",[GlobalVar urlGetter], @":8080/bjquan/class/searchByCode" ];
     //创建多个字典
-    self.parameters = [NSDictionary dictionaryWithObject:self.txClassNum forKey:@"code"];
+    
+    self.parameters = [NSDictionary dictionaryWithObjectsAndKeys:
+                       userid,@"userId",
+                       self.txClassNum.text,@"code",
+                       nil];
     
     NSLog(@"parameters :%@", self.parameters);
     
@@ -49,24 +53,18 @@
     [session.requestSerializer setValue:token forHTTPHeaderField:@"token"];
     [session POST:self.sessionUrl parameters:self.parameters progress:nil
           success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-              NSLog(@"%@",responseObject);
-              //根据key获取value
-              NSNumber* status = [responseObject objectForKey:@"status"];
-              if ([status isEqualToNumber:[NSNumber numberWithInteger:0]]) {
-                  NSLog(@"success");
+              NSLog(@"%@", responseObject);
+              if ([[responseObject objectForKey:@"status"] isEqualToNumber:[NSNumber numberWithInteger:0]]) {
+                  UIAlertController* alertController = [UIAlertController alertControllerWithTitle:@"加入成功" message:nil preferredStyle:UIAlertControllerStyleAlert];
+                  UIAlertAction *OKAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+                  [alertController addAction:OKAction];
                   
-                  [self popAlertAction:@"加入成功"];
-              } else if ([status isEqualToNumber:[NSNumber numberWithInteger:1]])
-              {
-                  [self popAlertAction:@"不存在该班级"];
+                  [self presentViewController:alertController animated:YES completion:nil];
               }
           }
           failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-              NSLog(@"failure");
-              NSLog(@"%@", error);
-          }
-     ];
-
+          }];
+    
 }
 
 -(void)popAlertAction:(NSString *)title
@@ -186,7 +184,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"加入班级";
+    self.title = @"查找班级";
     [self initNavigation];
     [self createUI];
     
