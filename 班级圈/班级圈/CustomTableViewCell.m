@@ -11,6 +11,8 @@
 #import "GlobalVar.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <AFNetworking.h>
+#import "LikeUsersView.h"
+#import "User.h"
 
 @implementation CustomTableViewCell
 
@@ -27,16 +29,17 @@
 
 }
 
--(void)didTouchBtn:(UIButton *)sender {
-    if (sender.tag == self.likeButton.tag) {
-        self.likeButton.selected = !self.likeButton.selected;
-        if (self.likeButton.selected == true) {
-            [self afLikeMoment:YES];
-        } else {
-            [self afLikeMoment:false];
-        }
-    }
-}
+//-(void)didTouchBtn:(UIButton *)sender {
+//    if (sender.tag == self.likeButton.tag) {
+//        self.likeButton.selected = !self.likeButton.selected;
+//        if (self.likeButton.selected == true) {
+//            
+//            [self afLikeMoment:YES];
+//        } else {
+//            [self afLikeMoment:false];
+//        }
+//    }
+//}
 
 -(void)afLikeMoment:(BOOL )like
 {
@@ -47,20 +50,20 @@
     if (userid) {
         NSString* sessionUrl = [NSString stringWithFormat:@"%@%@%@",@"http://",[GlobalVar urlGetter], @":8080/bjquan/title/like" ];
         //创建多个字典
-        NSDictionary* parameters = [[NSDictionary alloc] init];
+        NSDictionary* parameters ;
         if (like) {
             parameters = [NSDictionary dictionaryWithObjectsAndKeys:
                                         userid,@"userid",
                                         userid,@"userId",
-                                        0,@"deleted",
-                                        self.titleId,@"titleId"
+                                        @0,@"deleted",
+                                        self.titleId,@"titleid"
                                         , nil];
         } else {
             parameters = [NSDictionary dictionaryWithObjectsAndKeys:
                                         userid,@"userid",
                                         userid,@"userId",
-                                        1,@"deleted",
-                                        self.titleId,@"titleId"
+                                        @1,@"deleted",
+                                        self.titleId,@"titleid"
                                         , nil];
         }
         
@@ -79,11 +82,14 @@
                  NSNumber* status = [responseObject objectForKey:@"status"];
                  if ([status isEqualToNumber:[NSNumber numberWithInteger:0]]) {
                      self.likeButton.selected = true;
+                     self.likeUsers = [[NSArray arrayWithObject:[responseObject objectForKey:@"like"]] objectAtIndex:0];
                      [self updateUI];
                  } else if ([status isEqualToNumber:[NSNumber numberWithInteger:1]]) {
                      self.likeButton.selected = false;
                      [self updateUI];
                  } else if ([status isEqualToNumber:[NSNumber numberWithInteger:2]]) {
+                     self.likeButton.selected = !self.likeButton.selected;
+                     [self updateUI];
                      UIAlertController* alertController = [UIAlertController alertControllerWithTitle:@"操作失败" message:nil preferredStyle:UIAlertControllerStyleAlert];
                      UIAlertAction* alertAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
                      [alertController addAction:alertAction];
@@ -92,10 +98,13 @@
              }
              failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                  NSLog(@"failure");
+                 self.likeButton.selected = !self.likeButton.selected;
+                 [self updateUI];
                  UIAlertController* alertController = [UIAlertController alertControllerWithTitle:@"操作失败" message:nil preferredStyle:UIAlertControllerStyleAlert];
                  UIAlertAction* alertAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
                  [alertController addAction:alertAction];
                  [[self viewController] presentViewController:alertController animated:true completion:nil];
+                 
                  NSLog(@"%@", error);
              }
          ];
@@ -155,7 +164,6 @@
         self.contentLabel = [UILabel new];
         self.contentLabel.numberOfLines = 0;
         self.contentLabel.font = [UIFont systemFontOfSize:17];
-        //        _contenLabel.backgroundColor = [UIColor colorWithRed:109/255.0 green:211/255.0 blue:206/255.0 alpha:1];
         
         [self.contentView addSubview:self.contentLabel];
         
@@ -163,6 +171,7 @@
             make.left.equalTo(self.userPortraitImage.mas_left);
             make.top.equalTo(self.userPortraitImage.mas_bottom).offset(15);
             make.right.equalTo(self.contentView.mas_right).offset(-15);
+//            make.width.lessThanOrEqualTo(self.contentView.bounds.size.width );
         }];
         
         
@@ -172,22 +181,22 @@
 //        _contentLabel.frame = labelRect;
     }
     
-    if (!self.likeButton) {
-        self.likeButton = [UIButton new];
-        [self.likeButton setImage:[UIImage imageNamed:@"点赞"] forState:UIControlStateNormal];
-        [self.likeButton setImage:[UIImage imageNamed:@"点赞红"] forState:UIControlStateSelected];
-        [self.likeButton setTag:1];
-        [self.likeButton addTarget:self action:@selector(didTouchBtn:) forControlEvents:UIControlEventTouchUpInside];
-        [self.contentView addSubview:self.likeButton];
-
-    }
-    
     if (!self.shareView) {
         self.shareView = [UIView new];
         self.shareView.backgroundColor = [UIColor whiteColor];
         [self.contentView addSubview:self.shareView];
     }
     
+    if (!self.likeButton) {
+        self.likeButton = [UIButton new];
+        [self.likeButton setImage:[UIImage imageNamed:@"点赞"] forState:UIControlStateNormal];
+        [self.likeButton setImage:[UIImage imageNamed:@"点赞红"] forState:UIControlStateSelected];
+        [self.likeButton setSelected:false];
+        [self.likeButton setTag:1];
+        [self.shareView addSubview:self.likeButton];
+
+    }
+
     if (!self.CommentButton) {
         self.CommentButton = [UIButton new];
         [self.CommentButton setImage:[UIImage imageNamed:@"评论"] forState:UIControlStateNormal];
@@ -213,14 +222,14 @@
         
     }];
     
-    [self.CommentButton mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.likeButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.height.mas_equalTo(30);
         make.centerY.equalTo(self.shareView);
         make.right.equalTo(self.shareView.mas_right).offset(-10);
     }];
     
-    [self.likeButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.CommentButton.mas_left).offset(-30);
+    [self.CommentButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.likeButton.mas_left).offset(-30);
         make.width.height.mas_equalTo(30);
         make.centerY.equalTo(self.shareView);
     }];
@@ -229,18 +238,181 @@
     [self.contentView addSubview:grayView2];
     grayView2.backgroundColor = [GlobalVar grayColorGetter];
     [grayView2 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.shareView.mas_bottom);
+        make.bottom.equalTo(self.contentView.mas_bottom);
         make.width.centerX.equalTo(self.contentView);
         make.height.mas_equalTo(10);
     }];
     
+    if (self.likeUsers) {
+        
+        LikeUsersView* likeUsersView = [LikeUsersView new];
+        NSString* likeUsersNameString ;
+        for (int i = 0; i < [self.likeUsers count]; i++) {
+            
+            if (i == [self.likeUsers count] -1 ) {
+                User* user = [[User alloc] initWithDictionary:[self.likeUsers objectAtIndex:i]];
+                likeUsersNameString = [NSString stringWithFormat:@"%@%@",likeUsersNameString,user.username];
+            } else {
+                User* user = [[User alloc] initWithDictionary:[self.likeUsers objectAtIndex:i]];
+                likeUsersNameString = [NSString stringWithFormat:@"%@、", user.username];
+            }
+        }
+        
+        likeUsersView.likeUsersName = likeUsersNameString;
+        [self.contentView addSubview:likeUsersView];
+        [likeUsersView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.shareView.mas_bottom).offset(10);
+            make.left.right.equalTo(self.contentLabel);
+        }];
+    }
+    
+    if ([self.imageArray count] > 0) {
+        if ([self.imageArray count]<=3) {
+            for (int i = 0; i < [self.imageArray count]; i++) {
+                UIButton* imageBtn = [UIButton new];
+                [self.contentView addSubview:imageBtn];
+                UIImageView* imageView = [UIImageView new];
+                [imageView sd_setImageWithURL:[NSURL URLWithString:[self handleUrl:self.imageArray[i]]]];
+                [imageBtn setImage:imageView.image forState:UIControlStateNormal];
+                [imageBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.top.equalTo(self.contentLabel.mas_bottom).offset(10);
+                    make.left.equalTo(self.contentView.mas_left).offset(15+i*(15+width));
+                    make.width.height.mas_equalTo(width);
+                }];
+            }
+            if ([self.imageArray count] == 3) {
+            } else {
+                
+            }
+        } else if ([self.imageArray count] <= 6) {
+            for (int i = 0; i < 3 ; i ++) {
+                UIButton* imageBtn = [UIButton new];
+                [self.contentView addSubview:imageBtn];
+                UIImageView* imageView = [UIImageView new];
+                [imageView sd_setImageWithURL:[NSURL URLWithString:[self handleUrl:self.imageArray[i]]]];
+                [imageBtn setImage:imageView.image forState:UIControlStateNormal];
+                [imageBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.top.equalTo(self.contentLabel.mas_bottom).offset(10);
+                    make.left.equalTo(self.contentView.mas_left).offset(15+i*(15+width));
+                    make.width.height.mas_equalTo(width);
+                }];
+            }
+            for (int i =3; i < [self.imageArray count]; i++) {
+                UIButton* imageBtn = [UIButton new];
+                [self.contentView addSubview:imageBtn];
+                UIImageView* imageView = [UIImageView new];
+                [imageView sd_setImageWithURL:[NSURL URLWithString:[self handleUrl:self.imageArray[i]]]];
+                [imageBtn setImage:imageView.image forState:UIControlStateNormal];
+                [imageBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.top.equalTo(self.contentLabel.mas_bottom).offset(10+10+width);
+                    make.left.equalTo(self.contentView.mas_left).offset(15+(i-3)*(15+width));
+                    make.width.height.mas_equalTo(width);
+                }];
+            }
+            if ([self.imageArray count] == 6) {
+                
+            } else {
+                
+            }
+        } else if ([self.imageArray count] <= 9) {
+            for (int i = 0; i < 3 ; i ++) {
+                UIButton* imageBtn = [UIButton new];
+                [self.contentView addSubview:imageBtn];
+                UIImageView* imageView = [UIImageView new];
+                [imageView sd_setImageWithURL:[NSURL URLWithString:[self handleUrl:self.imageArray[i]]]];
+                [imageBtn setImage:imageView.image forState:UIControlStateNormal];
+                [imageBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.top.equalTo(self.contentLabel.mas_bottom).offset(10);
+                    make.left.equalTo(self.contentView.mas_left).offset(15+i*(15+width));
+                    make.width.height.mas_equalTo(width);
+                }];
+            }
+            for (int i =3; i < 6; i++) {
+                UIButton* imageBtn = [UIButton new];
+                [self.contentView addSubview:imageBtn];
+                UIImageView* imageView = [UIImageView new];
+                [imageView sd_setImageWithURL:[NSURL URLWithString:[self handleUrl:self.imageArray[i]]]];
+                [imageBtn setImage:imageView.image forState:UIControlStateNormal];
+                [imageBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.top.equalTo(self.contentLabel.mas_bottom).offset(10+10+width);
+                    make.left.equalTo(self.contentView.mas_left).offset(15+(i-3)*(15+width));
+                    make.width.height.mas_equalTo(width);
+                }];
+            }
+            for (int i = 6; i < [self.imageArray count]; i ++) {
+                UIButton* imageBtn = [UIButton new];
+                [self.contentView addSubview:imageBtn];
+                UIImageView* imageView = [UIImageView new];
+                [imageView sd_setImageWithURL:[NSURL URLWithString:[self handleUrl:self.imageArray[i]]]];
+                [imageBtn setImage:imageView.image forState:UIControlStateNormal];
+                [imageBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.top.equalTo(self.contentLabel.mas_bottom).offset(10+2*(10+width));
+                    make.left.equalTo(self.contentView.mas_left).offset(15+(i-6)*(15+width));
+                    make.width.height.mas_equalTo(width);
+                }];
+            }
+            if ([self.imageArray count] == 9) {
+            } else {
+                
+            }
+        }
+    }
+    
+    
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    NSNumber* userid = [defaults objectForKey:@"uid"];
+    for (int i = 0; i < [self.likeUsers count] ; i++) {
+        User* user = [[User alloc] initWithDictionary:[self.likeUsers objectAtIndex:i]];
+        if ([userid isEqualToNumber:[NSNumber numberWithInteger:user.idField]] ) {
+            self.isLike = YES;
+            self.likeButton.selected = true;
+        }
+    }
+    if (self.likeUsers) {
+        
+        LikeUsersView* likeUsersView = [LikeUsersView new];
+        NSString* likeUsersNameString ;
+        for (int i = 0; i < [self.likeUsers count]; i++) {
+            
+            if (i == [self.likeUsers count] -1 ) {
+                User* user = [[User alloc] initWithDictionary:[self.likeUsers objectAtIndex:i]];
+                likeUsersNameString = [NSString stringWithFormat:@"%@%@",likeUsersNameString,user.username];
+            } else {
+                User* user = [[User alloc] initWithDictionary:[self.likeUsers objectAtIndex:i]];
+                likeUsersNameString = [NSString stringWithFormat:@"%@、", user.username];
+            }
+        }
+        
+        likeUsersView.likeUsersName = likeUsersNameString;
+        [self.contentView addSubview:likeUsersView];
+        [likeUsersView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.shareView.mas_bottom).offset(10);
+            make.left.right.equalTo(self.contentLabel);
+        }];
+    }
+
+
+
+}
+
+- (float)getAutoCellHeight {
+
+    [self layoutIfNeeded];
+
+    /**
+     *    self.最底部的控件.frame.origin.y      为自适应cell中的最后一个控件的Y坐标
+     *    self.最底部的空间.frame.size.height   为自适应cell中的最后一个控件的高
+     *    marginHeight    为自适应cell中的最后一个控件的距离cell底部的间隙
+     */
+    return  self.shareView.frame.origin.y + self.shareView.frame.size.height + 10;
+
 }
 
 -(NSString *)handleUrl:(NSString *)url {
     NSString* str = [NSString stringWithFormat:@"http://%@:8080/bjquan/titlespic/%@", [GlobalVar urlGetter],url];
     return str;
 }
-
+/*
 -(void)loadPhoto {
     CGFloat width = (self.contentView.bounds.size.width - 60) / 3;
 
@@ -337,26 +509,9 @@
         }
     }
     
-    
-    [self.shareView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.contentView.mas_left).offset(-1);
-        make.width.equalTo(self.likeButton);
-        make.height.mas_equalTo(30);
-        make.right.equalTo(self.CommentButton.mas_left).offset(-1);
-        if ([self.imageArray count] == 0) {
-            make.top.equalTo(self.contentLabel.mas_bottom).offset(10);
-        } else if ([self.imageArray count] <= 3) {
-            make.top.equalTo(self.contentLabel.mas_bottom).offset(10 + (15+width));
-        } else if ([self.imageArray count] <= 6) {
-            make.top.equalTo(self.contentLabel.mas_bottom).offset(10 + 2*(15+width));
-        } else if ([self.imageArray count] <= 9) {
-            make.top.equalTo(self.contentLabel.mas_bottom).offset(10 + 3*(15+width));
-        }
-        
-    }];
 
 }
-
+*/
 + (CGFloat)tableView:(UITableView *)tableView rowHeightForObject:(id)object
 {
 //    CGFloat statusLabelWidth =150;
@@ -382,23 +537,71 @@
 }
 
 -(void)updateUI {
-    if (self.isLike) {
-        self.likeButton.selected = true;
-    }
+
     
+    CGFloat width = (self.contentView.bounds.size.width - 60) / 3;
+    
+//    [self.shareView mas_updateConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(self.contentView.mas_left);
+//        make.width.equalTo(self.contentView);
+//        make.height.mas_equalTo(30);
+//        make.right.equalTo(self.contentView.mas_right);
+//        if ([self.imageArray count] == 0) {
+//            make.top.equalTo(self.contentLabel.mas_bottom).offset(10);
+//        } else if ([self.imageArray count] <= 3) {
+//            make.top.equalTo(self.contentLabel.mas_bottom).offset(10 + (15+width));
+//        } else if ([self.imageArray count] <= 6) {
+//            make.top.equalTo(self.contentLabel.mas_bottom).offset(10 + 2*(15+width));
+//        } else if ([self.imageArray count] <= 9) {
+//            make.top.equalTo(self.contentLabel.mas_bottom).offset(10 + 3*(15+width));
+//        }
+//        
+//    }];
+//    
+//    [self.likeButton mas_updateConstraints:^(MASConstraintMaker *make) {
+//        make.width.height.mas_equalTo(30);
+//        make.centerY.equalTo(self.shareView);
+//        make.right.equalTo(self.shareView.mas_right).offset(-10);
+//    }];
+//    
+//    [self.CommentButton mas_updateConstraints:^(MASConstraintMaker *make) {
+//        make.right.equalTo(self.likeButton.mas_left).offset(-30);
+//        make.width.height.mas_equalTo(30);
+//        make.centerY.equalTo(self.shareView);
+//    }];
+//    
+//    
+
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    NSNumber* userid = [defaults objectForKey:@"uid"];
+    for (int i = 0; i < [self.likeUsers count] ; i++) {
+        User* user = [[User alloc] initWithDictionary:[self.likeUsers objectAtIndex:i]];
+        if ([userid isEqualToNumber:[NSNumber numberWithInteger:user.idField]] ) {
+            self.isLike = YES;
+            self.likeButton.selected = true;
+        }
+    }
     if (self.likeUsers) {
         
-        UIView* grayView1 = [UIView new];
-        [self.contentView addSubview:grayView1];
-        [grayView1 mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.shareView.mas_bottom).offset(10);
-            make.left.equalTo(self.contentLabel.mas_left);
-            make.right.equalTo(self.contentLabel.mas_right);
-            make.height.mas_equalTo(0.7);
-        }];
-        
-        
+        LikeUsersView* likeUsersView = [LikeUsersView new];
+        NSString* likeUsersNameString ;
+        for (int i = 0; i < [self.likeUsers count]; i++) {
 
+            if (i == [self.likeUsers count] -1 ) {
+                User* user = [[User alloc] initWithDictionary:[self.likeUsers objectAtIndex:i]];
+                likeUsersNameString = [NSString stringWithFormat:@"%@%@",likeUsersNameString,user.username];
+            } else {
+                User* user = [[User alloc] initWithDictionary:[self.likeUsers objectAtIndex:i]];
+                likeUsersNameString = [NSString stringWithFormat:@"%@、", user.username];
+            }
+        }
+        
+        likeUsersView.likeUsersName = likeUsersNameString;
+        [self.contentView addSubview:likeUsersView];
+        [likeUsersView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.shareView.mas_bottom).offset(10);
+            make.left.right.equalTo(self.contentLabel);
+        }];
     }
 }
 

@@ -15,5 +15,5 @@
     NSArray* _contentArray;
 
 }
-
+-(void)afLikeMoment:(BOOL )like titleId:(NSNumber *)titleId;
 @end

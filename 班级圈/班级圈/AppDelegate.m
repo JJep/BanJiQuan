@@ -19,6 +19,7 @@
 #import "GlobalVar.h"
 #import "UIImagePickerViewController.h"
 #import "School.h"
+#import "MyProfileModel.h"
 #import "ViewController.h"
 
 @interface AppDelegate ()
@@ -255,6 +256,47 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
         
     }
 }
+
+//-(void)downloadData {
+//    
+//    NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
+//    NSString *token = [defaults objectForKey:@"token"];//根据键值取出name
+//    NSNumber *userid = [defaults objectForKey:@"uid"];
+//    NSLog(@"%@", userid);
+//    if (userid!=nil&&token!=nil) {
+//        
+//        NSString* sessionUrl = [NSString stringWithFormat:@"%@%@%@",@"http://",[GlobalVar urlGetter], @":8080/bjquan/user/queryif" ];
+//        NSDictionary* parameters = [NSDictionary dictionaryWithObject:userid forKey:@"userId"];
+//        
+//        NSLog(@"parameters :%@", parameters);
+//        
+//        AFHTTPSessionManager* session = [AFHTTPSessionManager manager];
+//        
+//        session.responseSerializer = [AFJSONResponseSerializer serializer];
+//        
+//        [session.requestSerializer  setValue:token forHTTPHeaderField:@"token"];     //将token添加到请求头
+//        [session GET:sessionUrl parameters:parameters progress:nil
+//             success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//                 NSLog(@"%@",[responseObject class]);
+//                 //根据key获取value
+//                 NSNumber* status = [responseObject objectForKey:@"status"];
+//                 if ([status isEqualToNumber:[NSNumber numberWithInt:0]]) {
+//                     NSLog(@"success");
+//                     NSLog(@"%@",responseObject);
+//                     
+//                     MyProfileModel* myProfileModel = [[MyProfileModel alloc] initWithDictionary:responseObject];
+//                     NSLog(@"%@",myProfileModel);
+//                     
+//                 }
+//             }
+//             failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//                 NSLog(@"error%@",error);
+//             }
+//         ];
+//    }
+//    
+//}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

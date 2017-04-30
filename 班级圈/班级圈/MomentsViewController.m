@@ -14,12 +14,15 @@
 #import "Title.h"
 #import "User.h"
 #import "NewMomentViewController.h"
+#import "VoiceMomentViewController.h"
+
 @interface MomentsViewController ()
 @property (nonatomic,retain)NSString* sessionUrl;
 @property (nonatomic,retain)NSDictionary* parameters;
 @property (nonatomic,retain)NSMutableArray* classes;
 @property (nonatomic,retain)NSMutableArray* MomentArray;
-
+@property (nonatomic,retain)NSMutableArray* cellHeightArray;
+@property (nonatomic,retain)NSArray* likeUsers;
 @end
 
 @implementation MomentsViewController
@@ -87,6 +90,73 @@
     }
 }
 
+-(void)afLikeMoment:(UIButton *)sender
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSNumber* userid = [defaults objectForKey:@"uid"];
+    NSString* token = [defaults objectForKey:@"token"];
+    
+    if (userid) {
+        NSString* sessionUrl = [NSString stringWithFormat:@"%@%@%@",@"http://",[GlobalVar urlGetter], @":8080/bjquan/title/like" ];
+        //创建多个字典
+        NSDictionary* parameters ;
+        if (sender.selected) {
+            parameters = [NSDictionary dictionaryWithObjectsAndKeys:
+                          userid,@"userid",
+                          userid,@"userId",
+                          @0,@"deleted",
+                          [NSNumber numberWithInteger:sender.tag],@"titleid"
+                          , nil];
+        } else {
+            parameters = [NSDictionary dictionaryWithObjectsAndKeys:
+                          userid,@"userid",
+                          userid,@"userId",
+                          @1,@"deleted",
+                          [NSNumber numberWithInteger:sender.tag],@"titleid"
+                          , nil];
+        }
+        
+        NSLog(@"parameters :%@", parameters);
+        
+        AFHTTPSessionManager* session = [AFHTTPSessionManager manager];
+        session.responseSerializer = [AFJSONResponseSerializer serializer];
+        
+        [session.requestSerializer setValue:token forHTTPHeaderField:@"token"];
+        [session POST:sessionUrl
+           parameters:parameters
+             progress:nil
+              success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                  NSLog(@"%@",responseObject);
+                  //根据key获取value
+                  NSNumber* status = [responseObject objectForKey:@"status"];
+                  if ([status isEqualToNumber:[NSNumber numberWithInteger:0]]) {
+                      self.likeUsers = [[NSArray arrayWithObject:[responseObject objectForKey:@"like"]] objectAtIndex:0];
+                  } else if ([status isEqualToNumber:[NSNumber numberWithInteger:1]]) {
+                      self.likeUsers = [[NSArray arrayWithObject:[responseObject objectForKey:@"like"]] objectAtIndex:0];
+                  } else if ([status isEqualToNumber:[NSNumber numberWithInteger:2]]) {
+                      self.likeUsers = [[NSArray arrayWithObject:[responseObject objectForKey:@"like"]] objectAtIndex:0];
+                      UIAlertController* alertController = [UIAlertController alertControllerWithTitle:@"操作失败" message:nil preferredStyle:UIAlertControllerStyleAlert];
+                      UIAlertAction* alertAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+                      [alertController addAction:alertAction];
+                      [self presentViewController:alertController animated:true completion:nil];
+                  }
+                  [_tableView reloadData];
+              }
+              failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                  NSLog(@"failure");
+                  UIAlertController* alertController = [UIAlertController alertControllerWithTitle:@"操作失败" message:nil preferredStyle:UIAlertControllerStyleAlert];
+                  UIAlertAction* alertAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+                  [alertController addAction:alertAction];
+                  [self presentViewController:alertController animated:true completion:nil];
+                  
+                  NSLog(@"%@", error);
+              }
+         ];
+    }
+    
+}
+
+
 -(void)downloadMoments
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -134,6 +204,12 @@
     }
 }
 
+
+-(void)LikeMoment:(UIButton *)sender {
+    sender.selected = !sender.selected;
+    [self afLikeMoment:sender];
+}
+
 -(void)popClassView
 {
     
@@ -143,6 +219,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //tableview不被tabbar遮盖
+    
+//    self.cellHeight = 180;
+    
+    _contentArray = [NSArray arrayWithObjects: @"膜方面哇哦皮肤内外哦发那位 i 哦放牛娃分别为 i 奥放牛娃发你哦完肥哦无法 i 哦服务你哦发哇分为发膜方面哇哦皮肤内外哦发那位 i 哦放牛娃分别为 i 奥放牛娃", @"发你哦完肥哦无法 i 哦服务你哦发哇分为发膜方面哇哦皮肤内外哦发那位 i 哦放牛娃分别为 i 奥放牛娃发你哦完肥哦无法 i 哦服务你哦发哇分为发膜方面哇哦皮肤内外哦发那位 i 哦放牛娃分别为 i 奥放牛娃发你哦完肥哦无法 i 哦服务你哦发哇分为发膜方面哇哦皮肤内外哦发那位 i 哦放牛娃分别为 i 奥放牛娃", nil];
+    
     if (([[[UIDevice currentDevice] systemVersion] doubleValue] >= 7.0)) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
         self.automaticallyAdjustsScrollViewInsets = NO;
@@ -153,6 +234,7 @@
     [self setupRefresh];
     _tableView = [[UITableView alloc] initWithFrame:self.view.bounds];
     
+    _tableView.backgroundColor = [GlobalVar grayColorGetter];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.separatorStyle = UIAccessibilityTraitNone;
@@ -199,12 +281,12 @@
     UIAlertController* alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction* defaultMomentAction = [UIAlertAction actionWithTitle:@"发送图文动态" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         NewMomentViewController* newMomentVC = [[NewMomentViewController alloc] init];
-        [self.navigationController pushViewController:newMomentVC animated:true];
+        [self pushToTargetVC:newMomentVC];
     }];
     [alertController addAction:defaultMomentAction];
     UIAlertAction* voiceMomentAction = [UIAlertAction actionWithTitle:@"发送音频动态" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//        MakeVoiceNoticeController* voiceMomentVC = [[MakeVoiceNoticeController alloc] init];
-//        [self.navigationController pushViewController:voiceMomentVC animated:true];
+        VoiceMomentViewController* voiceMomentVC = [[VoiceMomentViewController alloc] init];
+        [self pushToTargetVC:voiceMomentVC];
     }];
     [alertController addAction:voiceMomentAction];
     UIAlertAction* videoMomentAction = [UIAlertAction actionWithTitle:@"发送视频动态" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -218,6 +300,13 @@
     
 
 }
+
+-(void)pushToTargetVC:(UIViewController* )targetVC
+{
+    targetVC.hidesBottomBarWhenPushed = true;
+    [self.navigationController pushViewController:targetVC animated:true];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -228,6 +317,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     return [self.MomentArray count]+1;
+//    return [_contentArray count] + 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -243,8 +333,11 @@
         //这里用CustomCell替换原来的UITableViewCell
         Title* moment = [[Title alloc] initWithDictionary:[self.MomentArray objectAtIndex:indexPath.row-1]];
         User* user = [[User alloc] initWithDictionary:[moment.user toDictionary]];
-
+        
         CustomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CELL" forIndexPath:indexPath];
+        cell.titleId = [NSNumber numberWithInteger:moment.idField];
+//        cell.titleId = [NSNumber numberWithInteger:1];
+//        cell.likeUsers = [NSArray arrayWithObjects:@"Jep!",@"Jep!",@"Jep!",@"Jep!",@"Jep!", nil];
         if (moment.pics) {
             
             NSArray *pics = [(NSString *)moment.pics componentsSeparatedByString:@";"];
@@ -260,22 +353,31 @@
             cell.timeLabel.text = [self timeWithTimeIntervalString:[NSString stringWithFormat: @"%ld", (long)moment.createtime]];;
         }
         cell.contentLabel.text = moment.content;
-        [cell loadPhoto];
-        [cell updateUI];
-        cell.contentLabel.numberOfLines = 0;
-//        cell.userInteractionEnabled = YES;
+        cell.likeButton.tag = moment.idField;
+//        cell.likeUsers = self.likeUsers;
+        [cell.likeButton addTarget:self action:@selector(LikeMoment:) forControlEvents:UIControlEventTouchUpInside];
+//        
+//        cell.nameLabel.text = @"Jep!";
+//        cell.timeLabel.text = @"5分钟前";
+//        cell.contentLabel.text = [_contentArray objectAtIndex:indexPath.row-1];
+//        
+//        [cell loadPhoto];
+//        [cell updateUI];
+        [cell configUI];
         return cell;
     }
     
 }
+
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     if (indexPath.row == 0) {
         return 180;
     } else {
     //根据内容计算高度
-        CGFloat iconHeight = 120;
-     CGRect rect = [_contentArray[indexPath.row] boundingRectWithSize:CGSizeMake(CGRectGetWidth(self.view.frame)-30, MAXFLOAT)
+        CGFloat iconHeight = 160;
+        CGRect rect = [[[self.MomentArray objectAtIndex:indexPath.row-1] objectForKey:@"text"] boundingRectWithSize:CGSizeMake(CGRectGetWidth(self.view.frame)-30, MAXFLOAT)
                                                               options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
                                                            attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]} context:nil];  
 //     再加上其他控件的高度得到cell的高度
@@ -297,8 +399,8 @@
         } else {
             return rect.size.height+ iconHeight;
         }
+        
     }
-    
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

@@ -24,4 +24,6 @@
 -(void)loadPhoto;
 + (CGFloat)tableView:(UITableView *)tableView rowHeightForObject:(id)object;
 -(CGFloat)hadleForHeight;
+- (float)getAutoCellHeight ;
+-(void)configUI;
 @end

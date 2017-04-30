@@ -41,9 +41,12 @@
     return _nameLabel;
 }
 
+
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    self.frame = CGRectMake(0, 0, self.bounds.size.width, 180);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
