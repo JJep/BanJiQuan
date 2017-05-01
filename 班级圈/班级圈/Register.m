@@ -20,7 +20,7 @@
 
 -(void)getCode
 {
-    self.sessionUrl = [NSString stringWithFormat:@"%@%@%@",@"http://",[GlobalVar urlGetter], @":8080/bjquan/user/getRegisterCode" ];
+    self.sessionUrl = [NSString stringWithFormat:@"%@%@%@",@"http://",[GlobalVar urlGetter], @"/bjquan/user/getRegisterCode" ];
     self.parameters = [NSDictionary dictionaryWithObject:
                        self.txUsername.text forKey:@"phoneNumber"];
     NSLog(@"parameters :%@", self.parameters);
@@ -49,7 +49,7 @@
 
 -(void)toRegister
 {
-    self.sessionUrl = [NSString stringWithFormat:@"%@%@%@",@"http://",[GlobalVar urlGetter], @":8080/bjquan/user/userRegister" ];
+    self.sessionUrl = [NSString stringWithFormat:@"%@%@%@",@"http://",[GlobalVar urlGetter], @"/bjquan/user/userRegister" ];
     //创建多个字典
     self.parameters = [NSDictionary dictionaryWithObjectsAndKeys:
                        self.txUsername.text, @"phoneNumber",

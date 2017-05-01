@@ -85,7 +85,7 @@
     [nav2.navigationBar setTintColor:[UIColor whiteColor]];
 
     
-    ViewController* schedule = [[ViewController alloc] init];
+    Login* schedule = [[Login alloc] init];
     schedule.view.backgroundColor = [UIColor orangeColor];
     schedule.title = @"Schedule";
     UINavigationController* nav3 = [[UINavigationController alloc] initWithRootViewController:schedule];
@@ -163,7 +163,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     NSNumber *userid = [defaults objectForKey:@"uid"];
     NSLog(@"%@", userid);
     
-    NSString* sessionUrl = [NSString stringWithFormat:@"%@%@%@",@"http://",[GlobalVar urlGetter], @":8080/bjquan/class/qmatch" ];
+    NSString* sessionUrl = [NSString stringWithFormat:@"%@%@%@",@"http://",[GlobalVar urlGetter], @"/bjquan/class/qmatch" ];
     //创建多个字典
     if (userid!=nil&&token!=nil) {
         NSDictionary* parameters = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -214,7 +214,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     NSNumber *userid = [defaults objectForKey:@"uid"];
     NSLog(@"%@", userid);
     
-    NSString* sessionUrl = [NSString stringWithFormat:@"%@%@%@",@"http://",[GlobalVar urlGetter], @":8080/bjquan/user/autologin" ];
+    NSString* sessionUrl = [NSString stringWithFormat:@"%@%@%@",@"http://",[GlobalVar urlGetter], @"/bjquan/user/autologin" ];
     //创建多个字典
     if (userid!=nil&&token!=nil) {
         NSDictionary* parameters = [NSDictionary dictionaryWithObject:userid forKey:@"userId"];
@@ -265,7 +265,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 //    NSLog(@"%@", userid);
 //    if (userid!=nil&&token!=nil) {
 //        
-//        NSString* sessionUrl = [NSString stringWithFormat:@"%@%@%@",@"http://",[GlobalVar urlGetter], @":8080/bjquan/user/queryif" ];
+//        NSString* sessionUrl = [NSString stringWithFormat:@"%@%@%@",@"http://",[GlobalVar urlGetter], @"/bjquan/user/queryif" ];
 //        NSDictionary* parameters = [NSDictionary dictionaryWithObject:userid forKey:@"userId"];
 //        
 //        NSLog(@"parameters :%@", parameters);

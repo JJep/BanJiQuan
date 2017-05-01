@@ -38,7 +38,7 @@
     NSString* token = [defaults objectForKey:@"token"];
     
     
-    self.sessionUrl = [NSString stringWithFormat:@"%@%@%@",@"http://",[GlobalVar urlGetter], @":8080/bjquan/class/searchByCode" ];
+    self.sessionUrl = [NSString stringWithFormat:@"%@%@%@",@"http://",[GlobalVar urlGetter], @"/bjquan/class/searchByCode" ];
     //创建多个字典
     
     self.parameters = [NSDictionary dictionaryWithObjectsAndKeys:

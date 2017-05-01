@@ -14,7 +14,7 @@
 -(UIImageView *)backgroundImage
 {
     if (!_backgroundImage) {
-        _backgroundImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.bounds.size.width, 180)];
+        _backgroundImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.contentView.bounds.size.width, 180)];
         _backgroundImage.backgroundColor = [GlobalVar themeColorGetter];
         [self.contentView addSubview:_backgroundImage];
     }
@@ -46,7 +46,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    self.frame = CGRectMake(0, 0, self.bounds.size.width, 180);
+    self.frame = CGRectMake(0, 0, self.contentView.bounds.size.width, 180);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

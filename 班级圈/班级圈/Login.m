@@ -34,7 +34,7 @@
 -(void) toLogin
 {
     
-    self.sessionUrl = [NSString stringWithFormat:@"%@%@%@",@"http://",[GlobalVar urlGetter], @":8080/bjquan/user/LoginByPassWord" ];
+    self.sessionUrl = [NSString stringWithFormat:@"%@%@%@",@"http://",[GlobalVar urlGetter], @"/bjquan/user/LoginByPassWord" ];
     //创建多个字典
     self.parameters = [NSDictionary dictionaryWithObjectsAndKeys:
                        self.txUsername.text, @"phoneNumber",

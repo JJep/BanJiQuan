@@ -25,6 +25,8 @@
 @property (nonatomic, strong) NSObject * sex;
 @property (nonatomic, strong) NSObject * status;
 @property (nonatomic, strong) NSObject * username;
+@property (nonatomic, strong) NSObject * fusername;
+@property (nonatomic, assign) NSInteger fidField;
 
 -(instancetype)initWithDictionary:(NSDictionary *)dictionary;
 

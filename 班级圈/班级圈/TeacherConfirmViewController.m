@@ -61,7 +61,7 @@
     NSNumber *userid = [defaults objectForKey:@"uid"];
     NSLog(@"%@", userid);
     
-    self.sessionUrl = [NSString stringWithFormat:@"%@%@%@",@"http://",[GlobalVar urlGetter], @":8080/bjquan/teacher/add" ];
+    self.sessionUrl = [NSString stringWithFormat:@"%@%@%@",@"http://",[GlobalVar urlGetter], @"/bjquan/teacher/add" ];
     
     self.teacherParameters = [NSDictionary dictionaryWithObjectsAndKeys:
                               userid,@"uid",
@@ -795,7 +795,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
     NSNumber* userid = [defaults objectForKey:@"uid"];
     NSString* token = [defaults objectForKey:@"token"];
     
-    self.sessionUrl = [NSString stringWithFormat:@"%@%@%@",@"http://",[GlobalVar urlGetter], @":8080/bjquan/school/qth" ];
+    self.sessionUrl = [NSString stringWithFormat:@"%@%@%@",@"http://",[GlobalVar urlGetter], @"/bjquan/school/qth" ];
 
         self.parameters = [NSDictionary dictionaryWithObjectsAndKeys:
                            userid,@"userId",
@@ -829,7 +829,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
     NSNumber *userid = [defaults objectForKey:@"uid"];
     NSLog(@"%@", userid);
     
-    self.sessionUrl = [NSString stringWithFormat:@"%@%@%@",@"http://",[GlobalVar urlGetter], @":8080/bjquan/school/qschool" ];
+    self.sessionUrl = [NSString stringWithFormat:@"%@%@%@",@"http://",[GlobalVar urlGetter], @"/bjquan/school/qschool" ];
     
 
         self.parameters = [NSDictionary dictionaryWithObjectsAndKeys:

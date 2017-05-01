@@ -50,7 +50,7 @@
 
 -(void)uploadJoinClass
 {
-    self.sessionUrl = [NSString stringWithFormat:@"%@%@%@",@"http://",[GlobalVar urlGetter], @":8080/bjquan/class/create" ];
+    self.sessionUrl = [NSString stringWithFormat:@"%@%@%@",@"http://",[GlobalVar urlGetter], @"/bjquan/class/create" ];
     //创建多个字典
     self.parameters = [NSDictionary dictionaryWithObjectsAndKeys:
                        @1, @"schoolid",
@@ -97,7 +97,7 @@
     NSNumber* userid = [defaults objectForKey:@"uid"];
     NSString* token = [defaults objectForKey:@"token"];
     
-    self.sessionUrl = [NSString stringWithFormat:@"%@%@%@",@"http://",[GlobalVar urlGetter], @":8080/bjquan/school/qth" ];
+    self.sessionUrl = [NSString stringWithFormat:@"%@%@%@",@"http://",[GlobalVar urlGetter], @"/bjquan/school/qth" ];
     if (self.leftBtn.selected == true) {
         self.parameters = [NSDictionary dictionaryWithObjectsAndKeys:
                            userid,@"userId",
@@ -143,7 +143,7 @@
     NSNumber *userid = [defaults objectForKey:@"uid"];
     NSLog(@"%@", userid);
     
-    self.sessionUrl = [NSString stringWithFormat:@"%@%@%@",@"http://",[GlobalVar urlGetter], @":8080/bjquan/school/qschool" ];
+    self.sessionUrl = [NSString stringWithFormat:@"%@%@%@",@"http://",[GlobalVar urlGetter], @"/bjquan/school/qschool" ];
     
     if (self.leftBtn.selected == true) {
         self.parameters = [NSDictionary dictionaryWithObjectsAndKeys:

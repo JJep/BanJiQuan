@@ -11,5 +11,9 @@
 @interface LikeUsersView : UIView
 @property (nonatomic,retain)NSArray* likeUsers;
 @property (nonatomic,retain)NSString* likeUsersName;
+@property (nonatomic,retain)NSString* content;
+@property (nonatomic,retain)UILabel* likeUsersLabel;
+-(CGFloat)heightForLikeUserNameLabel;
+
 
 @end

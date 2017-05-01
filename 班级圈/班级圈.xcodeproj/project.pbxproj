@@ -36,18 +36,6 @@
 		BE1D549D1EB4B76400BCD54F /* ScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE73222D1E8A96E50099E365 /* ScheduleViewController.m */; };
 		BE1D549E1EB4B76400BCD54F /* ClassView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CD1E71EAE3A910023D986 /* ClassView.m */; };
 		BE1D549F1EB4B76400BCD54F /* CreateClassSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE4523731EA4CB4500D9CE58 /* CreateClassSubView.m */; };
-		BE1D54A01EB4B76400BCD54F /* School.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1D53C01EB1FAE100BCD54F /* School.m */; };
-		BE1D54A11EB4B76400BCD54F /* schoolmodel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1D53C21EB1FAE100BCD54F /* schoolmodel.m */; };
-		BE1D54A21EB4B76400BCD54F /* MomentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CD1EA1EAF5BB60023D986 /* MomentModel.m */; };
-		BE1D54A31EB4B76400BCD54F /* Title.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CD1EC1EAF5BB60023D986 /* Title.m */; };
-		BE1D54A41EB4B76400BCD54F /* Classe.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1B18331EACD86500D3FE60 /* Classe.m */; };
-		BE1D54A51EB4B76400BCD54F /* NewMomentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1B18351EACD86500D3FE60 /* NewMomentModel.m */; };
-		BE1D54A61EB4B76400BCD54F /* SchoolList.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1B18241EA8CACA00D3FE60 /* SchoolList.m */; };
-		BE1D54A71EB4B76400BCD54F /* SchoolCreateClass.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1B18211EA8CA1D00D3FE60 /* SchoolCreateClass.m */; };
-		BE1D54A81EB4B76400BCD54F /* Region.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6AE1C71EA757D300B0FF75 /* Region.m */; };
-		BE1D54A91EB4B76400BCD54F /* MyProfileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB9AEEF1EA62A3E00BF20EB /* MyProfileModel.m */; };
-		BE1D54AA1EB4B76400BCD54F /* Codetime.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB9AEED1EA62A3E00BF20EB /* Codetime.m */; };
-		BE1D54AB1EB4B76400BCD54F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB9AEF11EA62A3E00BF20EB /* User.m */; };
 		BE1D54B21EB4B76400BCD54F /* ELCAlbumPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CD1C31EAE282A0023D986 /* ELCAlbumPickerController.m */; };
 		BE1D54B31EB4B76400BCD54F /* ELCAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CD1C51EAE282A0023D986 /* ELCAsset.m */; };
 		BE1D54B41EB4B76400BCD54F /* ELCAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CD1C71EAE282A0023D986 /* ELCAssetCell.m */; };
@@ -110,6 +98,21 @@
 		BE79B1061EB4FC9400199E04 /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE79B1051EB4FC9400199E04 /* CustomTableViewCell.m */; };
 		BE79B1091EB4FCA500199E04 /* MeHeadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE79B1081EB4FCA500199E04 /* MeHeadTableViewCell.m */; };
 		BE79B10C1EB5A04900199E04 /* LikeUsersView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE79B10B1EB5A04900199E04 /* LikeUsersView.m */; };
+		BE79B12F1EB5F3A100199E04 /* Classe.m in Sources */ = {isa = PBXBuildFile; fileRef = BE79B1181EB5F3A100199E04 /* Classe.m */; };
+		BE79B1301EB5F3A100199E04 /* Codetime.m in Sources */ = {isa = PBXBuildFile; fileRef = BE79B11A1EB5F3A100199E04 /* Codetime.m */; };
+		BE79B1321EB5F3A100199E04 /* MyProfileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE79B11E1EB5F3A100199E04 /* MyProfileModel.m */; };
+		BE79B1331EB5F3A100199E04 /* NewMomentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE79B1201EB5F3A100199E04 /* NewMomentModel.m */; };
+		BE79B1341EB5F3A100199E04 /* Region.m in Sources */ = {isa = PBXBuildFile; fileRef = BE79B1221EB5F3A100199E04 /* Region.m */; };
+		BE79B1351EB5F3A100199E04 /* School.m in Sources */ = {isa = PBXBuildFile; fileRef = BE79B1241EB5F3A100199E04 /* School.m */; };
+		BE79B1361EB5F3A100199E04 /* SchoolCreateClass.m in Sources */ = {isa = PBXBuildFile; fileRef = BE79B1261EB5F3A100199E04 /* SchoolCreateClass.m */; };
+		BE79B1371EB5F3A100199E04 /* SchoolList.m in Sources */ = {isa = PBXBuildFile; fileRef = BE79B1281EB5F3A100199E04 /* SchoolList.m */; };
+		BE79B1381EB5F3A100199E04 /* schoolmodel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE79B12A1EB5F3A100199E04 /* schoolmodel.m */; };
+		BE79B13A1EB5F3A100199E04 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = BE79B12E1EB5F3A100199E04 /* User.m */; };
+		BE79B13F1EB5F44C00199E04 /* MomentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE79B13C1EB5F44C00199E04 /* MomentModel.m */; };
+		BE79B1401EB5F44C00199E04 /* Title.m in Sources */ = {isa = PBXBuildFile; fileRef = BE79B13E1EB5F44C00199E04 /* Title.m */; };
+		BE79B1431EB6FC3A00199E04 /* CommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE79B1421EB6FC3A00199E04 /* CommentView.m */; };
+		BE79B14C1EB7012F00199E04 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = BE79B14B1EB7012F00199E04 /* Comment.m */; };
+		BE79B14F1EB75F9000199E04 /* jggView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE79B14E1EB75F9000199E04 /* jggView.m */; };
 		BE7CD1E01EAE282A0023D986 /* ELCAlbumPickerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE7CD1D41EAE282A0023D986 /* ELCAlbumPickerController.xib */; };
 		BE7CD1E11EAE282A0023D986 /* ELCAssetPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE7CD1D51EAE282A0023D986 /* ELCAssetPicker.xib */; };
 		BE7CD1E21EAE282A0023D986 /* ELCAssetTablePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE7CD1D61EAE282A0023D986 /* ELCAssetTablePicker.xib */; };
@@ -140,10 +143,6 @@
 /* Begin PBXFileReference section */
 		2C3FBB638666979B1B507961 /* Pods-班级圈.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-班级圈.debug.xcconfig"; path = "Pods/Target Support Files/Pods-班级圈/Pods-班级圈.debug.xcconfig"; sourceTree = "<group>"; };
 		A722B5CD4DE2845D83B54D39 /* libPods-班级圈.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-班级圈.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		BE1B18201EA8CA1D00D3FE60 /* SchoolCreateClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SchoolCreateClass.h; path = Model/SchoolCreateClass.h; sourceTree = "<group>"; };
-		BE1B18211EA8CA1D00D3FE60 /* SchoolCreateClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SchoolCreateClass.m; path = Model/SchoolCreateClass.m; sourceTree = "<group>"; };
-		BE1B18231EA8CACA00D3FE60 /* SchoolList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SchoolList.h; path = Model/SchoolList.h; sourceTree = "<group>"; };
-		BE1B18241EA8CACA00D3FE60 /* SchoolList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SchoolList.m; path = Model/SchoolList.m; sourceTree = "<group>"; };
 		BE1B18261EA8F75600D3FE60 /* JoinClassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoinClassViewController.h; sourceTree = "<group>"; };
 		BE1B18271EA8F75600D3FE60 /* JoinClassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoinClassViewController.m; sourceTree = "<group>"; };
 		BE1B18291EA9A0B500D3FE60 /* JoinExactClassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoinExactClassViewController.h; sourceTree = "<group>"; };
@@ -151,16 +150,8 @@
 		BE1B182C1EACC6BA00D3FE60 /* NewMomentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewMomentViewController.h; sourceTree = "<group>"; };
 		BE1B182D1EACC6BA00D3FE60 /* NewMomentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewMomentViewController.m; sourceTree = "<group>"; };
 		BE1B18301EACCA6D00D3FE60 /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plus.png; sourceTree = "<group>"; };
-		BE1B18321EACD86500D3FE60 /* Classe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Classe.h; path = Model/Classe.h; sourceTree = "<group>"; };
-		BE1B18331EACD86500D3FE60 /* Classe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Classe.m; path = Model/Classe.m; sourceTree = "<group>"; };
-		BE1B18341EACD86500D3FE60 /* NewMomentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewMomentModel.h; path = Model/NewMomentModel.h; sourceTree = "<group>"; };
-		BE1B18351EACD86500D3FE60 /* NewMomentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewMomentModel.m; path = Model/NewMomentModel.m; sourceTree = "<group>"; };
 		BE1B18381EACE0C900D3FE60 /* SelectClassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectClassViewController.h; sourceTree = "<group>"; };
 		BE1B18391EACE0C900D3FE60 /* SelectClassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectClassViewController.m; sourceTree = "<group>"; };
-		BE1D53BF1EB1FAE100BCD54F /* School.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = School.h; path = Model/School.h; sourceTree = "<group>"; };
-		BE1D53C01EB1FAE100BCD54F /* School.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = School.m; path = Model/School.m; sourceTree = "<group>"; };
-		BE1D53C11EB1FAE100BCD54F /* schoolmodel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = schoolmodel.h; path = Model/schoolmodel.h; sourceTree = "<group>"; };
-		BE1D53C21EB1FAE100BCD54F /* schoolmodel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = schoolmodel.m; path = Model/schoolmodel.m; sourceTree = "<group>"; };
 		BE1D53C51EB2293C00BCD54F /* ClassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassViewController.h; sourceTree = "<group>"; };
 		BE1D53C61EB2293C00BCD54F /* ClassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassViewController.m; sourceTree = "<group>"; };
 		BE1D53C81EB300D600BCD54F /* CLASS_PLUS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CLASS_PLUS.png; sourceTree = "<group>"; };
@@ -199,8 +190,6 @@
 		BE4523721EA4CB4500D9CE58 /* CreateClassSubView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateClassSubView.h; sourceTree = "<group>"; };
 		BE4523731EA4CB4500D9CE58 /* CreateClassSubView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateClassSubView.m; sourceTree = "<group>"; };
 		BE6AE1BC1EA748E100B0FF75 /* mJson.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = mJson.json; path = "班级圈/mJson.json"; sourceTree = "<group>"; };
-		BE6AE1C61EA757D300B0FF75 /* Region.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Region.h; path = Model/Region.h; sourceTree = "<group>"; };
-		BE6AE1C71EA757D300B0FF75 /* Region.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Region.m; path = Model/Region.m; sourceTree = "<group>"; };
 		BE6E47DB1E9646C3006BC25A /* 大分割线@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "大分割线@2x.png"; sourceTree = "<group>"; };
 		BE6E47DC1E9646C3006BC25A /* 点赞@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "点赞@2x.png"; sourceTree = "<group>"; };
 		BE6E47DD1E9646C3006BC25A /* 点赞红@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "点赞红@2x.png"; sourceTree = "<group>"; };
@@ -257,6 +246,37 @@
 		BE79B1081EB4FCA500199E04 /* MeHeadTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeHeadTableViewCell.m; sourceTree = "<group>"; };
 		BE79B10A1EB5A04900199E04 /* LikeUsersView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LikeUsersView.h; sourceTree = "<group>"; };
 		BE79B10B1EB5A04900199E04 /* LikeUsersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LikeUsersView.m; sourceTree = "<group>"; };
+		BE79B1101EB5CE8200199E04 /* WeChat.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeChat.pch; sourceTree = "<group>"; };
+		BE79B1171EB5F3A100199E04 /* Classe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Classe.h; sourceTree = "<group>"; };
+		BE79B1181EB5F3A100199E04 /* Classe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Classe.m; sourceTree = "<group>"; };
+		BE79B1191EB5F3A100199E04 /* Codetime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Codetime.h; sourceTree = "<group>"; };
+		BE79B11A1EB5F3A100199E04 /* Codetime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Codetime.m; sourceTree = "<group>"; };
+		BE79B11D1EB5F3A100199E04 /* MyProfileModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyProfileModel.h; sourceTree = "<group>"; };
+		BE79B11E1EB5F3A100199E04 /* MyProfileModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyProfileModel.m; sourceTree = "<group>"; };
+		BE79B11F1EB5F3A100199E04 /* NewMomentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewMomentModel.h; sourceTree = "<group>"; };
+		BE79B1201EB5F3A100199E04 /* NewMomentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewMomentModel.m; sourceTree = "<group>"; };
+		BE79B1211EB5F3A100199E04 /* Region.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Region.h; sourceTree = "<group>"; };
+		BE79B1221EB5F3A100199E04 /* Region.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Region.m; sourceTree = "<group>"; };
+		BE79B1231EB5F3A100199E04 /* School.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = School.h; sourceTree = "<group>"; };
+		BE79B1241EB5F3A100199E04 /* School.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = School.m; sourceTree = "<group>"; };
+		BE79B1251EB5F3A100199E04 /* SchoolCreateClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolCreateClass.h; sourceTree = "<group>"; };
+		BE79B1261EB5F3A100199E04 /* SchoolCreateClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolCreateClass.m; sourceTree = "<group>"; };
+		BE79B1271EB5F3A100199E04 /* SchoolList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolList.h; sourceTree = "<group>"; };
+		BE79B1281EB5F3A100199E04 /* SchoolList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolList.m; sourceTree = "<group>"; };
+		BE79B1291EB5F3A100199E04 /* schoolmodel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = schoolmodel.h; sourceTree = "<group>"; };
+		BE79B12A1EB5F3A100199E04 /* schoolmodel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = schoolmodel.m; sourceTree = "<group>"; };
+		BE79B12D1EB5F3A100199E04 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		BE79B12E1EB5F3A100199E04 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		BE79B13B1EB5F44C00199E04 /* MomentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MomentModel.h; sourceTree = "<group>"; };
+		BE79B13C1EB5F44C00199E04 /* MomentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MomentModel.m; sourceTree = "<group>"; };
+		BE79B13D1EB5F44C00199E04 /* Title.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Title.h; sourceTree = "<group>"; };
+		BE79B13E1EB5F44C00199E04 /* Title.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Title.m; sourceTree = "<group>"; };
+		BE79B1411EB6FC3A00199E04 /* CommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentView.h; sourceTree = "<group>"; };
+		BE79B1421EB6FC3A00199E04 /* CommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentView.m; sourceTree = "<group>"; };
+		BE79B14A1EB7012F00199E04 /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
+		BE79B14B1EB7012F00199E04 /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
+		BE79B14D1EB75F9000199E04 /* jggView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jggView.h; sourceTree = "<group>"; };
+		BE79B14E1EB75F9000199E04 /* jggView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = jggView.m; sourceTree = "<group>"; };
 		BE7CD1C21EAE282A0023D986 /* ELCAlbumPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAlbumPickerController.h; sourceTree = "<group>"; };
 		BE7CD1C31EAE282A0023D986 /* ELCAlbumPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCAlbumPickerController.m; sourceTree = "<group>"; };
 		BE7CD1C41EAE282A0023D986 /* ELCAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAsset.h; sourceTree = "<group>"; };
@@ -281,10 +301,6 @@
 		BE7CD1D81EAE282A0023D986 /* Overlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Overlay@2x.png"; sourceTree = "<group>"; };
 		BE7CD1E61EAE3A910023D986 /* ClassView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassView.h; sourceTree = "<group>"; };
 		BE7CD1E71EAE3A910023D986 /* ClassView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassView.m; sourceTree = "<group>"; };
-		BE7CD1E91EAF5BB50023D986 /* MomentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MomentModel.h; path = Model/MomentModel.h; sourceTree = "<group>"; };
-		BE7CD1EA1EAF5BB60023D986 /* MomentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MomentModel.m; path = Model/MomentModel.m; sourceTree = "<group>"; };
-		BE7CD1EB1EAF5BB60023D986 /* Title.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Title.h; path = Model/Title.h; sourceTree = "<group>"; };
-		BE7CD1EC1EAF5BB60023D986 /* Title.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Title.m; path = Model/Title.m; sourceTree = "<group>"; };
 		BE7CD1EF1EAF6E280023D986 /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
 		BE7CD1F01EAF6E280023D986 /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
 		BE7CD1F51EB063640023D986 /* TeacherConfirmViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeacherConfirmViewController.h; sourceTree = "<group>"; };
@@ -297,12 +313,6 @@
 		BE7CD2001EB0AD580023D986 /* NOTEPAD.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NOTEPAD.png; sourceTree = "<group>"; };
 		BE7CD2011EB0AD580023D986 /* USER_ADD.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = USER_ADD.png; sourceTree = "<group>"; };
 		BE7CD2091EB0BE980023D986 /* 新建消息.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "新建消息.png"; sourceTree = "<group>"; };
-		BEB9AEEC1EA62A3E00BF20EB /* Codetime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Codetime.h; path = Model/Codetime.h; sourceTree = "<group>"; };
-		BEB9AEED1EA62A3E00BF20EB /* Codetime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Codetime.m; path = Model/Codetime.m; sourceTree = "<group>"; };
-		BEB9AEEE1EA62A3E00BF20EB /* MyProfileModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyProfileModel.h; path = Model/MyProfileModel.h; sourceTree = "<group>"; };
-		BEB9AEEF1EA62A3E00BF20EB /* MyProfileModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyProfileModel.m; path = Model/MyProfileModel.m; sourceTree = "<group>"; };
-		BEB9AEF01EA62A3E00BF20EB /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = Model/User.h; sourceTree = "<group>"; };
-		BEB9AEF11EA62A3E00BF20EB /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = Model/User.m; sourceTree = "<group>"; };
 		BEB9AEF51EA62AB500BF20EB /* MyProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyProfileViewController.m; sourceTree = "<group>"; };
 		BEBEC8D21EADE49A00324E26 /* nike.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nike.jpeg; sourceTree = "<group>"; };
 		BEBEC8D41EAE01ED00324E26 /* UIImagePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImagePickerViewController.h; sourceTree = "<group>"; };
@@ -438,30 +448,32 @@
 		BE45236D1EA493CB00D9CE58 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				BE1D53BF1EB1FAE100BCD54F /* School.h */,
-				BE1D53C01EB1FAE100BCD54F /* School.m */,
-				BE1D53C11EB1FAE100BCD54F /* schoolmodel.h */,
-				BE1D53C21EB1FAE100BCD54F /* schoolmodel.m */,
-				BE7CD1E91EAF5BB50023D986 /* MomentModel.h */,
-				BE7CD1EA1EAF5BB60023D986 /* MomentModel.m */,
-				BE7CD1EB1EAF5BB60023D986 /* Title.h */,
-				BE7CD1EC1EAF5BB60023D986 /* Title.m */,
-				BE1B18321EACD86500D3FE60 /* Classe.h */,
-				BE1B18331EACD86500D3FE60 /* Classe.m */,
-				BE1B18341EACD86500D3FE60 /* NewMomentModel.h */,
-				BE1B18351EACD86500D3FE60 /* NewMomentModel.m */,
-				BE1B18231EA8CACA00D3FE60 /* SchoolList.h */,
-				BE1B18241EA8CACA00D3FE60 /* SchoolList.m */,
-				BE1B18201EA8CA1D00D3FE60 /* SchoolCreateClass.h */,
-				BE1B18211EA8CA1D00D3FE60 /* SchoolCreateClass.m */,
-				BE6AE1C61EA757D300B0FF75 /* Region.h */,
-				BE6AE1C71EA757D300B0FF75 /* Region.m */,
-				BEB9AEEE1EA62A3E00BF20EB /* MyProfileModel.h */,
-				BEB9AEEF1EA62A3E00BF20EB /* MyProfileModel.m */,
-				BEB9AEEC1EA62A3E00BF20EB /* Codetime.h */,
-				BEB9AEED1EA62A3E00BF20EB /* Codetime.m */,
-				BEB9AEF01EA62A3E00BF20EB /* User.h */,
-				BEB9AEF11EA62A3E00BF20EB /* User.m */,
+				BE79B13B1EB5F44C00199E04 /* MomentModel.h */,
+				BE79B13C1EB5F44C00199E04 /* MomentModel.m */,
+				BE79B14A1EB7012F00199E04 /* Comment.h */,
+				BE79B14B1EB7012F00199E04 /* Comment.m */,
+				BE79B13D1EB5F44C00199E04 /* Title.h */,
+				BE79B13E1EB5F44C00199E04 /* Title.m */,
+				BE79B1171EB5F3A100199E04 /* Classe.h */,
+				BE79B1181EB5F3A100199E04 /* Classe.m */,
+				BE79B1191EB5F3A100199E04 /* Codetime.h */,
+				BE79B11A1EB5F3A100199E04 /* Codetime.m */,
+				BE79B11D1EB5F3A100199E04 /* MyProfileModel.h */,
+				BE79B11E1EB5F3A100199E04 /* MyProfileModel.m */,
+				BE79B11F1EB5F3A100199E04 /* NewMomentModel.h */,
+				BE79B1201EB5F3A100199E04 /* NewMomentModel.m */,
+				BE79B1211EB5F3A100199E04 /* Region.h */,
+				BE79B1221EB5F3A100199E04 /* Region.m */,
+				BE79B1231EB5F3A100199E04 /* School.h */,
+				BE79B1241EB5F3A100199E04 /* School.m */,
+				BE79B1251EB5F3A100199E04 /* SchoolCreateClass.h */,
+				BE79B1261EB5F3A100199E04 /* SchoolCreateClass.m */,
+				BE79B1271EB5F3A100199E04 /* SchoolList.h */,
+				BE79B1281EB5F3A100199E04 /* SchoolList.m */,
+				BE79B1291EB5F3A100199E04 /* schoolmodel.h */,
+				BE79B12A1EB5F3A100199E04 /* schoolmodel.m */,
+				BE79B12D1EB5F3A100199E04 /* User.h */,
+				BE79B12E1EB5F3A100199E04 /* User.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -473,6 +485,10 @@
 				BE79B1081EB4FCA500199E04 /* MeHeadTableViewCell.m */,
 				BE79B1041EB4FC9400199E04 /* CustomTableViewCell.h */,
 				BE79B1051EB4FC9400199E04 /* CustomTableViewCell.m */,
+				BE79B14D1EB75F9000199E04 /* jggView.h */,
+				BE79B14E1EB75F9000199E04 /* jggView.m */,
+				BE79B1411EB6FC3A00199E04 /* CommentView.h */,
+				BE79B1421EB6FC3A00199E04 /* CommentView.m */,
 				BE79B10A1EB5A04900199E04 /* LikeUsersView.h */,
 				BE79B10B1EB5A04900199E04 /* LikeUsersView.m */,
 				BE79B1011EB4FC8400199E04 /* DefaultTableViewCell.h */,
@@ -588,6 +604,7 @@
 		BE7CD1E51EAE282E0023D986 /* Surpporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BE79B1101EB5CE8200199E04 /* WeChat.pch */,
 				BE7CD1C11EAE282A0023D986 /* ELCImagePicker */,
 			);
 			name = "Surpporting Files";
@@ -868,51 +885,54 @@
 				BE79B1091EB4FCA500199E04 /* MeHeadTableViewCell.m in Sources */,
 				BE1D54B91EB4B7A700BCD54F /* main.m in Sources */,
 				BE1D548A1EB4B76400BCD54F /* GlobalVar.m in Sources */,
+				BE79B14C1EB7012F00199E04 /* Comment.m in Sources */,
+				BE79B1431EB6FC3A00199E04 /* CommentView.m in Sources */,
+				BE79B1331EB5F3A100199E04 /* NewMomentModel.m in Sources */,
+				BE79B12F1EB5F3A100199E04 /* Classe.m in Sources */,
 				BE1D548B1EB4B76400BCD54F /* AppDelegate.m in Sources */,
 				BE1D548C1EB4B76400BCD54F /* Login.m in Sources */,
+				BE79B1301EB5F3A100199E04 /* Codetime.m in Sources */,
 				BE1D548D1EB4B76400BCD54F /* Register.m in Sources */,
 				BE1D548E1EB4B76400BCD54F /* MeViewController.m in Sources */,
+				BE79B1351EB5F3A100199E04 /* School.m in Sources */,
 				BE1D548F1EB4B76400BCD54F /* MomentsViewController.m in Sources */,
 				BE79B10C1EB5A04900199E04 /* LikeUsersView.m in Sources */,
 				BE1D54901EB4B76400BCD54F /* NewMomentViewController.m in Sources */,
 				BE79B1061EB4FC9400199E04 /* CustomTableViewCell.m in Sources */,
 				BE1D54911EB4B76400BCD54F /* UIImagePickerViewController.m in Sources */,
 				BE1D54921EB4B76400BCD54F /* CreateClassViewController.m in Sources */,
+				BE79B1341EB5F3A100199E04 /* Region.m in Sources */,
+				BE79B1371EB5F3A100199E04 /* SchoolList.m in Sources */,
+				BE79B14F1EB75F9000199E04 /* jggView.m in Sources */,
+				BE79B1361EB5F3A100199E04 /* SchoolCreateClass.m in Sources */,
 				BE1D551A1EB4C3F300BCD54F /* VoiceMomentViewController.m in Sources */,
 				BE1D54931EB4B76400BCD54F /* ClassViewController.m in Sources */,
 				BE1D54941EB4B76400BCD54F /* SelectClassViewController.m in Sources */,
 				BE1D54951EB4B76400BCD54F /* JoinClassViewController.m in Sources */,
+				BE79B13F1EB5F44C00199E04 /* MomentModel.m in Sources */,
 				BE79AD071EB4F83500199E04 /* SDPhotoBrowser.m in Sources */,
 				BE1D54961EB4B76400BCD54F /* ViewController.m in Sources */,
 				BE1D54971EB4B76400BCD54F /* JoinExactClassViewController.m in Sources */,
 				BE1D54981EB4B76400BCD54F /* MyProfileViewController.m in Sources */,
+				BE79B13A1EB5F3A100199E04 /* User.m in Sources */,
 				BE1D54991EB4B76400BCD54F /* EditProfileViewController.m in Sources */,
 				BE1D549A1EB4B76400BCD54F /* TeacherConfirmViewController.m in Sources */,
 				BE79B0FD1EB4FC3800199E04 /* EditProfileTableViewCell.m in Sources */,
 				BE1D549B1EB4B76400BCD54F /* ChatViewController.m in Sources */,
 				BE1D549C1EB4B76400BCD54F /* TestConversationViewController.m in Sources */,
 				BE1D549D1EB4B76400BCD54F /* ScheduleViewController.m in Sources */,
+				BE79B1381EB5F3A100199E04 /* schoolmodel.m in Sources */,
+				BE79B1321EB5F3A100199E04 /* MyProfileModel.m in Sources */,
 				BE1D549E1EB4B76400BCD54F /* ClassView.m in Sources */,
 				BE1D549F1EB4B76400BCD54F /* CreateClassSubView.m in Sources */,
-				BE1D54A01EB4B76400BCD54F /* School.m in Sources */,
-				BE1D54A11EB4B76400BCD54F /* schoolmodel.m in Sources */,
-				BE1D54A21EB4B76400BCD54F /* MomentModel.m in Sources */,
 				BE79B1031EB4FC8400199E04 /* DefaultTableViewCell.m in Sources */,
-				BE1D54A31EB4B76400BCD54F /* Title.m in Sources */,
-				BE1D54A41EB4B76400BCD54F /* Classe.m in Sources */,
-				BE1D54A51EB4B76400BCD54F /* NewMomentModel.m in Sources */,
-				BE1D54A61EB4B76400BCD54F /* SchoolList.m in Sources */,
-				BE1D54A71EB4B76400BCD54F /* SchoolCreateClass.m in Sources */,
-				BE1D54A81EB4B76400BCD54F /* Region.m in Sources */,
-				BE1D54A91EB4B76400BCD54F /* MyProfileModel.m in Sources */,
-				BE1D54AA1EB4B76400BCD54F /* Codetime.m in Sources */,
 				BE79AD061EB4F83500199E04 /* SDBrowserImageView.m in Sources */,
-				BE1D54AB1EB4B76400BCD54F /* User.m in Sources */,
 				BE79AD081EB4F83500199E04 /* SDWaitingView.m in Sources */,
 				BE1D54B21EB4B76400BCD54F /* ELCAlbumPickerController.m in Sources */,
 				BE1D54B31EB4B76400BCD54F /* ELCAsset.m in Sources */,
 				BE1D54B41EB4B76400BCD54F /* ELCAssetCell.m in Sources */,
 				BE1D54B51EB4B76400BCD54F /* ELCAssetTablePicker.m in Sources */,
+				BE79B1401EB5F44C00199E04 /* Title.m in Sources */,
 				BE1D54B61EB4B76400BCD54F /* ELCConsole.m in Sources */,
 				BE79B1001EB4FC6A00199E04 /* MomentsHeadTableViewCell.m in Sources */,
 				BE1D54B71EB4B76400BCD54F /* ELCImagePickerController.m in Sources */,
@@ -1041,8 +1061,8 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = "";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "/Users/jepxia/Desktop/班级圈/班级圈/WeChat.pch";
 				INFOPLIST_FILE = "班级圈/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -1068,8 +1088,8 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = "";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "/Users/jepxia/Desktop/班级圈/班级圈/WeChat.pch";
 				INFOPLIST_FILE = "班级圈/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (

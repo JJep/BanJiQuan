@@ -10,7 +10,9 @@
 #import <UIKit/UIKit.h>
 #import "Region.h"
 @implementation GlobalVar
-static NSString* url = @"192.168.88.24";
+//static NSString* url = @"192.168.88.24:8080";
+static NSString* url = @"120.25.97.42:8888";
+
 //static UIColor* blueColor = nil;
 //if ( == nil)
 //localArray = [NSArray arrayWithArray: self.container.objects ];

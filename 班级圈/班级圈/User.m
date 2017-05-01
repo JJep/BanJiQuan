@@ -16,6 +16,7 @@ NSString *const kUserCreatetime = @"createtime";
 NSString *const kUserDescriptionField = @"description";
 NSString *const kUserHead = @"head";
 NSString *const kUserIdField = @"id";
+NSString *const kUserfIdField = @"fid";
 NSString *const kUserIdentity = @"identity";
 NSString *const kUserPassword = @"password";
 NSString *const kUserPhonenumber = @"phonenumber";
@@ -23,6 +24,8 @@ NSString *const kUserQrcode = @"qrcode";
 NSString *const kUserSex = @"sex";
 NSString *const kUserStatus = @"status";
 NSString *const kUserUsername = @"username";
+NSString *const kUserfUsername = @"fusername";
+
 
 @interface User ()
 @end
@@ -56,6 +59,9 @@ NSString *const kUserUsername = @"username";
 	if(![dictionary[kUserIdField] isKindOfClass:[NSNull class]]){
 		self.idField = [dictionary[kUserIdField] integerValue];
 	}
+    if(![dictionary[kUserfIdField] isKindOfClass:[NSNull class]]){
+        self.fidField = [dictionary[kUserfIdField] integerValue];
+    }
 	if(![dictionary[kUserIdentity] isKindOfClass:[NSNull class]]){
 		self.identity = dictionary[kUserIdentity];
 	}	
@@ -76,7 +82,10 @@ NSString *const kUserUsername = @"username";
 	}	
 	if(![dictionary[kUserUsername] isKindOfClass:[NSNull class]]){
 		self.username = dictionary[kUserUsername];
-	}	
+	}
+    if(![dictionary[kUserfUsername] isKindOfClass:[NSNull class]]){
+        self.fusername = dictionary[kUserfUsername];
+    }
 	return self;
 }
 

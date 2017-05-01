@@ -29,7 +29,7 @@
     NSString* token = [defaults objectForKey:@"token"];
     
 //    if (userid) {
-//        self.sessionUrl = [NSString stringWithFormat:@"%@%@%@",@"http://",[GlobalVar urlGetter], @":8080/bjquan/user/updateif" ];
+//        self.sessionUrl = [NSString stringWithFormat:@"%@%@%@",@"http://",[GlobalVar urlGetter], @"/bjquan/user/updateif" ];
 //        //创建多个字典
 //        self.parameters = [NSDictionary dictionaryWithObject:userid forKey:@"userId"];
 //        

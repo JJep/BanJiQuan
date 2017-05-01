@@ -32,7 +32,7 @@
     NSString* token = [defaults objectForKey:@"token"];
     
     if (userid) {
-        self.sessionUrl = [NSString stringWithFormat:@"%@%@%@",@"http://",[GlobalVar urlGetter], @":8080/bjquan/title/post" ];
+        self.sessionUrl = [NSString stringWithFormat:@"%@%@%@",@"http://",[GlobalVar urlGetter], @"/bjquan/title/post" ];
         //创建多个字典
         NSString* subParameter = [[NSString alloc] init];
         for (int i = 0; i < [self.selectedClasses count]; i++) {
@@ -87,7 +87,7 @@
     NSString* token = [defaults objectForKey:@"token"];
     
     if (userid) {
-        self.sessionUrl = [NSString stringWithFormat:@"%@%@%@",@"http://",[GlobalVar urlGetter], @":8080/bjquan/class/quclass" ];
+        self.sessionUrl = [NSString stringWithFormat:@"%@%@%@",@"http://",[GlobalVar urlGetter], @"/bjquan/class/quclass" ];
         //创建多个字典
         self.parameters = [NSDictionary dictionaryWithObject:userid forKey:@"userId"];
         

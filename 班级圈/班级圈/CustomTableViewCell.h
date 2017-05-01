@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "LikeUsersView.h"
+#import "CommentView.h"
+#import "jggView.h"
+#import "Title.h"
 @interface CustomTableViewCell : UITableViewCell
 @property (nonatomic,retain)UILabel* nameLabel; //显示名字
 @property (nonatomic,retain)UILabel* timeLabel;
@@ -20,10 +23,20 @@
 @property (nonatomic)BOOL isLike;
 @property (nonatomic,retain)NSArray* likeUsers;
 @property (nonatomic,retain)NSNumber* titleId;
--(void)updateUI;
--(void)loadPhoto;
-+ (CGFloat)tableView:(UITableView *)tableView rowHeightForObject:(id)object;
+@property (nonatomic,retain)LikeUsersView* likeUsersView;
+@property (nonatomic,retain)CommentView* commentView;
+@property (nonatomic,retain)NSArray* comments;
+@property (nonatomic,retain)jggView* jggView;
+
+//-(void)updateUI;
+//-(void)loadPhoto;
++ (CGFloat)tableView:(UITableView *)tableView rowHeightForObject:(Title*)moment;
 -(CGFloat)hadleForHeight;
 - (float)getAutoCellHeight ;
 -(void)configUI;
+-(void)loadPhotoWithModel:(NSArray* )imageArrays;
+-(CGFloat)loadLikeUsersWithModel:(NSArray* )likeUsers;
+-(CGFloat)loadCommentWithModel:(NSArray *)comments;
+
+
 @end

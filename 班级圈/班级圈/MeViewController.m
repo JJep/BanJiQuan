@@ -94,8 +94,8 @@ static NSString *const context = @"这个人懒得要死，啥都没写";
     MeHeadTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
         if (self.myProfileModel) {
             cell.userName.text = (NSString*)self.myProfileModel.user.username;
-            cell.userPhoneNumber.text = [NSString stringWithFormat:@"%@%@", @"账号:",self.myProfileModel.user.phonenumber];
-            cell.userDescription.text = (NSString*)self.myProfileModel.user.descriptionField;
+//            cell.userPhoneNumber.text = [NSString stringWithFormat:@"%@%@", @"账号:",self.myProfileModel.user.phonenumber];
+            cell.userDescription.text = (NSString*)self.myProfileModel.user.description;
 //            cell.userPortrait.image = [UIImage ;
 
         }
@@ -138,7 +138,7 @@ static NSString *const context = @"这个人懒得要死，啥都没写";
     NSLog(@"%@", userid);
     if (userid!=nil&&token!=nil) {
         
-        self.sessionUrl = [NSString stringWithFormat:@"%@%@%@",@"http://",[GlobalVar urlGetter], @":8080/bjquan/user/queryif" ];
+        self.sessionUrl = [NSString stringWithFormat:@"%@%@%@",@"http://",[GlobalVar urlGetter], @"/bjquan/user/queryif" ];
         self.parameters = [NSDictionary dictionaryWithObject:userid forKey:@"userId"];
         
         NSLog(@"parameters :%@", self.parameters);

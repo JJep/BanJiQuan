@@ -20,9 +20,11 @@
 @property (nonatomic,retain)NSString* sessionUrl;
 @property (nonatomic,retain)NSDictionary* parameters;
 @property (nonatomic,retain)NSMutableArray* classes;
-@property (nonatomic,retain)NSMutableArray* MomentArray;
+@property (nonatomic,retain)NSMutableArray* momentArray;
 @property (nonatomic,retain)NSMutableArray* cellHeightArray;
-@property (nonatomic,retain)NSArray* likeUsers;
+@property (nonatomic,retain)NSMutableArray* likeUsers;
+@property (nonatomic,retain)NSMutableArray* likeUsersViewHeight;
+@property (nonatomic,retain)NSMutableArray* commentsViewHeight;
 @end
 
 @implementation MomentsViewController
@@ -53,7 +55,7 @@
     NSString* token = [defaults objectForKey:@"token"];
     
     if (userid) {
-        self.sessionUrl = [NSString stringWithFormat:@"%@%@%@",@"http://",[GlobalVar urlGetter], @":8080/bjquan/title/qallf10" ];
+        self.sessionUrl = [NSString stringWithFormat:@"%@%@%@",@"http://",[GlobalVar urlGetter], @"/bjquan/title/qallf10" ];
         //创建多个字典
         self.parameters = [NSDictionary dictionaryWithObject:userid forKey:@"userId"];
         
@@ -73,7 +75,8 @@
                  if ([status isEqualToNumber:[NSNumber numberWithInteger:0]]) {
                      self.classes = [responseObject objectForKey:@"classes"];
                      NSLog(@"%@", self.classes);
-                     self.MomentArray = [responseObject objectForKey:@"titles"];
+//                     _momentArray = [responseObject objectForKey:@"titles"];
+                     [self.momentArray addObjectsFromArray:[responseObject objectForKey:@"titles"]];
                      [_tableView reloadData];
                  }
                  // 3. 结束刷新
@@ -97,22 +100,23 @@
     NSString* token = [defaults objectForKey:@"token"];
     
     if (userid) {
-        NSString* sessionUrl = [NSString stringWithFormat:@"%@%@%@",@"http://",[GlobalVar urlGetter], @":8080/bjquan/title/like" ];
+        NSString* sessionUrl = [NSString stringWithFormat:@"%@%@%@",@"http://",[GlobalVar urlGetter], @"/bjquan/title/like" ];
         //创建多个字典
+        Title* moment = [[Title alloc] initWithDictionary:[self.momentArray objectAtIndex:sender.tag-1]];
         NSDictionary* parameters ;
         if (sender.selected) {
             parameters = [NSDictionary dictionaryWithObjectsAndKeys:
                           userid,@"userid",
                           userid,@"userId",
                           @0,@"deleted",
-                          [NSNumber numberWithInteger:sender.tag],@"titleid"
+                          [NSNumber numberWithInteger:moment.idField],@"titleid"
                           , nil];
         } else {
             parameters = [NSDictionary dictionaryWithObjectsAndKeys:
                           userid,@"userid",
                           userid,@"userId",
                           @1,@"deleted",
-                          [NSNumber numberWithInteger:sender.tag],@"titleid"
+                          [NSNumber numberWithInteger:moment.idField],@"titleid"
                           , nil];
         }
         
@@ -129,18 +133,31 @@
                   NSLog(@"%@",responseObject);
                   //根据key获取value
                   NSNumber* status = [responseObject objectForKey:@"status"];
+                  NSLog(@"%@", [responseObject objectForKey:@"title"]);
                   if ([status isEqualToNumber:[NSNumber numberWithInteger:0]]) {
-                      self.likeUsers = [[NSArray arrayWithObject:[responseObject objectForKey:@"like"]] objectAtIndex:0];
+                      
+//                      self.likeUsers = [[NSArray arrayWithObject:[responseObject objectForKey:@"like"]] objectAtIndex:sender.tag-1];
+//                      [self.likeUsers replaceObjectAtIndex:sender.tag-1 withObject:[responseObject objectForKey:@"like"]];
+                      [self.momentArray replaceObjectAtIndex:sender.tag-1 withObject:[responseObject objectForKey:@"title"]];
                   } else if ([status isEqualToNumber:[NSNumber numberWithInteger:1]]) {
-                      self.likeUsers = [[NSArray arrayWithObject:[responseObject objectForKey:@"like"]] objectAtIndex:0];
+//                      self.likeUsers = [[NSArray arrayWithObject:[responseObject objectForKey:@"like"]] objectAtIndex:0];
+//                      [self.likeUsers replaceObjectAtIndex:sender.tag-1 withObject:[responseObject objectForKey:@"like"]];
+                      NSLog(@"%@", [NSNumber numberWithInteger: sender.tag]);
+                      [self.momentArray replaceObjectAtIndex:sender.tag-1 withObject:[responseObject objectForKey:@"title"]];
+                      
+
                   } else if ([status isEqualToNumber:[NSNumber numberWithInteger:2]]) {
-                      self.likeUsers = [[NSArray arrayWithObject:[responseObject objectForKey:@"like"]] objectAtIndex:0];
+//                      self.likeUsers = [[NSArray arrayWithObject:[responseObject objectForKey:@"like"]] objectAtIndex:0];
+//                      [self.likeUsers replaceObjectAtIndex:sender.tag-1 withObject:[responseObject objectForKey:@"like"]];
+                      
+
                       UIAlertController* alertController = [UIAlertController alertControllerWithTitle:@"操作失败" message:nil preferredStyle:UIAlertControllerStyleAlert];
                       UIAlertAction* alertAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
                       [alertController addAction:alertAction];
                       [self presentViewController:alertController animated:true completion:nil];
                   }
                   [_tableView reloadData];
+                  
               }
               failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                   NSLog(@"failure");
@@ -164,7 +181,7 @@
     NSString* token = [defaults objectForKey:@"token"];
     
     if (userid) {
-        self.sessionUrl = [NSString stringWithFormat:@"%@%@%@",@"http://",[GlobalVar urlGetter], @":8080/bjquan/title/qallf10" ];
+        self.sessionUrl = [NSString stringWithFormat:@"%@%@%@",@"http://",[GlobalVar urlGetter], @"/bjquan/title/qallf10" ];
         //创建多个字典
         self.parameters = [NSDictionary dictionaryWithObject:userid forKey:@"userId"];
         
@@ -184,7 +201,9 @@
                  if ([status isEqualToNumber:[NSNumber numberWithInteger:0]]) {
                      self.classes = [responseObject objectForKey:@"classes"];
                      NSLog(@"%@", self.classes);
-                     self.MomentArray = [responseObject objectForKey:@"titles"];
+//                     _momentArray = [responseObject objectForKey:@"titles"];
+//                     [self.momentArray addObject:[responseObject objectForKey:@"titles"]];
+                     [self.momentArray addObjectsFromArray:[responseObject objectForKey:@"titles"]];
                      [_tableView reloadData];
                  }
              }
@@ -214,15 +233,29 @@
 {
     
 }
-
+//
+//-(instancetype)init{
+//    _momentArray = [[NSMutableArray alloc] init];
+//    return self;
+//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     //tableview不被tabbar遮盖
-    
+    self.view.backgroundColor = [GlobalVar grayColorGetter];
 //    self.cellHeight = 180;
+//    self.MomentArray = [NSMutableArray new];
+//    self.momentsArray = [NSMutableArray new];
+//    self.cellHeightArray = [NSMutableArray new];
+//
+    self.likeUsersViewHeight = [[NSMutableArray alloc] init];
+    self.commentsViewHeight = [[NSMutableArray alloc] init];
+    self.likeUsers = [[NSMutableArray alloc] init];
+//    self.MomentArray = [[NSMutableArray alloc] init];
+//    _momentArray = [NSMutableArray arrayWithCapacity:8];
+    self.momentArray = [[NSMutableArray alloc] init];
     
-    _contentArray = [NSArray arrayWithObjects: @"膜方面哇哦皮肤内外哦发那位 i 哦放牛娃分别为 i 奥放牛娃发你哦完肥哦无法 i 哦服务你哦发哇分为发膜方面哇哦皮肤内外哦发那位 i 哦放牛娃分别为 i 奥放牛娃", @"发你哦完肥哦无法 i 哦服务你哦发哇分为发膜方面哇哦皮肤内外哦发那位 i 哦放牛娃分别为 i 奥放牛娃发你哦完肥哦无法 i 哦服务你哦发哇分为发膜方面哇哦皮肤内外哦发那位 i 哦放牛娃分别为 i 奥放牛娃发你哦完肥哦无法 i 哦服务你哦发哇分为发膜方面哇哦皮肤内外哦发那位 i 哦放牛娃分别为 i 奥放牛娃", nil];
+//    _contentArray = [NSArray arrayWithObjects: @"膜方面哇哦皮肤内外哦发那位 i 哦放牛娃分别为 i 奥放牛娃发你哦完肥哦无法 i 哦服务你哦发哇分为发膜方面哇哦皮肤内外哦发那位 i 哦放牛娃分别为 i 奥放牛娃", @"发你哦完肥哦无法 i 哦服务你哦发哇分为发膜方面哇哦皮肤内外哦发那位 i 哦放牛娃分别为 i 奥放牛娃发你哦完肥哦无法 i 哦服务你哦发哇分为发膜方面哇哦皮肤内外哦发那位 i 哦放牛娃分别为 i 奥放牛娃发你哦完肥哦无法 i 哦服务你哦发哇分为发膜方面哇哦皮肤内外哦发那位 i 哦放牛娃分别为 i 奥放牛娃", nil];
     
     if (([[[UIDevice currentDevice] systemVersion] doubleValue] >= 7.0)) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -231,7 +264,7 @@
     //    self.view.backgroundColor = [GlobalVar grayColorGetter];
     [self setupNavigationBar];
     [self downloadMoments];
-    [self setupRefresh];
+//    [self setupRefresh];
     _tableView = [[UITableView alloc] initWithFrame:self.view.bounds];
     
     _tableView.backgroundColor = [GlobalVar grayColorGetter];
@@ -243,7 +276,7 @@
     [self.view addSubview:_tableView];
     
     
-    [_tableView registerClass:[CustomTableViewCell class] forCellReuseIdentifier:@"CELL"];
+    [_tableView registerClass:[CustomTableViewCell class] forCellReuseIdentifier:@"MOMENTCELL"];
     [_tableView registerClass:[MomentsHeadTableViewCell class] forCellReuseIdentifier:@"HEADCELL"];
     
     self.navigationItem.title = @"全部关注";
@@ -311,18 +344,23 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
-    return 1;
+    return 2;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
-    return [self.MomentArray count]+1;
-//    return [_contentArray count] + 1;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (section == 0) {
+        return 1;
+    } else if (section == 1) {
+        return [self.momentArray count];
+    } else {
+        return 0;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0) {
+    if (indexPath.section == 0) {
         MomentsHeadTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HEADCELL" forIndexPath:indexPath];
         cell.backgroundImage.image = [UIImage imageNamed:@"flower.jpg"];
         cell.nameLabel.text = @"陈小艺的家长";
@@ -331,75 +369,102 @@
         return cell;
     } else {
         //这里用CustomCell替换原来的UITableViewCell
-        Title* moment = [[Title alloc] initWithDictionary:[self.MomentArray objectAtIndex:indexPath.row-1]];
-        User* user = [[User alloc] initWithDictionary:[moment.user toDictionary]];
-        
-        CustomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CELL" forIndexPath:indexPath];
-        cell.titleId = [NSNumber numberWithInteger:moment.idField];
-//        cell.titleId = [NSNumber numberWithInteger:1];
-//        cell.likeUsers = [NSArray arrayWithObjects:@"Jep!",@"Jep!",@"Jep!",@"Jep!",@"Jep!", nil];
-        if (moment.pics) {
+        CustomTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"MOMENTCELL" forIndexPath:indexPath];
+        if ([self.momentArray count]>0) {
+            Title* moment = [[Title alloc ] initWithDictionary:[self.momentArray objectAtIndex:indexPath.row]];
+            NSLog(@"%@", moment);
+            User* user = [[User alloc] initWithDictionary:[moment.user toDictionary]];
+            if (moment.likes) {
+                [self.likeUsers insertObject:moment.likes atIndex:indexPath.row];
+                
+            }
+            cell.titleId = [NSNumber numberWithInteger:moment.idField];
+            if (moment.pics) {
+                NSArray *pics = [(NSString *)moment.pics componentsSeparatedByString:@";"];
+                if ([pics isEqualToArray:cell.imageArray]) {
+                } else {
+                    [cell loadPhotoWithModel:pics];
+                    cell.imageArray = [NSMutableArray arrayWithArray:pics];
+                }
+            }
             
-            NSArray *pics = [(NSString *)moment.pics componentsSeparatedByString:@";"];
-            cell.imageArray = [NSMutableArray arrayWithArray:pics];
+//******************************************************************************************************
+            if ([cell.likeUsers isEqualToArray:moment.likes]) {
+            } else {
+                [self.likeUsersViewHeight insertObject:[NSNumber numberWithFloat:[cell loadLikeUsersWithModel:moment.likes]] atIndex:indexPath.row];
+            }
+            
+            if ([cell.comments isEqualToArray:moment.comments]) {
+                
+            } else {
+                [self.commentsViewHeight insertObject:[NSNumber numberWithFloat:[cell loadCommentWithModel:moment.comments]] atIndex:indexPath.row];
+            }
+            
+//******************************************************************************************************
+            if (user.username) {
+                cell.nameLabel.text = (NSString *)user.username;
+            }
+            
+            [cell.userPortraitImage setImage:[UIImage imageNamed:@"头像中"]];
+            if (moment.createtime) {
+                cell.timeLabel.text = [self timeWithTimeIntervalString:[NSString stringWithFormat: @"%ld", (long)moment.createtime]];;
+            }
+            cell.contentLabel.text = moment.content;
+            cell.likeButton.tag = indexPath.row;
+            [cell.likeButton addTarget:self action:@selector(LikeMoment:) forControlEvents:UIControlEventTouchUpInside];
         }
-        
-        if (user.username) {
-            cell.nameLabel.text = (NSString *)user.username;
-        }
-        
-        [cell.userPortraitImage setImage:[UIImage imageNamed:@"头像中"]];
-        if (moment.createtime) {
-            cell.timeLabel.text = [self timeWithTimeIntervalString:[NSString stringWithFormat: @"%ld", (long)moment.createtime]];;
-        }
-        cell.contentLabel.text = moment.content;
-        cell.likeButton.tag = moment.idField;
-//        cell.likeUsers = self.likeUsers;
-        [cell.likeButton addTarget:self action:@selector(LikeMoment:) forControlEvents:UIControlEventTouchUpInside];
-//        
-//        cell.nameLabel.text = @"Jep!";
-//        cell.timeLabel.text = @"5分钟前";
-//        cell.contentLabel.text = [_contentArray objectAtIndex:indexPath.row-1];
-//        
-//        [cell loadPhoto];
-//        [cell updateUI];
-        [cell configUI];
         return cell;
     }
-    
 }
 
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    if (indexPath.row == 0) {
+    if (indexPath.section == 0) {
         return 180;
     } else {
     //根据内容计算高度
-        CGFloat iconHeight = 160;
-        CGRect rect = [[[self.MomentArray objectAtIndex:indexPath.row-1] objectForKey:@"text"] boundingRectWithSize:CGSizeMake(CGRectGetWidth(self.view.frame)-30, MAXFLOAT)
-                                                              options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
-                                                           attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]} context:nil];  
-//     再加上其他控件的高度得到cell的高度
-        Title* moment = [[Title alloc] initWithDictionary:[self.MomentArray objectAtIndex:indexPath.row-1]];
-        if (moment.pics) {
-            
-            NSArray *pics = [(NSString *)moment.pics componentsSeparatedByString:@";"];
-            CGFloat width = (self.view.bounds.size.width -60 )/3;
-            if ([pics count] == 0) {
-                return 30 + iconHeight;
+        CGFloat iconHeight = 180;
+        if ([self.momentArray count] > 0) {
+            Title* moment = [[Title alloc] initWithDictionary:[self.momentArray objectAtIndex:indexPath.row]];
+            if ([moment.likes count]>0) {
+                iconHeight += [CustomTableViewCell]
+                iconHeight += [[self.likeUsersViewHeight objectAtIndex:(indexPath.row)] floatValue];
+                
             }
-            else if ([pics count] <= 3) {
-                return rect.size.height + width+30 + iconHeight;
-            } else if ([pics count] <= 6) {
-                return (15 + 2*(15+width) + rect.size.height + iconHeight);
-            } else {
-                return (15 + 3*(15+width) + rect.size.height + iconHeight);
+            if ([self.commentsViewHeight count] > 0) {
+                iconHeight += [[self.commentsViewHeight objectAtIndex:(indexPath.row)] floatValue];
             }
-        } else {
-            return rect.size.height+ iconHeight;
+            if ([self.momentArray count]>0) {
+                CGRect rect = [[[self.momentArray objectAtIndex:(indexPath.row)] objectForKey:@"text"] boundingRectWithSize:CGSizeMake(CGRectGetWidth(self.view.frame)-30, MAXFLOAT)
+                                                                                                                    options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                                                                                                                 attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]} context:nil];
+                
+                //     再加上其他控件的高度得到cell的高度
+                if ([self.momentArray count] > 0) {
+                    Title* moment = [[Title alloc] initWithDictionary:[self.momentArray objectAtIndex:(indexPath.row)]];
+                    if (moment.pics) {
+                        NSArray *pics = [(NSString *)moment.pics componentsSeparatedByString:@";"];
+                        CGFloat width = (self.view.bounds.size.width -60 )/3;
+                        if ([pics count] == 0) {
+                            return 30 + iconHeight;
+                        }
+                        else if ([pics count] <= 3) {
+                            return rect.size.height + width+30 + iconHeight;
+                        } else if ([pics count] <= 6) {
+                            return (15 + 2*(15+width) + rect.size.height + iconHeight);
+                        } else {
+                            return (15 + 3*(15+width) + rect.size.height + iconHeight);
+                        }
+                        
+                    } else {
+                        return rect.size.height+ iconHeight;
+                    }
+                    
+                }
+            }
         }
-        
+        return iconHeight;
     }
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

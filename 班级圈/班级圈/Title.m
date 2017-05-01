@@ -1,7 +1,7 @@
 //
 //	Title.m
 //
-//	Create by Jep Xia on 25/4/2017
+//	Create by Jep Xia on 30/4/2017
 //	Copyright © 2017. All rights reserved.
 //	Model file generated using JSONExport: https://github.com/Ahmed-Ali/JSONExport
 
@@ -9,17 +9,14 @@
 
 #import "Title.h"
 
-NSString *const kTitleAvThumbnails = @"avThumbnails";
 NSString *const kTitleClassid = @"classid";
+NSString *const kTitleComments = @"comments";
 NSString *const kTitleContent = @"content";
 NSString *const kTitleCreatetime = @"createtime";
-NSString *const kTitleDeleted = @"deleted";
 NSString *const kTitleIdField = @"id";
-NSString *const kTitlePicThumbnails = @"picThumbnails";
+NSString *const kTitleLikes = @"likes";
 NSString *const kTitlePics = @"pics";
 NSString *const kTitleUser = @"user";
-NSString *const kTitleUserid = @"userid";
-NSString *const kTitleVideos = @"videos";
 
 @interface Title ()
 @end
@@ -35,13 +32,13 @@ NSString *const kTitleVideos = @"videos";
 -(instancetype)initWithDictionary:(NSDictionary *)dictionary
 {
 	self = [super init];
-	if(![dictionary[kTitleAvThumbnails] isKindOfClass:[NSNull class]]){
-		self.avThumbnails = dictionary[kTitleAvThumbnails];
-	}	
 	if(![dictionary[kTitleClassid] isKindOfClass:[NSNull class]]){
 		self.classid = [dictionary[kTitleClassid] integerValue];
 	}
 
+	if(![dictionary[kTitleComments] isKindOfClass:[NSNull class]]){
+		self.comments = dictionary[kTitleComments];
+	}	
 	if(![dictionary[kTitleContent] isKindOfClass:[NSNull class]]){
 		self.content = dictionary[kTitleContent];
 	}	
@@ -49,15 +46,12 @@ NSString *const kTitleVideos = @"videos";
 		self.createtime = [dictionary[kTitleCreatetime] integerValue];
 	}
 
-	if(![dictionary[kTitleDeleted] isKindOfClass:[NSNull class]]){
-		self.deleted = dictionary[kTitleDeleted];
-	}	
 	if(![dictionary[kTitleIdField] isKindOfClass:[NSNull class]]){
 		self.idField = [dictionary[kTitleIdField] integerValue];
 	}
 
-	if(![dictionary[kTitlePicThumbnails] isKindOfClass:[NSNull class]]){
-		self.picThumbnails = dictionary[kTitlePicThumbnails];
+	if(![dictionary[kTitleLikes] isKindOfClass:[NSNull class]]){
+		self.likes = dictionary[kTitleLikes];
 	}	
 	if(![dictionary[kTitlePics] isKindOfClass:[NSNull class]]){
 		self.pics = dictionary[kTitlePics];
@@ -66,12 +60,6 @@ NSString *const kTitleVideos = @"videos";
 		self.user = [[User alloc] initWithDictionary:dictionary[kTitleUser]];
 	}
 
-	if(![dictionary[kTitleUserid] isKindOfClass:[NSNull class]]){
-		self.userid = dictionary[kTitleUserid];
-	}	
-	if(![dictionary[kTitleVideos] isKindOfClass:[NSNull class]]){
-		self.videos = dictionary[kTitleVideos];
-	}	
 	return self;
 }
 
@@ -82,32 +70,23 @@ NSString *const kTitleVideos = @"videos";
 -(NSDictionary *)toDictionary
 {
 	NSMutableDictionary * dictionary = [NSMutableDictionary dictionary];
-	if(self.avThumbnails != nil){
-		dictionary[kTitleAvThumbnails] = self.avThumbnails;
-	}
 	dictionary[kTitleClassid] = @(self.classid);
+	if(self.comments != nil){
+		dictionary[kTitleComments] = self.comments;
+	}
 	if(self.content != nil){
 		dictionary[kTitleContent] = self.content;
 	}
 	dictionary[kTitleCreatetime] = @(self.createtime);
-	if(self.deleted != nil){
-		dictionary[kTitleDeleted] = self.deleted;
-	}
 	dictionary[kTitleIdField] = @(self.idField);
-	if(self.picThumbnails != nil){
-		dictionary[kTitlePicThumbnails] = self.picThumbnails;
+	if(self.likes != nil){
+		dictionary[kTitleLikes] = self.likes;
 	}
 	if(self.pics != nil){
 		dictionary[kTitlePics] = self.pics;
 	}
 	if(self.user != nil){
 		dictionary[kTitleUser] = [self.user toDictionary];
-	}
-	if(self.userid != nil){
-		dictionary[kTitleUserid] = self.userid;
-	}
-	if(self.videos != nil){
-		dictionary[kTitleVideos] = self.videos;
 	}
 	return dictionary;
 
@@ -121,29 +100,20 @@ NSString *const kTitleVideos = @"videos";
  */
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
-	if(self.avThumbnails != nil){
-		[aCoder encodeObject:self.avThumbnails forKey:kTitleAvThumbnails];
+	[aCoder encodeObject:@(self.classid) forKey:kTitleClassid];	if(self.comments != nil){
+		[aCoder encodeObject:self.comments forKey:kTitleComments];
 	}
-	[aCoder encodeObject:@(self.classid) forKey:kTitleClassid];	if(self.content != nil){
+	if(self.content != nil){
 		[aCoder encodeObject:self.content forKey:kTitleContent];
 	}
-	[aCoder encodeObject:@(self.createtime) forKey:kTitleCreatetime];	if(self.deleted != nil){
-		[aCoder encodeObject:self.deleted forKey:kTitleDeleted];
-	}
-	[aCoder encodeObject:@(self.idField) forKey:kTitleIdField];	if(self.picThumbnails != nil){
-		[aCoder encodeObject:self.picThumbnails forKey:kTitlePicThumbnails];
+	[aCoder encodeObject:@(self.createtime) forKey:kTitleCreatetime];	[aCoder encodeObject:@(self.idField) forKey:kTitleIdField];	if(self.likes != nil){
+		[aCoder encodeObject:self.likes forKey:kTitleLikes];
 	}
 	if(self.pics != nil){
 		[aCoder encodeObject:self.pics forKey:kTitlePics];
 	}
 	if(self.user != nil){
 		[aCoder encodeObject:self.user forKey:kTitleUser];
-	}
-	if(self.userid != nil){
-		[aCoder encodeObject:self.userid forKey:kTitleUserid];
-	}
-	if(self.videos != nil){
-		[aCoder encodeObject:self.videos forKey:kTitleVideos];
 	}
 
 }
@@ -154,17 +124,14 @@ NSString *const kTitleVideos = @"videos";
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
 	self = [super init];
-	self.avThumbnails = [aDecoder decodeObjectForKey:kTitleAvThumbnails];
 	self.classid = [[aDecoder decodeObjectForKey:kTitleClassid] integerValue];
+	self.comments = [aDecoder decodeObjectForKey:kTitleComments];
 	self.content = [aDecoder decodeObjectForKey:kTitleContent];
 	self.createtime = [[aDecoder decodeObjectForKey:kTitleCreatetime] integerValue];
-	self.deleted = [aDecoder decodeObjectForKey:kTitleDeleted];
 	self.idField = [[aDecoder decodeObjectForKey:kTitleIdField] integerValue];
-	self.picThumbnails = [aDecoder decodeObjectForKey:kTitlePicThumbnails];
+	self.likes = [aDecoder decodeObjectForKey:kTitleLikes];
 	self.pics = [aDecoder decodeObjectForKey:kTitlePics];
 	self.user = [aDecoder decodeObjectForKey:kTitleUser];
-	self.userid = [aDecoder decodeObjectForKey:kTitleUserid];
-	self.videos = [aDecoder decodeObjectForKey:kTitleVideos];
 	return self;
 
 }
@@ -176,17 +143,14 @@ NSString *const kTitleVideos = @"videos";
 {
 	Title *copy = [Title new];
 
-	copy.avThumbnails = [self.avThumbnails copy];
 	copy.classid = self.classid;
+	copy.comments = [self.comments copy];
 	copy.content = [self.content copy];
 	copy.createtime = self.createtime;
-	copy.deleted = [self.deleted copy];
 	copy.idField = self.idField;
-	copy.picThumbnails = [self.picThumbnails copy];
+	copy.likes = [self.likes copy];
 	copy.pics = [self.pics copy];
 	copy.user = [self.user copy];
-	copy.userid = [self.userid copy];
-	copy.videos = [self.videos copy];
 
 	return copy;
 }

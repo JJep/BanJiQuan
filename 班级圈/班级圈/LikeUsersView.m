@@ -17,15 +17,15 @@
 - (void)drawRect:(CGRect)rect {
     // Drawing code
     UIView* assistView1 = [UIView new];
-    assistView1.backgroundColor = [GlobalVar grayColorGetter];
+    assistView1.backgroundColor = [UIColor whiteColor];
     [self addSubview:assistView1];
-    
-    UILabel* likeUsersLabel = [UILabel new];
-    likeUsersLabel.font = [UIFont systemFontOfSize:15];
-    likeUsersLabel.text = self.likeUsersName;
-    likeUsersLabel.textColor = [GlobalVar themeColorGetter];
-    likeUsersLabel.numberOfLines = 0;
-    [self addSubview:likeUsersLabel];
+    self.backgroundColor = [UIColor whiteColor];
+    self.likeUsersLabel = [UILabel new];
+    self.likeUsersLabel.font = [UIFont systemFontOfSize:15];
+    self.likeUsersLabel.text = self.likeUsersName;
+    self.likeUsersLabel.textColor = [GlobalVar themeColorGetter];
+    self.likeUsersLabel.numberOfLines = 0;
+    [self addSubview:self.likeUsersLabel];
     
     UIImageView* likeImage = [UIImageView new];
     likeImage.image = [UIImage imageNamed:@"点赞红"];
@@ -39,19 +39,28 @@
     
     [likeImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left);
-        make.width.height.mas_equalTo(30);
+        make.width.height.mas_equalTo(15);
         make.top.equalTo(assistView1.mas_bottom).offset(5);
     }];
     
-    [likeUsersLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.mas_left).offset(40);
+    [self.likeUsersLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.mas_left).offset(20);
         make.right.equalTo(self.mas_right);
         make.top.equalTo(assistView1.mas_bottom).offset(5);
     }];
-    
-    
+    self.likeUsersLabel.lineBreakMode = NSLineBreakByCharWrapping;
+//    [self.likeUsersLabel layoutIfNeeded];
+//    [self.likeUsersLabel setNeedsLayout];
     
 }
 
+-(CGFloat)heightForLikeUserNameLabel {
+    CGRect rect = [self.likeUsersName boundingRectWithSize:CGSizeMake(CGRectGetWidth([UIScreen mainScreen].bounds)-40, MAXFLOAT)
+                                                                                                        options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                                                                                                     attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} context:nil];
+//    [self.likeUsersLabel layoutIfNeeded];
+//    [self layoutSubviews];
+    return rect.size.height;
+}
 
 @end
