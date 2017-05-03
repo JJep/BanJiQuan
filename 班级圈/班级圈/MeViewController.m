@@ -20,6 +20,7 @@
 #import "MyProfileModel.h"
 #import <AFNetworking.h>
 #import "ClassViewController.h"
+#import "SettingsViewController.h"
 
 @interface MeViewController ()
 @property(nonatomic,retain)NSString* sessionUrl;
@@ -73,16 +74,17 @@ static NSString *const context = @"这个人懒得要死，啥都没写";
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
-    return 3;
+    return 4;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0) {
         return 1;
-    }
-    if (section == 1) {
+    } else if (section == 1) {
         return 3;
+    } else if (section == 2) {
+        return 1;
     } else {
         return 1;
     }
@@ -105,25 +107,30 @@ static NSString *const context = @"这个人懒得要死，啥都没写";
         DefaultTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DEFAULTCELL" forIndexPath:indexPath];
         switch (indexPath.row) {
             case 0:
-                cell.cellLabel.text = @"创建班级";
+                cell.cellLabel.text = @"创建班级圈";
                 cell.cellImage.image = [UIImage imageNamed:@"NOTEPAD_ADD"];
                 break;
             case 1:
-                cell.cellLabel.text = @"查找班级";
+                cell.cellLabel.text = @"查找班级圈";
                 cell.cellImage.image = [UIImage imageNamed:@"NOTEPAD_OK"];
                 break;
             case 2:
-                cell.cellLabel.text = @"班级列表";
+                cell.cellLabel.text = @"班级圈列表";
                 cell.cellImage.image = [UIImage imageNamed:@"NOTEPAD"];
                 break;
             default:
                 break;
         }
         return cell;
-    } else  {
+    } else  if (indexPath.section == 2){
         DefaultTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DEFAULTCELL" forIndexPath:indexPath];
         cell.cellLabel.text = @"教师认证";
         cell.cellImage.image = [UIImage imageNamed:@"USER_ADD"];
+        return cell;
+    } else {
+        DefaultTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DEFAULTCELL" forIndexPath:indexPath];
+        cell.cellLabel.text = @"设置";
+        cell.cellImage.image = [UIImage imageNamed:@"settings"];
         return cell;
     }
     
@@ -195,6 +202,10 @@ static NSString *const context = @"这个人懒得要死，啥都没写";
     {
         TeacherConfirmViewController* confirmVC = [[TeacherConfirmViewController alloc] init];
         [self pushToViewController:confirmVC];
+    } else if (indexPath.section == 3)
+    {
+        SettingsViewController* settingsVC = [[SettingsViewController alloc] init];
+        [self pushToViewController:settingsVC];
     }
 }
 

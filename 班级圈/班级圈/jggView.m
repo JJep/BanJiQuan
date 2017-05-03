@@ -17,13 +17,13 @@
     // Drawing code
     
     CGFloat width = (self.bounds.size.width - 60 )/ 3;
-    
+    self.backgroundColor = [UIColor whiteColor];
     if ([self.imageArrays count] > 0) {
         if ([self.imageArrays count]<=3) {
             for (int i = 0; i < [self.imageArrays count]; i++) {
                 UIImageView* imageView = [UIImageView new];
                 [self addSubview:imageView];
-                [imageView sd_setImageWithURL:[NSURL URLWithString:[self handleUrl:self.imageArrays[i]]]];
+                [imageView sd_setImageWithURL:[GlobalVar handleUrl:self.imageArrays[i]]];
                 [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.top.equalTo(self.mas_top).offset(10);
                     make.left.equalTo(self.mas_left).offset(15+i*(15+width));
@@ -34,7 +34,7 @@
             for (int i = 0; i < 3 ; i ++) {
                 UIImageView* imageView = [UIImageView new];
                 [self addSubview:imageView];
-                [imageView sd_setImageWithURL:[NSURL URLWithString:[self handleUrl:self.imageArrays[i]]]];
+                [imageView sd_setImageWithURL:[GlobalVar handleUrl:self.imageArrays[i]]];
                 [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.top.equalTo(self.mas_top).offset(10);
                     make.left.equalTo(self.mas_left).offset(15+i*(15+width));
@@ -44,7 +44,7 @@
             for (int i =3; i < [self.imageArrays count]; i++) {
                 UIImageView* imageView = [UIImageView new];
                 [self addSubview:imageView];
-                [imageView sd_setImageWithURL:[NSURL URLWithString:[self handleUrl:self.imageArrays[i]]]];
+                [imageView sd_setImageWithURL:[GlobalVar handleUrl:self.imageArrays[i]]];
                 [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.top.equalTo(self.mas_top).offset(10+10+width);
                     make.left.equalTo(self.mas_left).offset(15+(i-3)*(15+width));
@@ -55,7 +55,7 @@
             for (int i = 0; i < 3 ; i ++) {
                 UIImageView* imageView = [UIImageView new];
                 [self addSubview:imageView];
-                [imageView sd_setImageWithURL:[NSURL URLWithString:[self handleUrl:self.imageArrays[i]]]];
+                [imageView sd_setImageWithURL:[GlobalVar handleUrl:self.imageArrays[i]]];
                 [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.top.equalTo(self.mas_top).offset(10);
                     make.left.equalTo(self.mas_left).offset(15+i*(15+width));
@@ -65,7 +65,7 @@
             for (int i =3; i < 6; i++) {
                 UIImageView* imageView = [UIImageView new];
                 [self addSubview:imageView];
-                [imageView sd_setImageWithURL:[NSURL URLWithString:[self handleUrl:self.imageArrays[i]]]];
+                [imageView sd_setImageWithURL:[GlobalVar handleUrl:self.imageArrays[i]]];
                 [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.top.equalTo(self.mas_top).offset(10+10+width);
                     make.left.equalTo(self.mas_left).offset(15+(i-3)*(15+width));
@@ -75,7 +75,7 @@
             for (int i = 6; i < [self.imageArrays count]; i ++) {
                 UIImageView* imageView = [UIImageView new];
                 [self addSubview:imageView];
-                [imageView sd_setImageWithURL:[NSURL URLWithString:[self handleUrl:self.imageArrays[i]]]];
+                [imageView sd_setImageWithURL:[GlobalVar handleUrl:self.imageArrays[i]]];
                 [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.top.equalTo(self.mas_top).offset(10+2*(10+width));
                     make.left.equalTo(self.mas_left).offset(15+(i-6)*(15+width));
@@ -86,8 +86,5 @@
     }
 }
 
--(NSString *)handleUrl:(NSString *)url {
-    NSString* str = [NSString stringWithFormat:@"http://%@/bjquan/titlespic/%@", [GlobalVar urlGetter],url];
-    return str;
-}
+
 @end

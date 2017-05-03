@@ -13,6 +13,7 @@
 #import <AFNetworking.h>
 #import "LikeUsersView.h"
 #import "User.h"
+#import "Comment.h"
 
 @implementation CustomTableViewCell
 
@@ -47,9 +48,9 @@
         self.userPortraitImage = [UIImageView new];
         [self.contentView addSubview:self.userPortraitImage];
         [self.userPortraitImage mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.height.mas_equalTo(37.5);
+            make.width.height.mas_equalTo(35);
             make.left.equalTo(self.contentView.mas_left).offset(15);
-            make.top.equalTo(self.contentView.mas_top).offset(10.5);
+            make.top.equalTo(self.contentView.mas_top).offset(10);
         }];
     }
     
@@ -58,7 +59,7 @@
         [self.contentView addSubview:self.nameLabel];
         [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.userPortraitImage.mas_right).offset(10);
-            make.top.equalTo(self.contentView.mas_top).offset(10.5);
+            make.top.equalTo(self.contentView.mas_top).offset(10);
             make.right.equalTo(self.contentView.mas_right).offset(-10);
             make.height.mas_equalTo(20);
         }];
@@ -85,8 +86,8 @@
         [self.contentView addSubview:self.contentLabel];
         
         [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.userPortraitImage.mas_left);
-            make.top.equalTo(self.userPortraitImage.mas_bottom).offset(15);
+            make.left.equalTo(self.contentView.mas_left).offset(15);
+            make.top.equalTo(self.userPortraitImage.mas_bottom).offset(10);
             make.right.equalTo(self.contentView.mas_right).offset(-15);
 //            make.width.lessThanOrEqualTo(self.contentView.bounds.size.width );
         }];
@@ -124,7 +125,6 @@
     
     [self.shareView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView.mas_left);
-        make.width.equalTo(self.contentView);
         make.height.mas_equalTo(30);
         make.right.equalTo(self.contentView.mas_right);
         make.top.equalTo(self.contentLabel.mas_bottom).offset(10);
@@ -150,11 +150,41 @@
         make.centerX.width.equalTo(self.contentView);
         make.height.mas_equalTo(10);
     }];
+    self.commentView = [CommentView new];
+    [self.contentView addSubview:self.commentView];
+    self.likeUsersView = [LikeUsersView new];
+    [self.contentView addSubview:self.likeUsersView];
+    self.jggView = [jggView new];
+    [self.contentView addSubview:self.jggView];
+    
+    [self.jggView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.contentView.mas_left);
+        make.right.equalTo(self.contentView.mas_right);
+        make.top.equalTo(self.contentLabel.mas_bottom).offset(10);
+        make.height.mas_equalTo(0);
+    }];
+    
+    [self.likeUsersView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.shareView.mas_bottom).offset(10);
+        make.left.equalTo(self.contentView.mas_left).offset(15);
+        make.right.equalTo(self.contentView.mas_right).offset(-15);
+        make.height.mas_equalTo(0);
+        
+    }];
 
+    [self.commentView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.contentView.mas_left).offset(15);
+        make.right.equalTo(self.contentView.mas_right).offset(-15);
+        make.top.equalTo(self.likeUsersView.mas_bottom).offset(10);
+        make.height.mas_equalTo(0);
+    }];
+    
 }
 
 -(CGFloat)loadLikeUsersWithModel:(NSArray* )likeUsers
 {
+    
+    self.likeUsersView.backgroundColor = [UIColor grayColor];
     self.likeUsers = likeUsers;
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     NSNumber* userid = [defaults objectForKey:@"uid"];
@@ -166,37 +196,43 @@
         }
     }
 
+    //将likeusers拼接成新的字符串
     if ([likeUsers count] > 0) {
-        self.likeUsersView = [LikeUsersView new];
+        [self.likeUsersView setHidden:false];
         NSString* likeUsersNameString ;
         for (int i = 0; i < [likeUsers count]; i++) {
             
-            if (i == [likeUsers count] -1 ) {
-                if (i == 0) {
-                    User* user = [[User alloc] initWithDictionary:[likeUsers objectAtIndex:i]];
-                    likeUsersNameString = [NSString stringWithFormat:@"%@",user.username];
-                } else {
+            if (i == 0) {
+                User *user = [[User alloc] initWithDictionary:[likeUsers objectAtIndex:i]];
+                likeUsersNameString = [NSString stringWithFormat:@"%@",user.username];
+            } else {
+                if (i == [likeUsers count] - 1) {
                     User* user = [[User alloc] initWithDictionary:[likeUsers objectAtIndex:i]];
                     likeUsersNameString = [NSString stringWithFormat:@"%@%@",likeUsersNameString,user.username];
+                } else {
+                    User* user = [[User alloc] initWithDictionary:[likeUsers objectAtIndex:i]];
+                    likeUsersNameString = [NSString stringWithFormat:@"%@%@、", likeUsersNameString,user.username];
                 }
-            } else {
-                User* user = [[User alloc] initWithDictionary:[likeUsers objectAtIndex:i]];
-                likeUsersNameString = [NSString stringWithFormat:@"%@%@、", likeUsersNameString,user.username];
             }
         }
         
         self.likeUsersView.likeUsersName = likeUsersNameString;
         self.likeUsersView.backgroundColor = [UIColor whiteColor];
-        [self.contentView addSubview:self.likeUsersView];
-        [self.likeUsersView mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.likeUsersView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.shareView.mas_bottom).offset(10);
-            make.left.right.equalTo(self.contentLabel);
-            make.height.mas_equalTo([self.likeUsersView heightForLikeUserNameLabel]+10);
+            make.left.equalTo(self.contentView.mas_left).offset(15);
+            make.right.equalTo(self.contentView.mas_right).offset(-15);
+            make.height.mas_equalTo([LikeUsersView heightForLikeUserNameLabel:likeUsersNameString]);
             
         }];
-        NSLog(@"%@", [NSNumber numberWithFloat: [self.likeUsersView heightForLikeUserNameLabel]]);
-        return [self.likeUsersView heightForLikeUserNameLabel];
+        return [LikeUsersView heightForLikeUserNameLabel:likeUsersNameString];
     } else {
+        [self.likeUsersView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.shareView.mas_bottom).offset(10);
+            make.left.equalTo(self.contentView.mas_left).offset(15);
+            make.right.equalTo(self.contentView.mas_right).offset(-15);
+            make.height.mas_equalTo(0);
+        }];
         [self.likeUsersView setHidden:true];
     }
     return 0;
@@ -205,14 +241,17 @@
 -(CGFloat)loadCommentWithModel:(NSArray *)comments
 {
     self.comments = comments;
+
+    self.commentView.backgroundColor = [UIColor redColor];
+    
     if ([comments count] > 0) {
-        self.commentView = [CommentView new];
+        [self.commentView setHidden:false];
         [self.contentView addSubview:self.commentView];
         
         self.commentView.backgroundColor = [UIColor whiteColor];
         self.commentView.commentsArray = comments;
         
-        [self.commentView mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.commentView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.contentView.mas_left).offset(15);
             make.right.equalTo(self.contentView.mas_right).offset(-15);
             make.top.equalTo(self.likeUsersView.mas_bottom).offset(10);
@@ -220,6 +259,12 @@
         }];
         return self.commentView.commentViewHeight+10;
     } else {
+        [self.commentView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.contentView.mas_left).offset(15);
+            make.right.equalTo(self.contentView.mas_right).offset(-15);
+            make.top.equalTo(self.likeUsersView.mas_bottom).offset(10);
+            make.height.mas_equalTo(0);
+        }];
         [self.commentView setHidden:true];
     }
     return 0;
@@ -229,6 +274,9 @@
 -(void)loadPhotoWithModel:(NSArray* )imageArrays
 {
     
+    self.jggView.backgroundColor = [UIColor orangeColor];
+    self.imageArray = imageArrays;
+    
     CGFloat width = (self.contentView.bounds.size.width - 60) / 3;
 
     [self.shareView mas_updateConstraints:^(MASConstraintMaker *make) {
@@ -237,32 +285,32 @@
         make.height.mas_equalTo(30);
         make.right.equalTo(self.contentView.mas_right);
         if ([imageArrays count] == 0) {
-            make.top.equalTo(self.contentLabel.mas_bottom).offset(10);
+            make.top.equalTo(self.contentLabel.mas_bottom).offset(25);
         } else if ([imageArrays count] <= 3) {
-            make.top.equalTo(self.contentLabel.mas_bottom).offset(10 + (15+width));
+            make.top.equalTo(self.contentLabel.mas_bottom).offset(25 + (15+width));
         } else if ([imageArrays count] <= 6) {
-            make.top.equalTo(self.contentLabel.mas_bottom).offset(10 + 2*(15+width));
+            make.top.equalTo(self.contentLabel.mas_bottom).offset(25 + 2*(15+width));
         } else if ([imageArrays count] <= 9) {
-            make.top.equalTo(self.contentLabel.mas_bottom).offset(10 + 3*(15+width));
+            make.top.equalTo(self.contentLabel.mas_bottom).offset(25 + 3*(15+width));
         }
         
     }];
     
-    self.jggView = [jggView new];
+
     self.jggView.imageArrays = imageArrays;
-    [self.contentView addSubview:self.jggView];
-    [self.jggView mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.jggView.backgroundColor = [UIColor whiteColor];
+    [self.jggView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView.mas_left);
         make.right.equalTo(self.contentView.mas_right);
-        make.top.equalTo(self.shareView.mas_bottom).offset(10);
+        make.top.equalTo(self.contentLabel.mas_bottom).offset(10);
         if ([imageArrays count] == 0) {
-            make.height.mas_equalTo(0);
+            make.height.mas_equalTo(10);
         } else if ([imageArrays count] <= 3) {
-            make.top.mas_equalTo(10);
+            make.height.mas_equalTo(10+(width+10));
         } else if ([imageArrays count] <= 6) {
-            make.top.mas_equalTo(10+(width+10));
+            make.height.mas_equalTo(10+2*(width+10));
         } else if ([imageArrays count] <= 9) {
-            make.top.mas_equalTo(10+2*(width+10));
+            make.height.mas_equalTo(10+3*(width+10));
         }
     }];
 }
@@ -287,15 +335,103 @@
     return str;
 }
 
-+ (CGFloat)tableView:(UITableView *)tableView rowHeightForObject:(id)object
++(CGFloat)rowHeightForMoment:(Title *)moment
 {
-    CGFloat statusLabelWidth =150;
-//    //字符串分类提供方法，计算字符串的高度，还是同样道理，字符串有多高，cell也不需要知道，参数传给你，具体怎么算不管，字符串NSString自己算好返回来就行
-    CGSize statusLabelSize =[object sizeWithLabelWidth:statusLabelWidth font:[UIFont systemFontOfSize:17]];
-    return statusLabelSize.height;
-//    return 0;
-}
+    CGFloat width = ([UIScreen mainScreen].bounds.size.width - 60 )/ 3;
+    CGFloat rowHeight = 120;
+    //计算contentLabelde的高度
+    if (moment.content) {
+        CGRect rect = [moment.content boundingRectWithSize:CGSizeMake(CGRectGetWidth([UIScreen mainScreen].bounds)-30, MAXFLOAT)
+                                                                                                            options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                                                                                                         attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]} context:nil];
+        rowHeight += rect.size.height;
+    }
+    
+    //计算photoView的高度
+    NSArray *imageArray = [(NSString *)moment.pics componentsSeparatedByString:@";"];
+    if ([imageArray count] > 0) {
+        if ([imageArray count] <= 3) {
+            rowHeight += width + 15;
+        } else if ([imageArray count] <= 6) {
+            rowHeight += 2* (width + 15);
+        } else if ([imageArray count] <= 9) {
+            rowHeight += 3* (width + 15);
+        }
+    } else {
+        rowHeight += 0;
+    }
 
+    //计算likeUsersView的高度
+    
+    //将likeusers拼接成新的字符串
+    NSArray *likeUsers = moment.likes;
+    if ([likeUsers count] > 0) {
+        NSString* likeUsersNameString ;
+        for (int i = 0; i < [likeUsers count]; i++) {
+            if (i == [likeUsers count] -1 ) {
+                if (i == 0) {
+                    User* user = [[User alloc] initWithDictionary:[likeUsers objectAtIndex:i]];
+                    likeUsersNameString = [NSString stringWithFormat:@"%@",user.username];
+                } else {
+                    User* user = [[User alloc] initWithDictionary:[likeUsers objectAtIndex:i]];
+                    likeUsersNameString = [NSString stringWithFormat:@"%@%@",likeUsersNameString,user.username];
+                }
+            } else {
+                User* user = [[User alloc] initWithDictionary:[likeUsers objectAtIndex:i]];
+                likeUsersNameString = [NSString stringWithFormat:@"%@%@、", likeUsersNameString,user.username];
+            }
+        }
+        rowHeight += ([LikeUsersView heightForLikeUserNameLabel:likeUsersNameString] + 10);
+    }
+    
+    //计算commentView的height
+    NSArray *commentsArray = moment.comments;
+    if ([commentsArray count] > 0) {
+        CGFloat labelHeight = 10 ;
+        for (int i = 0; i < [commentsArray count]; i ++) {
+            
+            Comment* comment = [[Comment alloc] initWithDictionary:commentsArray[i]];
+            
+            if (comment.touser.idField) {
+                /*对用户的评论*/
+                UILabel* commentContentLb = [UILabel new];
+                //设置label的字体大小
+                //            commentContentLb.font = [UIFont systemFontOfSize:15];
+                //将评论人跟评论内容拼接为一个字符串
+                NSString* string = [NSString stringWithFormat:@"%@回复%@：%@",(NSString *)comment.fromuser.fusername,(NSString *)comment.touser.username, comment.content];
+                NSMutableAttributedString *commentContentString = [[NSMutableAttributedString alloc] initWithString:string];
+                //设置评论人的名字的字体颜色为 主题色
+                [commentContentString addAttribute:NSForegroundColorAttributeName value:[GlobalVar themeColorGetter] range:NSMakeRange(0,[(NSString *)comment.fromuser.fusername length] )];
+                [commentContentString addAttribute:NSForegroundColorAttributeName value:[GlobalVar themeColorGetter] range:NSMakeRange([(NSString *)comment.fromuser.fusername length]+2,[(NSString *)comment.touser.username length] )];
+                commentContentLb.attributedText = commentContentString;
+                //对label布局
+
+                //            labelHeight += [self handleLabelHeight:string labelFont:commentContentLb.font];
+                labelHeight += [CommentView handleLabelHeight:string labelFont:commentContentLb.font];
+            } else {
+                /*对该朋友圈的评论*/
+                
+                UILabel* commentContentLb = [UILabel new];
+                //设置label的字体大小
+                //            commentContentLb.font = [UIFont systemFontOfSize:15];
+                //将评论人跟评论内容拼接为一个字符串
+                NSString* string = [NSString stringWithFormat:@"%@：%@",(NSString *)comment.fromuser.fusername, comment.content];
+                NSMutableAttributedString *commentContentString = [[NSMutableAttributedString alloc] initWithString:string];
+                //设置评论人的名字的字体颜色为 主题色
+                [commentContentString addAttribute:NSForegroundColorAttributeName value:[GlobalVar themeColorGetter] range:NSMakeRange(0,[(NSString *)comment.fromuser.fusername length] )];
+                commentContentLb.attributedText = commentContentString;
+                //对label布局
+
+                //            labelHeight += [self handleLabelHeight:string labelFont:commentContentLb.font];
+                labelHeight += [CommentView handleLabelHeight:string labelFont:commentContentLb.font];
+            }
+            
+        }
+        rowHeight += labelHeight;
+
+    }
+    return rowHeight;
+}
 -(CGFloat)hadleForHeight
 {
     CGFloat width = (self.contentView.bounds.size.width -60 )/3;

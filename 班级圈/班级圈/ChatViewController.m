@@ -54,6 +54,7 @@
     conversationVC.conversationType = model.conversationType;
     conversationVC.targetId = model.targetId;
     conversationVC.title = @"当前会话";
+    conversationVC.hidesBottomBarWhenPushed = true;
     [self.navigationController pushViewController:conversationVC animated:YES];
     
 }

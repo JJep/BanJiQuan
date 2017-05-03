@@ -17,6 +17,7 @@ NSString *const kTitleIdField = @"id";
 NSString *const kTitleLikes = @"likes";
 NSString *const kTitlePics = @"pics";
 NSString *const kTitleUser = @"user";
+NSString *const kTitleTag = @"tag";
 
 @interface Title ()
 @end
@@ -59,6 +60,9 @@ NSString *const kTitleUser = @"user";
 	if(![dictionary[kTitleUser] isKindOfClass:[NSNull class]]){
 		self.user = [[User alloc] initWithDictionary:dictionary[kTitleUser]];
 	}
+    if(![dictionary[kTitleTag] isKindOfClass:[NSNull class]]){
+        self.tag = dictionary[kTitleTag];
+    }
 
 	return self;
 }

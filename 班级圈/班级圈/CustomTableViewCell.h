@@ -19,7 +19,7 @@
 @property (nonatomic,retain)UIView* shareView;
 @property (nonatomic,retain)UIButton* CommentButton;
 @property (nonatomic,retain)UIButton* likeButton;
-@property (nonatomic,retain)NSMutableArray* imageArray;
+@property (nonatomic,retain)NSArray* imageArray;
 @property (nonatomic)BOOL isLike;
 @property (nonatomic,retain)NSArray* likeUsers;
 @property (nonatomic,retain)NSNumber* titleId;
@@ -30,7 +30,7 @@
 
 //-(void)updateUI;
 //-(void)loadPhoto;
-+ (CGFloat)tableView:(UITableView *)tableView rowHeightForObject:(Title*)moment;
++ (CGFloat)rowHeightForMoment:(Title*)moment;
 -(CGFloat)hadleForHeight;
 - (float)getAutoCellHeight ;
 -(void)configUI;

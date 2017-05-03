@@ -17,6 +17,7 @@
 - (void)drawRect:(CGRect)rect {
     // Drawing code
     CGFloat labelHeight = 5 ;
+    self.backgroundColor = [UIColor whiteColor];
     for (int i = 0; i < [self.commentsArray count]; i ++) {
         
         UIButton* commentBtn = [UIButton new];
@@ -44,9 +45,10 @@
                 make.right.equalTo(self.mas_right);
                 make.top.equalTo(self.mas_top).offset(labelHeight);
             }];
-            labelHeight += [self handleLabelHeight:string labelFont:commentContentLb.font];
+//            labelHeight += [self handleLabelHeight:string labelFont:commentContentLb.font];
+            labelHeight += [CommentView handleLabelHeight:string labelFont:commentContentLb.font];
         } else {
-                                                /*对该朋友圈的评论*/
+                                                 /*对该朋友圈的评论*/
             
             UILabel* commentContentLb = [UILabel new];
             //设置label的字体大小
@@ -64,7 +66,8 @@
                 make.right.equalTo(self.mas_right);
                 make.top.equalTo(self.mas_top).offset(labelHeight);
             }];
-            labelHeight += [self handleLabelHeight:string labelFont:commentContentLb.font];
+//            labelHeight += [self handleLabelHeight:string labelFont:commentContentLb.font];
+            labelHeight += [CommentView handleLabelHeight:string labelFont:commentContentLb.font];
         }
         
     }
@@ -72,7 +75,7 @@
     self.commentViewHeight = [self heightForCommentView:labelHeight];
 }
 
--(CGFloat)handleLabelHeight:(NSString *)labelString labelFont:(UIFont *)labelFont
++(CGFloat)handleLabelHeight:(NSString *)labelString labelFont:(UIFont *)labelFont
 {
     
     CGRect rect = [labelString boundingRectWithSize:CGSizeMake(CGRectGetWidth([UIScreen mainScreen].bounds)-30, MAXFLOAT)

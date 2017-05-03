@@ -54,8 +54,8 @@
     
 }
 
--(CGFloat)heightForLikeUserNameLabel {
-    CGRect rect = [self.likeUsersName boundingRectWithSize:CGSizeMake(CGRectGetWidth([UIScreen mainScreen].bounds)-40, MAXFLOAT)
++(CGFloat)heightForLikeUserNameLabel:(NSString *) likeUsersName{
+    CGRect rect = [likeUsersName boundingRectWithSize:CGSizeMake(CGRectGetWidth([UIScreen mainScreen].bounds)-40, MAXFLOAT)
                                                                                                         options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
                                                                                                      attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} context:nil];
 //    [self.likeUsersLabel layoutIfNeeded];

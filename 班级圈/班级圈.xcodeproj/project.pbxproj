@@ -51,6 +51,8 @@
 		BE1D551E1EB4C87700BCD54F /* bassJackers.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = BE1D551D1EB4C87700BCD54F /* bassJackers.jpeg */; };
 		BE1D55211EB4CF9A00BCD54F /* test1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = BE1D551F1EB4CF9A00BCD54F /* test1.jpeg */; };
 		BE1D55221EB4CF9A00BCD54F /* test2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = BE1D55201EB4CF9A00BCD54F /* test2.jpeg */; };
+		BE2388F41EB986E900A6AF7A /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE2388F31EB986E900A6AF7A /* SettingsViewController.m */; };
+		BE2388F61EB989E400A6AF7A /* 日程.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BE2388F51EB989E400A6AF7A /* 日程.jpg */; };
 		BE24AB1B1E9E6126004ADBAF /* 头像大.png in Resources */ = {isa = PBXBuildFile; fileRef = BE24AB181E9E6126004ADBAF /* 头像大.png */; };
 		BE24AB1C1E9E6126004ADBAF /* ARROW_RIGHT.png in Resources */ = {isa = PBXBuildFile; fileRef = BE24AB191E9E6126004ADBAF /* ARROW_RIGHT.png */; };
 		BE24AB1D1E9E6126004ADBAF /* COG.png in Resources */ = {isa = PBXBuildFile; fileRef = BE24AB1A1E9E6126004ADBAF /* COG.png */; };
@@ -113,6 +115,7 @@
 		BE79B1431EB6FC3A00199E04 /* CommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE79B1421EB6FC3A00199E04 /* CommentView.m */; };
 		BE79B14C1EB7012F00199E04 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = BE79B14B1EB7012F00199E04 /* Comment.m */; };
 		BE79B14F1EB75F9000199E04 /* jggView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE79B14E1EB75F9000199E04 /* jggView.m */; };
+		BE79B1521EB8655B00199E04 /* SendCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE79B1511EB8655A00199E04 /* SendCommentView.m */; };
 		BE7CD1E01EAE282A0023D986 /* ELCAlbumPickerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE7CD1D41EAE282A0023D986 /* ELCAlbumPickerController.xib */; };
 		BE7CD1E11EAE282A0023D986 /* ELCAssetPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE7CD1D51EAE282A0023D986 /* ELCAssetPicker.xib */; };
 		BE7CD1E21EAE282A0023D986 /* ELCAssetTablePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE7CD1D61EAE282A0023D986 /* ELCAssetTablePicker.xib */; };
@@ -172,6 +175,9 @@
 		BE1D55201EB4CF9A00BCD54F /* test2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test2.jpeg; sourceTree = "<group>"; };
 		BE231E3D1E8D34BD001A92A9 /* Register.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Register.h; sourceTree = "<group>"; };
 		BE231E3E1E8D34BD001A92A9 /* Register.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Register.m; sourceTree = "<group>"; };
+		BE2388F21EB986E900A6AF7A /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		BE2388F31EB986E900A6AF7A /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		BE2388F51EB989E400A6AF7A /* 日程.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "日程.jpg"; sourceTree = "<group>"; };
 		BE24AB181E9E6126004ADBAF /* 头像大.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "头像大.png"; sourceTree = "<group>"; };
 		BE24AB191E9E6126004ADBAF /* ARROW_RIGHT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ARROW_RIGHT.png; sourceTree = "<group>"; };
 		BE24AB1A1E9E6126004ADBAF /* COG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = COG.png; sourceTree = "<group>"; };
@@ -277,6 +283,8 @@
 		BE79B14B1EB7012F00199E04 /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
 		BE79B14D1EB75F9000199E04 /* jggView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jggView.h; sourceTree = "<group>"; };
 		BE79B14E1EB75F9000199E04 /* jggView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = jggView.m; sourceTree = "<group>"; };
+		BE79B1501EB8655A00199E04 /* SendCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendCommentView.h; sourceTree = "<group>"; };
+		BE79B1511EB8655A00199E04 /* SendCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendCommentView.m; sourceTree = "<group>"; };
 		BE7CD1C21EAE282A0023D986 /* ELCAlbumPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAlbumPickerController.h; sourceTree = "<group>"; };
 		BE7CD1C31EAE282A0023D986 /* ELCAlbumPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCAlbumPickerController.m; sourceTree = "<group>"; };
 		BE7CD1C41EAE282A0023D986 /* ELCAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAsset.h; sourceTree = "<group>"; };
@@ -489,6 +497,8 @@
 				BE79B14E1EB75F9000199E04 /* jggView.m */,
 				BE79B1411EB6FC3A00199E04 /* CommentView.h */,
 				BE79B1421EB6FC3A00199E04 /* CommentView.m */,
+				BE79B1501EB8655A00199E04 /* SendCommentView.h */,
+				BE79B1511EB8655A00199E04 /* SendCommentView.m */,
 				BE79B10A1EB5A04900199E04 /* LikeUsersView.h */,
 				BE79B10B1EB5A04900199E04 /* LikeUsersView.m */,
 				BE79B1011EB4FC8400199E04 /* DefaultTableViewCell.h */,
@@ -546,6 +556,8 @@
 				BE6E481A1E9BA222006BC25A /* TestConversationViewController.m */,
 				BE73222C1E8A96E50099E365 /* ScheduleViewController.h */,
 				BE73222D1E8A96E50099E365 /* ScheduleViewController.m */,
+				BE2388F21EB986E900A6AF7A /* SettingsViewController.h */,
+				BE2388F31EB986E900A6AF7A /* SettingsViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -663,6 +675,7 @@
 		BEF836D91E8960C100F1CD2D /* 图片素材 */ = {
 			isa = PBXGroup;
 			children = (
+				BE2388F51EB989E400A6AF7A /* 日程.jpg */,
 				BE1D551F1EB4CF9A00BCD54F /* test1.jpeg */,
 				BE1D55201EB4CF9A00BCD54F /* test2.jpeg */,
 				BE1D551D1EB4C87700BCD54F /* bassJackers.jpeg */,
@@ -766,6 +779,7 @@
 				BE24AB5B1EA3A6A2004ADBAF /* COG.png in Resources */,
 				BE6E480D1E977040006BC25A /* flower.JPG in Resources */,
 				BE1B18311EACCA6D00D3FE60 /* plus.png in Resources */,
+				BE2388F61EB989E400A6AF7A /* 日程.jpg in Resources */,
 				BE7CD1E21EAE282A0023D986 /* ELCAssetTablePicker.xib in Resources */,
 				BEBEC8D31EADE49A00324E26 /* nike.jpeg in Resources */,
 				BE7CD1E01EAE282A0023D986 /* ELCAlbumPickerController.xib in Resources */,
@@ -894,6 +908,7 @@
 				BE79B1301EB5F3A100199E04 /* Codetime.m in Sources */,
 				BE1D548D1EB4B76400BCD54F /* Register.m in Sources */,
 				BE1D548E1EB4B76400BCD54F /* MeViewController.m in Sources */,
+				BE79B1521EB8655B00199E04 /* SendCommentView.m in Sources */,
 				BE79B1351EB5F3A100199E04 /* School.m in Sources */,
 				BE1D548F1EB4B76400BCD54F /* MomentsViewController.m in Sources */,
 				BE79B10C1EB5A04900199E04 /* LikeUsersView.m in Sources */,
@@ -911,6 +926,7 @@
 				BE1D54951EB4B76400BCD54F /* JoinClassViewController.m in Sources */,
 				BE79B13F1EB5F44C00199E04 /* MomentModel.m in Sources */,
 				BE79AD071EB4F83500199E04 /* SDPhotoBrowser.m in Sources */,
+				BE2388F41EB986E900A6AF7A /* SettingsViewController.m in Sources */,
 				BE1D54961EB4B76400BCD54F /* ViewController.m in Sources */,
 				BE1D54971EB4B76400BCD54F /* JoinExactClassViewController.m in Sources */,
 				BE1D54981EB4B76400BCD54F /* MyProfileViewController.m in Sources */,

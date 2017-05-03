@@ -61,7 +61,13 @@
                           parameters:self.parameters
            constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
                for (int i = 0; i< [self.imageArray count]; i++ ) {
-                   NSData *data = UIImagePNGRepresentation([self.imageArray objectAtIndex:i]);
+                   //设置压缩系数
+                   float kCompressionQuality = 0.3;
+                   //压缩图片
+                   NSData *data = UIImageJPEGRepresentation([self.imageArray objectAtIndex:i], kCompressionQuality);
+                   
+                   
+//                   NSData *data = UIImagePNGRepresentation([self.imageArray objectAtIndex:i]);
                    //上传的参数(上传图片，以文件流的格式)
                    [formData appendPartWithFileData:data
                                                name:@"files"

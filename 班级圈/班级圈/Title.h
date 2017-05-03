@@ -20,6 +20,7 @@
 @property (nonatomic, strong) NSArray * likes;
 @property (nonatomic, strong) NSString * pics;
 @property (nonatomic, strong) User * user;
+@property (nonatomic, strong) NSString * tag;
 
 -(instancetype)initWithDictionary:(NSDictionary *)dictionary;
 

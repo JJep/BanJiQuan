@@ -18,4 +18,5 @@
 +(NSDictionary *) regionDictGetter;
 +(NSArray *)classifyArrayGetter;
 +(UIColor *)grayColorGetter;
++(NSURL *)handleUrl:(NSString *)url;
 @end

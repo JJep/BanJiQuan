@@ -7,7 +7,7 @@
 //
 
 #import "ScheduleViewController.h"
-
+#import <Masonry.h>
 @interface ScheduleViewController ()
 
 @end
@@ -17,20 +17,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    //UIAlertController风格：UIAlertControllerStyleAlert
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"没有标题的标题"
-                                                                             message:@"学无止境，漫漫长路"
-                                                                      preferredStyle:UIAlertControllerStyleAlert ];
+    UIImageView* image = [UIImageView new];
+    image.image = [UIImage imageNamed:@"日程.jpg"];
+    [self.view addSubview:image];
     
-    //添加取消到UIAlertController中
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil];
-    [alertController addAction:cancelAction];
+    [image mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.height.centerX.centerY.equalTo(self.view);
+    }];
     
-    //添加确定到UIAlertController中
-    UIAlertAction *OKAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
-    [alertController addAction:OKAction];
-    
-    [self presentViewController:alertController animated:YES completion:nil];
 
 }
 

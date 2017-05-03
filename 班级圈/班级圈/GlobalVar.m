@@ -10,8 +10,8 @@
 #import <UIKit/UIKit.h>
 #import "Region.h"
 @implementation GlobalVar
-//static NSString* url = @"192.168.88.24:8080";
-static NSString* url = @"120.25.97.42:8888";
+static NSString* url = @"192.168.88.24:8080";
+//static NSString* url = @"120.25.97.42:8888";
 
 //static UIColor* blueColor = nil;
 //if ( == nil)
@@ -59,6 +59,12 @@ static NSString* url = @"120.25.97.42:8888";
 +(NSArray *)classifyArrayGetter{
     NSArray* classifyArray = [[NSArray alloc] initWithObjects:@"幼儿园",@"高中",@"初中",@"大学",@"成人教育",@"培训机构", nil];
     return classifyArray;
+}
++(NSURL *)handleUrl:(NSString *)url {
+    NSString* str = [NSString stringWithFormat:@"http://%@/bjqmger/static/titlespic/%@", [GlobalVar urlGetter],url];
+    //    return @"http://img.ithome.com/newsuploadfiles/2017/5/20170502_105053_605.jpg";
+//    NSURL *url = [NSURL URLWithString:str];
+    return [NSURL URLWithString:str];
 }
 
 @end

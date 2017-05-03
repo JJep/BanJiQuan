@@ -11,4 +11,6 @@
 @interface CommentView : UIView
 @property (nonatomic,retain)NSArray* commentsArray;
 @property (nonatomic)CGFloat commentViewHeight;
++(CGFloat)handleLabelHeight:(NSString *)labelString labelFont:(UIFont *)labelFont;
+
 @end

@@ -60,6 +60,11 @@
         [application registerForRemoteNotificationTypes:myTypes];
     }
     [[RCIM sharedRCIM] initWithAppKey:@"pvxdm17jpgirr"];
+    
+    
+    
+    
+    
     [self autoLogin];
     [self qmatch];
     
@@ -69,8 +74,7 @@
     MomentsViewController* moments = [[MomentsViewController alloc] init];
     moments.view.backgroundColor = [UIColor blueColor];
     UINavigationController* nav1 = [[UINavigationController alloc] initWithRootViewController:moments];
-    nav1.tabBarItem.title = @"fwa";
-//    nav1.title = @"fawwawa";
+    nav1.tabBarItem.title = @"班级圈";
     nav1.navigationBar.barTintColor = [GlobalVar themeColorGetter];
     [nav1.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
     [nav1.navigationBar setTintColor:[UIColor whiteColor]];
@@ -78,16 +82,17 @@
     
     ChatViewController* chat = [[ChatViewController alloc] init];
     chat.view.backgroundColor = [UIColor yellowColor];
-    chat.title = @"Classes";
+    chat.title = @"消息";
     UINavigationController* nav2 = [[UINavigationController alloc] initWithRootViewController:chat];
     nav2.navigationBar.barTintColor = [GlobalVar themeColorGetter];
     [nav2.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
     [nav2.navigationBar setTintColor:[UIColor whiteColor]];
 
     
+//    ScheduleViewController* schedule = [[ScheduleViewController alloc] init];
     Login* schedule = [[Login alloc] init];
     schedule.view.backgroundColor = [UIColor orangeColor];
-    schedule.title = @"Schedule";
+    schedule.title = @"日程";
     UINavigationController* nav3 = [[UINavigationController alloc] initWithRootViewController:schedule];
     nav3.navigationBar.barTintColor = [GlobalVar themeColorGetter];
     [nav3.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
@@ -95,7 +100,7 @@
 
     MeViewController* me = [[MeViewController alloc] init];
     me.view.backgroundColor = [UIColor greenColor];
-    me.title = @"Me";
+    me.title = @"我的";
     UINavigationController* nav4 = [[UINavigationController alloc] initWithRootViewController:me];
     nav4.navigationBar.barTintColor = [GlobalVar themeColorGetter];
     [nav4.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
@@ -205,6 +210,8 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     }
 }
 
+
+
 -(void)autoLogin
 {
     NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
@@ -230,6 +237,9 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
                   if (myInt == 0) {
                       
                       NSLog(@"登录成功");
+//                      User *user = [[User alloc] initWithDictionary:[responseObject objectForKey:@"user"]];
+                      [defaults setObject:[responseObject objectForKey:@"user"] forKey:@"userDict"];
+                      NSLog(@"%@", [defaults objectForKey:@"userDict"]);
                       
                   } else if (myInt == 1)
                   {
@@ -256,6 +266,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
         
     }
 }
+
 
 //-(void)downloadData {
 //    
